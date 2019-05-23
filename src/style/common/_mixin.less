@@ -1,0 +1,145 @@
+.lineclamp (@height, @count) {
+  height: @height;
+  line-height: @height / @count;
+  overflow:hidden;
+	text-overflow:ellipsis;
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp: @count;
+	word-wrap: break-word;
+}
+
+.textoneline(@height) when (@height = auto) {
+  height: @height;
+  line-height: initial;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.textoneline(@height) when (@height = height) {
+  height: @height;
+  line-height: @height;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+// top left = > right bottom
+.colortext-lt (@color1, @color2) {
+	position: relative;
+  background: -webkit-linear-gradient(left top, @color1 , @color2);   /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(bottom right, @color1, @color2);     /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(bottom right, @color1, @color2);   /* Firefox 3.6 - 15 */
+  background: linear-gradient(to bottom right, @color1 , @color2);    /* 标准的语法 */
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+// left = > right
+.colortext-l (@color1, @color2) {
+	position: relative;
+  background: -webkit-linear-gradient(left, @color1 , @color2);   /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, @color1, @color2);     /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right, @color1, @color2);   /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, @color1 , @color2);    /* 标准的语法 */
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+// 添加blur模糊效果
+// 如果不是绝对定位，父元素需要设置相对定位
+// @blur 为模糊的数值
+// @height 区域的高度
+// @position 为位置 默认50%
+.blur(@blur, @height, @position: 50%, @scale: 1.5) {
+	position: absolute;
+	top: 0;
+	left: 0;
+  right: 0;
+  height: @height;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: @position;
+	-webkit-filter: blur(@blur);
+	filter: blur(@blur);
+	-webkit-transform: scale(@scale);
+	transform: scale(@scale);
+	overflow: hidden;
+	&::before{
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+    bottom: 0;
+		z-index: 1;
+		background: rgba(0,0,0,0.1);
+		transition: all 0.3s;
+	}
+	&.draken{
+		&::before{
+			background: rgba(0,0,0,0.3);
+		}
+	}
+}
+
+.blur(@blur, @height, @position: 50%, @scale: 1.5) when (@height = auto) {
+  bottom: 0;
+  height: unset;
+}
+
+// 固定底部
+.fixfooterflex () {
+	html{
+   		height: 100%;
+	}
+
+	body{
+	    display: flex;
+	    flex-direction: column;
+	    min-height: 100%;
+	    font-family: "Hiragino Sans GB","Century Gothic",system, Arial, Verdana, Tahoma,"微软雅黑";
+	    position: relative;
+	    width: 100%;
+	    overflow-x: hidden;
+	}
+
+	header{
+		/* 我们希望 header 采用固定的高度，只占用必须的空间 */
+		/* 0 flex-grow, 0 flex-shrink, auto flex-basis */
+		flex: 0 0 auto;
+	}
+
+	.main_content{
+		/* 将 flex-grow 设置为1，该元素会占用所有的可使用空间
+		而其他元素该属性值为0，因此不会得到多余的空间*/
+		/* 1 flex-grow, 0 flex-shrink, auto flex-basis */
+		flex: 1 1 auto;
+		background-color: #fff;
+		position:relative;
+	}
+
+	footer{
+		/* 和 header 一样，footer 也采用固定高度*/
+		/* 0 flex-grow, 0 flex-shrink, auto flex-basis */
+		flex: 0 0 auto;
+	}
+}
+
+// hr 线条和颜色
+.hr(@color, @name) {
+	.hr-@{color} {
+		width: 100%;
+		height: 1px;
+		background: @color;
+		font-size: 0;
+		margin: 0 auto;
+	}
+	@media (-webkit-min-device-pixel-ratio: 2),(min-device-pixel-ratio: 2) {
+		transform: translate(0, 1 / 2 * 100'px');
+	}
+	@media (-webkit-min-device-pixel-ratio: 3),(min-device-pixel-ratio: 3) {
+		transform: translate(0, 1 / 2 * 100'px');
+	}
+}
