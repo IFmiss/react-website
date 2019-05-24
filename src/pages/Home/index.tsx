@@ -1,16 +1,23 @@
 import * as React from 'react'
+import fetch from './../../utils/fetch'
+import Nav from './../../components/Nav'
+import { HomeNav } from './../../config/nav'
 
 interface IHomeProps {
-  text: string
+  store?: any
 }
 
 interface IHomeState {}
 
 export default class Home extends React.Component<IHomeProps, IHomeState> {
-  render () {
+  componentDidMount () {
+    console.log(this.props.store.colorStore)
+  }
+  
+  public render () {
     return (
-      <div>
-        Home ...
+      <div className="home">
+        <Nav lists={HomeNav}/>
       </div>
     )
   }

@@ -1,11 +1,9 @@
 import * as ReactDOM from 'react-dom'
 import App from './app'
 import * as React from 'react'
-import { BrowserRouter } from 'react-router-dom'
+import store from './store/index'
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App/>
-  </BrowserRouter>,
+  <App store={store}/>,
   document.getElementById('react-website')
 )

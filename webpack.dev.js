@@ -15,5 +15,6 @@ module.exports = merge(common, {
 		noInfo: true,
 		// 配置端口号
 		overlay: true,
+		historyApiFallback: true
   }
 });

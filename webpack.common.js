@@ -127,8 +127,7 @@ module.exports = {
 			'pages': resolve('src/pages'),
 			'utils': resolve('src/utils')
 		},
-		extensions: ['.ts', '.tsx', '.js'],
-    modules: ['node_modules']
+		extensions: ['.ts', '.tsx', '.js']
 	},
   optimization: {
 		splitChunks: {
