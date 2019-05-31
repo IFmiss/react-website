@@ -1,4 +1,4 @@
-.react-web-nav {
+.@{project-prefix}-nav {
   position: fixed;
   top: 0;
   left: 0;
@@ -6,4 +6,26 @@
   height: @nav-height;
   background: #fff;
   box-shadow: 1px 1px 5px 0 #f0f0f0;
+  .nav-content {
+    width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    .nav-logo {
+    }
+    .nav-lists {
+      // flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      .nav-list {
+        padding: 0 10px;
+        margin: 0 10px;
+        text-decoration: none;
+        color: var(--color);
+      }
+    }
+  }
 }
