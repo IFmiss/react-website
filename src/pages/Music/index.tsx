@@ -3,23 +3,24 @@ import fetch from './../../utils/fetch'
 import { IStore } from './../../store/types'
 import classNames from 'classnames'
 
-interface IHomeProps {
+interface IMusicProps {
   store?: IStore;
   prefixClass?: string;
 }
 
-interface IHomeState {}
+interface IMusicState {}
 
-export default class Home extends React.Component<IHomeProps, IHomeState> {
+export default class Music extends React.Component<IMusicProps, IMusicState> {
   public render () {
     const { store, prefixClass } = this.props
-    console.log('Home', this.props)
+    console.log('Music', this.props)
     const classes = classNames({
-      [`${prefixClass}-home`]: true,
+      [`${prefixClass}-music`]: true,
       [`dw-page-router`]: true
     })
     return (
       <div className={classes}>
+        11111
       </div>
     )
   }

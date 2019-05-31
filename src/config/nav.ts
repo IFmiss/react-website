@@ -11,6 +11,6 @@ export const HomeNav: INavLists = [
     link: '/home'
   }, {
     name: '博客',
-    link: '/blog'
+    link: '/music'
   }
 ]

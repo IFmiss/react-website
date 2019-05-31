@@ -11,8 +11,19 @@ interface INavProps {
 interface INavState {}
 
 export default class Nav extends GenericComponent<INavProps, INavState> {
+  public linkClass = (url: string) => {
+    return location.pathname.includes(url) ? 'nav-link active-router-link' : 'nav-link'
+  }
+
+  componentDidMount () {
+    console.log(this.props)
+  }
+
   render () {
-    const { lists, className } = this.props
+    const { lists, className, prefixClass } = this.props
+    const classNames = ({
+      [`${prefixClass}-nav`]: true
+    })
     return (
       <div className={`${className} react-web-nav`}>
         <div className="nav-content">
@@ -22,7 +33,7 @@ export default class Nav extends GenericComponent<INavProps, INavState> {
           {
             lists.map((item: INavList, index: number) => {
               return (
-                <Link className="nav-link" to={item.link} key={index}>{item.name}</Link>
+                <Link className={this.linkClass(item.link)} to={item.link} key={index}>{item.name}</Link>
               )
             })
           }
