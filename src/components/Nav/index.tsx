@@ -3,7 +3,7 @@ import GenericComponent from './../Generic/index'
 import { NavLink } from 'react-router-dom'
 import { INavLists, INavList } from './../../config/nav'
 import classNames from 'classnames'
-import { GenericUtils } from '@dw/d-utils'
+import { changeColor } from './../../utils/utils'
 import './nav.less'
 
 interface INavProps {
@@ -13,22 +13,6 @@ interface INavProps {
 interface INavState {}
 
 export default class Nav extends GenericComponent<INavProps, INavState> {
-  public NavStyle = {
-    color: '#333'
-  }
-
-  public addHover = () => {
-
-  }
-
-  public removeHover = () => {
-    
-  }
-
-  public changeColor = () => {
-    document.documentElement.style.setProperty(`--color`, GenericUtils.randomColor());
-  }
-
   render () {
     const { lists, prefixClass } = this.props
     const classes = classNames({
@@ -46,14 +30,12 @@ export default class Nav extends GenericComponent<INavProps, INavState> {
                 return (
                   <NavLink className="nav-list"
                           to={item.link}
-                          key={index}
-                          // style={this.NavStyle}
-                          onMouseEnter={this.addHover}>{item.name}</NavLink>
+                          key={index}>{item.name}</NavLink>
                 )
               })
             }
           </div>
-          <div onClick={this.changeColor}>点击切换颜色</div>
+          <div onClick={changeColor}>点击切换颜色</div>
         </div>
       </div>
     )

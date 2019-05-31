@@ -16,15 +16,46 @@
     .nav-logo {
     }
     .nav-lists {
-      // flex: 1 1 auto;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: flex-start;
       .nav-list {
+        display: flex;
+        align-items: center;
+        height: 100%;
         padding: 0 10px;
         margin: 0 10px;
         text-decoration: none;
-        color: var(--color);
+        color: #333;
+        position: relative;
+        transition: all 0.3s;
+        overflow: hidden;
+        &:hover {
+          color: var(--color);
+          &::before {
+            width: 30%;
+            transform: translate(-50%, 0);
+          }
+        }
+        &::before {
+          content: '';
+          position: absolute;
+          background: var(--color);
+          bottom: 5px;
+          left: 50%;
+          width: 0;
+          height: 2px;
+          border-radius: 4px;
+          transition: all 0.3s;
+          transform: translate(-50%, 400%);
+        }
+        &.active {
+          &::before {
+            width: 60%;
+            transform: translate(-50%, 0);
+          }
+        }
       }
     }
   }
