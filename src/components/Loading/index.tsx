@@ -1,6 +1,7 @@
 import * as React from 'react'
 import GenericComponent from './../../components/Generic/index'
 import { IColorInfo } from './../../config/color'
+import './loading.less';
 
 interface ILoadingProps {
   tip?: string
@@ -19,9 +20,10 @@ export default class Loading extends React.Component<ILoadingProps, ILoadingStat
   }
 
   render () {
+    const {tip} = this.props
     return (
-      <div>
-        {1}
+      <div className="loadable-loading">
+        {tip}
       </div>
     )
   }

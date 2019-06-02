@@ -15,7 +15,7 @@ export interface GenericProps {
 export interface GenericState {}
 
 export default class GenericComponent<P, S> extends React.Component<P, S> {
-  props: P & GenericProps & { children?: any };
+  props: P & GenericProps;
   state: S & GenericState;
 
   componentDidMount () {

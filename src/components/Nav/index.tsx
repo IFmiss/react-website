@@ -5,24 +5,45 @@ import { INavLists, INavList } from './../../config/nav'
 import classNames from 'classnames'
 import { changeColor } from './../../utils/utils'
 import './nav.less'
+import { HomeNav, MusicNav } from './../../config/nav'
+import { NameSpaceStore } from './../../store/types'
 
 interface INavProps {
-  lists: INavLists
+  navStore: NameSpaceStore.INavModel
+  location? : any
 }
 
 interface INavState {}
 
 export default class Nav extends GenericComponent<INavProps, INavState> {
-  render () {
-    const { lists, prefixClass } = this.props
+  constructor (props: any) {
+    super(props)
+  }
+
+  public setNavList = () => {
+    const { location, navStore } = this.props
+    console.log(this.props)
+    console.log(location.pathname.includes('/music'))
+    if (location.pathname.includes('/music')) {
+      navStore.setNavLists(MusicNav)
+    } else {
+      navStore.setNavLists(HomeNav)
+    }
+  }
+
+  public render () {
+    const { navStore, prefixClass } = this.props
+    const { lists } = navStore
     const classes = classNames({
       [`${prefixClass}-nav`]: true
     })
+    this.setNavList()
+    console.log('lists', lists)
     return (
       <div className={classes}>
         <div className="nav-content">
           <div className="nav-logo">
-            <img className="nav-img" src="" alt=""/>
+            <img className="nav-img" src="http://www.daiwei.org/index/images/logo/favicon.ico" alt=""/>
           </div>
           <div className="nav-lists">
             {

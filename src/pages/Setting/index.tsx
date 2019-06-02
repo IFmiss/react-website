@@ -3,24 +3,23 @@ import fetch from './../../utils/fetch'
 import { IStore } from './../../store/types'
 import classNames from 'classnames'
 
-interface IHomeProps {
+interface ISettingProps {
   store?: IStore;
   prefixClass?: string;
 }
 
-interface IHomeState {}
+interface ISettingState {}
 
-export default class Home extends React.Component<IHomeProps, IHomeState> {
+export default class Setting extends React.Component<ISettingProps, ISettingState> {
   public render () {
     const { store, prefixClass } = this.props
-    console.log('Home', this.props)
     const classes = classNames({
-      [`${prefixClass}-home`]: true,
+      [`${prefixClass}-setting`]: true,
       [`dw-page-router`]: true
     })
     return (
       <div className={classes}>
-        this is home 
+        this is Setting 
       </div>
     )
   }

@@ -11,6 +11,22 @@ export const HomeNav: INavLists = [
     link: '/home'
   }, {
     name: '博客',
+    link: '/blog'
+  }, {
+    name: '音乐',
     link: '/music'
+  }, {
+    name: '设置',
+    link: '/setting'
+  }
+]
+
+export const MusicNav: INavLists = [
+  {
+    name: '去首页',
+    link: '/home'
+  }, {
+    name: '搜索',
+    link: '/music/search'
   }
 ]
