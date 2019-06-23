@@ -22,8 +22,6 @@ export default class Nav extends GenericComponent<INavProps, INavState> {
 
   public setNavList = () => {
     const { location, navStore } = this.props
-    console.log(this.props)
-    console.log(location.pathname.includes('/music'))
     if (location.pathname.includes('/music')) {
       navStore.setNavLists(MusicNav)
     } else {
@@ -33,12 +31,11 @@ export default class Nav extends GenericComponent<INavProps, INavState> {
 
   public render () {
     const { navStore, prefixClass } = this.props
-    const { lists } = navStore
     const classes = classNames({
       [`${prefixClass}-nav`]: true
     })
     this.setNavList()
-    console.log('lists', lists)
+    const { lists } = navStore
     return (
       <div className={classes}>
         <div className="nav-content">
@@ -47,7 +44,7 @@ export default class Nav extends GenericComponent<INavProps, INavState> {
           </div>
           <div className="nav-lists">
             {
-              lists.map((item: INavList, index: number) => {
+              lists.slice().map((item: INavList, index: number) => {
                 return (
                   <NavLink className="nav-list"
                           to={item.link}

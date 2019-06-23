@@ -6,7 +6,6 @@ export default class ColorModel {
 
   @action
   setNavLists (navList: INavLists) {
-    this.lists.clear()
-    this.lists.replace()
+    this.lists = navList
   }
 }

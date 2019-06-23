@@ -14,7 +14,9 @@ class App extends React.Component<any, any> {
     console.log('this.propsthis.propsthis.propsthis.props', this.props)
     return (
       <BrowserRouter>
-        <Route path="/" render={(props) => <Main {...props} store={store} prefixClass={Constance.PROJECT_NAME}/>}/>
+        <Switch>
+          <Route path="/" render={(props) => <Main {...props} store={store}/>}></Route>
+        </Switch>
       </BrowserRouter>
     )
   }
