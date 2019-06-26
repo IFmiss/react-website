@@ -12,6 +12,31 @@
 @container-width: 768px;
 
 :root {
-  --color: #369;
+  --shadow-color: #f0f0f0;
+  --primary-color: #369;
+  --text-color: #666;
+  --text-color-active: #333;
+  --bg-nav: #fff;
+  --bg-nav-hover: #fafafa;
   --bg: #fff;
+}
+
+body.light {
+  --shadow-color: #f0f0f0;
+  --primary-color: #369;
+  --text-color: #666;
+  --text-color-active: #333;
+  --bg-nav: #fff;
+  --bg-nav-active: #fafafa;
+  --bg: #fff;
+}
+
+body.dark {
+  --shadow-color: #252527;
+  --primary-color: red;
+  --text-color: #999;
+  --text-color-active: #eee;
+  --bg-nav: #222225;
+  --bg-nav-active: #333335;
+  --bg: #16181c;
 }

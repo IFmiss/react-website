@@ -745,10 +745,10 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@dw/d-utils@^1.1.47":
-  version "1.1.47"
-  resolved "https://registry.yarnpkg.com/@dw/d-utils/-/d-utils-1.1.47.tgz#e6e4789a8f561b47f6a9be50a20351d773466989"
-  integrity sha512-nwsWt4jDd1LmcdQTsT9w0TDoA/mQxZANEon4R8tJLW7UoJRuGg5blJPO8mW0WbVcPNUDTosn/e5/Q+Zss/QaJg==
+"@dw/d-utils@^1.1.48":
+  version "1.1.48"
+  resolved "https://registry.yarnpkg.com/@dw/d-utils/-/d-utils-1.1.48.tgz#62769eb94bbb497f5aaa953b24d80e840462e696"
+  integrity sha512-KJpoef8IQob/R7EBmnZ0TpaG0C4NO+Q3evn5lPoZBK9wmviCkHBa2OOZeqIxZeaXjB/dE7SLyK+tqEaVnaREPA==
   dependencies:
     axios "^0.19.0"
     promise.prototype.finally "^3.1.0"

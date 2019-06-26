@@ -3,7 +3,7 @@ import GenericComponent from './../Generic/index'
 import { NavLink } from 'react-router-dom'
 import { INavLists, INavList } from './../../config/nav'
 import classNames from 'classnames'
-import { changeColor } from './../../utils/utils'
+import { changePageMode } from './../../utils/utils'
 import './nav.less'
 import { HomeNav, MusicNav } from './../../config/nav'
 import { NameSpaceStore } from './../../store/types'
@@ -38,9 +38,10 @@ export default class Nav extends GenericComponent<INavProps, INavState> {
     const { lists } = navStore
     return (
       <div className={classes}>
+        <div className="blur-area"></div>
         <div className="nav-content">
           <div className="nav-logo">
-            <img className="nav-img" src="http://www.daiwei.org/index/images/logo/favicon.ico" alt=""/>
+            {/* <img className="nav-img" src="http://www.daiwei.org/index/images/logo/favicon.ico" alt=""/> */}
           </div>
           <div className="nav-lists">
             {
@@ -53,7 +54,7 @@ export default class Nav extends GenericComponent<INavProps, INavState> {
               })
             }
           </div>
-          <div onClick={changeColor}>点击切换颜色</div>
+          <div onClick={changePageMode}>点击切换颜色</div>
         </div>
       </div>
     )

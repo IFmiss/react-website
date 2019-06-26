@@ -143,3 +143,66 @@
 		transform: translate(0, 1 / 2 * 100'px');
 	}
 }
+
+
+
+// 色值
+
+// 主色调
+.mixinPrimaryColor() {
+	color: var(--primary-color);
+}
+
+// 文字颜色
+.mixinTextColor() {
+	color: var(--text-color);
+}
+
+// 主色调
+.mixinTextColorActive() {
+	color: var(--text-color-active);
+}
+
+// 菜单的背景
+.mixinBgNav() {
+	background-color: var(--bg-nav);
+}
+
+// 菜单的背景hover
+.mixinBgNavActive() {
+	color: var(--primary-color);
+	background-color: var(--bg-nav-active);
+}
+
+// 主背景
+.mixinBg() {
+	background-color: var(--bg);
+}
+
+.blur(@blur, @height: 50, @position: 50%, @scale: 1.5) {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: @position;
+	-webkit-filter: blur(@blur);
+	filter: blur(@blur);
+	-webkit-transform: scale(@scale);
+	transform: scale(@scale);
+	overflow: hidden;
+	height: @height;
+	bottom: 0;
+	&::before{
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 1;
+		background: rgba(0,0,0,0.1);
+		transition: all 0.3s;
+	}
+}
