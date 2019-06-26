@@ -54,7 +54,7 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
           </CSSTransition>
           <CSSTransition
             in={star}
-            timeout={300}
+            timeout={500}
             appear={true}
             classNames="side-up-fade"
             unmountOnExit={false}>
@@ -62,7 +62,7 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
           </CSSTransition>
           <CSSTransition
             in={star}
-            timeout={300}
+            timeout={700}
             appear={true}
             classNames="side-up-fade"
             unmountOnExit={false}>
@@ -70,7 +70,7 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
           </CSSTransition>
           <CSSTransition
             in={star}
-            timeout={300}
+            timeout={900}
             appear={true}
             classNames="side-up-fade"
             unmountOnExit={false}>
@@ -78,7 +78,7 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
           </CSSTransition>
           <CSSTransition
             in={star}
-            timeout={300}
+            timeout={1100}
             appear={true}
             classNames="side-up-fade"
             unmountOnExit={false}>
@@ -86,7 +86,7 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
           </CSSTransition>
           <CSSTransition
             in={star}
-            timeout={300}
+            timeout={1300}
             appear={true}
             classNames="side-up-fade"
             unmountOnExit={false}>

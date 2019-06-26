@@ -4,12 +4,11 @@
   left: 0;
   right: 0;
   height: @nav-height;
-  // .mixinBgNav();
+  z-index: @z-index-nav;
+  overflow: hidden;
+  .mixinBgNav();
   box-shadow: 1px 1px 25px 0 var(--shadow-color);
   transition: background-color, color, box-shadow 0.3s;
-  .blur-area {
-    .blur(80px);
-  }
   .nav-content {
     width: @container-width;
     margin: 0 auto;
@@ -17,6 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    z-index: 1;
     .nav-logo {
       flex: 0 0 150px;
       display: flex;

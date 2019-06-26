@@ -38,7 +38,6 @@ export default class Nav extends GenericComponent<INavProps, INavState> {
     const { lists } = navStore
     return (
       <div className={classes}>
-        <div className="blur-area"></div>
         <div className="nav-content">
           <div className="nav-logo">
             {/* <img className="nav-img" src="http://www.daiwei.org/index/images/logo/favicon.ico" alt=""/> */}
