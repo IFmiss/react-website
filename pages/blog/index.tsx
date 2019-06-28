@@ -1,6 +1,6 @@
 import * as React from 'react'
-import fetch from './../../utils/fetch'
-import { IStore } from './../../store/types'
+import fetch from '../../utils/fetch'
+import { IStore } from '../../store/types'
 import classNames from 'classnames'
 
 interface IBlogProps {

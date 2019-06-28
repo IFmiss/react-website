@@ -1,0 +1,165 @@
+.right {
+  float: right;
+}
+.left {
+  float: left;
+}
+.center {
+  margin: 0 auto;
+  float: none;
+}
+.clear-both {
+  clear: both;
+  height: 1px;
+  margin-top: -1px;
+  overflow: hidden;
+}
+.clear-both:before {
+  display: none;
+}
+.clear-both:after {
+  display: none;
+}
+.block_area {
+  margin: 0 auto;
+  position: relative;
+  font-size: 14px;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+.text-bold {
+  font-weight: bold;
+}
+.activeB {
+  display: block;
+}
+.activeF {
+  display: flex;
+}
+.activeN {
+  display: none;
+}
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'PingFangSC-Medium', 'Microsoft YaHei', 'Avenir', Helvetica, Arial, sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a {
+  line-height: 1.5;
+}
+/* 项目名 */
+:root {
+  --shadow-color: #f0f0f0;
+  --primary-color: #369;
+  --text-color: #666;
+  --text-color-active: #333;
+  --bg-nav: #fff;
+  --bg-nav-hover: #fafafa;
+  --bg: #fff;
+}
+body.light {
+  --shadow-color: #f0f0f0;
+  --primary-color: #369;
+  --text-color: #666;
+  --text-color-active: #333;
+  --bg-nav: #fff;
+  --bg-nav-active: #fafafa;
+  --bg: #fff;
+}
+body.dark {
+  --shadow-color: #0e0e0f;
+  --primary-color: red;
+  --text-color: #999;
+  --text-color-active: #eee;
+  --bg-nav: #1e1e22;
+  --bg-nav-active: #1a1a1d;
+  --bg: #201e1e;
+}
+#dw-react-web {
+  position: relative;
+}
+.dw-page-router {
+  width: 768px;
+  margin: 0 auto;
+  margin-top: 64px;
+  padding: 15px;
+  color: var(--text-color);
+}
+body {
+  background-color: var(--bg);
+  transition: background-color 0.3s;
+}
+.fade-enter,
+.fade-appear {
+  opacity: 0;
+}
+.fade-enter-active,
+.fade-appear-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+.fade-enter-done {
+  opacity: 1;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-in;
+}
+.fade-exit-done {
+  opacity: 0;
+}
+.side-up-fade-enter,
+.side-up-fade-appear {
+  transform: translate(0, -10px);
+  opacity: 0;
+}
+.side-up-fade-enter-active,
+.side-up-fade-appear-active {
+  opacity: 1;
+  transform: translate(0, 0);
+  transition: all 300ms ease-in;
+}
+.side-up-fade-enter-done {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.side-up-fade-exit {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.side-up-fade-exit-active {
+  opacity: 0;
+  transform: translate(0, -10px);
+  transition: all 300ms ease-in;
+}
+.side-up-fade-exit-done {
+  opacity: 0;
+  transform: translate(0, -10px);
+}
+
+
+/*# sourceMappingURL=styles.chunk.css.map*/

@@ -1,4 +1,4 @@
-import { GenericUtils } from '@dw/d-utils'
+// import { GenericUtils } from '@dw/d-utils'
 import { hasClass } from '@dw/d-utils/lib/domUtils'
 
 /**

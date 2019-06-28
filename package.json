@@ -11,9 +11,13 @@
     "@types/react-loadable": "5.5.0",
     "@types/react-router-dom": "^4.3.3",
     "@types/react-transition-group": "^2.9.2",
+    "@zeit/next-less": "^1.0.1",
+    "@zeit/next-typescript": "^1.1.1",
     "classnames": "^2.2.6",
     "mobx": "^5.9.4",
     "mobx-react": "^5.4.4",
+    "next": "^8.1.0",
+    "next-compose-plugins": "^2.2.0",
     "qs": "^6.7.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -25,6 +29,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:next": "next",
     "build": "webpack --progress --config ./webpack.prod.js",
     "dev": "webpack-dev-server --config ./webpack.dev.js --progress",
     "watch": "webpack --colors --watch"
