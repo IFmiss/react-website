@@ -3,7 +3,8 @@ import fetch from './../../utils/fetch'
 import { IStore } from './../../store/types'
 import classNames from 'classnames'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import './index.less'
+import typeWriter from './../../utils/typewriter'
+import Constance from './../../config/constance'
 
 interface IHomeProps {
   store?: IStore;
@@ -22,8 +23,23 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
     }
   }
 
+  private homeRef: any = React.createRef()
+
   componentDidMount () {
     this.handleClick()
+    if (!window.__FIRST_IN_HOME__) {
+      this.initTypeWriter()
+    }
+  }
+
+  componentWillUnmount () {
+    window.__FIRST_IN_HOME__ = true
+  }
+
+  initTypeWriter = () => {
+    typeWriter(Constance.TYPE_WRITER[0].text, Constance.TYPE_WRITER[0].tagName, this.homeRef.current, Constance.TYPE_WRITER[0].config)
+      .then(() => typeWriter(Constance.TYPE_WRITER[1].text, Constance.TYPE_WRITER[1].tagName, this.homeRef.current, Constance.TYPE_WRITER[1].config))
+        .then(() => typeWriter(Constance.TYPE_WRITER[2].text, Constance.TYPE_WRITER[2].tagName, this.homeRef.current, Constance.TYPE_WRITER[2].config))
   }
 
   handleClick = () => {
@@ -42,57 +58,37 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
     })
     return (
       <div className={classes}>
-        <div onClick={this.handleClick}>this is home </div>
-        <TransitionGroup>
-          <CSSTransition
-            in={star}
-            timeout={300}
-            classNames="side-up-fade"
-            appear={true}
-            unmountOnExit={false}>
-            <div>this is home </div>
-          </CSSTransition>
-          <CSSTransition
-            in={star}
-            timeout={500}
-            appear={true}
-            classNames="side-up-fade"
-            unmountOnExit={false}>
-            <div>this is home </div>
-          </CSSTransition>
-          <CSSTransition
-            in={star}
-            timeout={700}
-            appear={true}
-            classNames="side-up-fade"
-            unmountOnExit={false}>
-            <div>this is home </div>
-          </CSSTransition>
-          <CSSTransition
-            in={star}
-            timeout={900}
-            appear={true}
-            classNames="side-up-fade"
-            unmountOnExit={false}>
-            <div>this is home </div>
-          </CSSTransition>
-          <CSSTransition
-            in={star}
-            timeout={1100}
-            appear={true}
-            classNames="side-up-fade"
-            unmountOnExit={false}>
-            <div>this is home </div>
-          </CSSTransition>
-          <CSSTransition
-            in={star}
-            timeout={1300}
-            appear={true}
-            classNames="side-up-fade"
-            unmountOnExit={false}>
-            <div>this is home </div>
-          </CSSTransition>
-        </TransitionGroup>
+        {
+          !window.__FIRST_IN_HOME__ ? (
+            <div ref={this.homeRef}></div>
+          ) : (
+            Constance.TYPE_WRITER.map((item, index) => {
+              return (
+                item.tagName === 'h1' ? (
+                  <h1 key={index}>{item.text}</h1>
+                ) : item.tagName === 'h2' ? (
+                  <h2 key={index}>{item.text}</h2>
+                ) : item.tagName === 'h3' ? (
+                  <h3 key={index}>{item.text}</h3>
+                ) : item.tagName === 'h4' ? (
+                  <h4 key={index}>{item.text}</h4>
+                ) : item.tagName === 'h5' ? (
+                  <h5 key={index}>{item.text}</h5>
+                ) : item.tagName === 'h6' ? (
+                  <h6 key={index}>{item.text}</h6>
+                ) : item.tagName === 'a' ? (
+                  <a href={item.config.herf || ''} key={index}>{item.text}</a>
+                ) : item.tagName === 'p' ? (
+                  <p key={index}>{item.text}</p>
+                ) : item.tagName === 'span' ? (
+                  <span key={index}>{item.text}</span>
+                ) : (
+                  <p key={index}>{item.text}</p>
+                )
+              )
+            })
+          )
+        }
       </div>
     )
   }
