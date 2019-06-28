@@ -14,10 +14,10 @@ import * as React from 'react'
 import store from './../store/index'
 import './../style/index.less'
 import { initPageMode } from './../utils/utils'
-store.colorStore.initSelfColor()
+process.browser && store.colorStore.initSelfColor()
 
 // // 初始化页面主题
-initPageMode()
+process.browser && initPageMode()
 
 export default class Index extends React.Component {
   render () {

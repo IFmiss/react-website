@@ -1,5 +1,7 @@
-// import { GenericUtils } from '@dw/d-utils'
-import { hasClass } from '@dw/d-utils/lib/domUtils'
+
+export function hasClass (el: any, className: string): boolean {
+  return el.classList.contains(className)
+}
 
 /**
  * 改版页面主题模式

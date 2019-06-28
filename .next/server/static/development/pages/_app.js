@@ -670,11 +670,9 @@ __webpack_require__(/*! ./../style/index.less */ "./style/index.less");
 var _utils = __webpack_require__(/*! ./../utils/utils */ "./utils/utils.ts");
 
 var _jsxFileName = "F:\\mine\\react-website\\pages\\_app.tsx";
+ false && false; // // 初始化页面主题
 
-_index["default"].colorStore.initSelfColor(); // // 初始化页面主题
-
-
-(0, _utils.initPageMode)();
+ false && false;
 
 var Index =
 /*#__PURE__*/
@@ -885,21 +883,23 @@ exports["default"] = ColorModel;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.hasClass = hasClass;
 exports.changePageMode = changePageMode;
 exports.initPageMode = initPageMode;
 
-var _domUtils = __webpack_require__(/*! @dw/d-utils/lib/domUtils */ "@dw/d-utils/lib/domUtils");
-
-// import { GenericUtils } from '@dw/d-utils'
-
+function hasClass(el, className) {
+  return el.classList.contains(className);
+}
 /**
  * 改版页面主题模式
  */
+
+
 function changePageMode() {
   // document.documentElement.style.setProperty(`--primary-color`, GenericUtils.randomColor());
   var body = document.body;
 
-  if ((0, _domUtils.hasClass)(body, 'light')) {
+  if (hasClass(body, 'light')) {
     document.body.className = 'dark';
     localStorage.setItem('mode', 'dark');
   } else {
@@ -937,17 +937,6 @@ function initPageMode() {
 
 module.exports = __webpack_require__(/*! private-next-pages/_app.tsx */"./pages/_app.tsx");
 
-
-/***/ }),
-
-/***/ "@dw/d-utils/lib/domUtils":
-/*!*******************************************!*\
-  !*** external "@dw/d-utils/lib/domUtils" ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("@dw/d-utils/lib/domUtils");
 
 /***/ }),
 
