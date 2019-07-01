@@ -1,6 +1,8 @@
+import Dutils from '@dw/d-utils'
 
-export function hasClass (el: any, className: string): boolean {
-  return el.classList.contains(className)
+export function isBrowser() {
+  const p: any = process
+  return p && p.browser
 }
 
 /**
@@ -9,7 +11,7 @@ export function hasClass (el: any, className: string): boolean {
 export function changePageMode () {
   // document.documentElement.style.setProperty(`--primary-color`, GenericUtils.randomColor());
   const body = document.body
-  if (hasClass(body, 'light')) {
+  if (Dutils.DomUtils.hasClass(body, 'light')) {
     document.body.className = 'dark'
     localStorage.setItem('mode', 'dark')
   } else {

@@ -5,7 +5,11 @@
       "loose": false
     }],
     ["@babel/preset-react"],
-    "next/babel",
+    ["next/babel", {
+      "transform-runtime": {
+        "useESModules": false
+      }
+    }],
     "@zeit/next-typescript/babel"
   ],
   "plugins":[

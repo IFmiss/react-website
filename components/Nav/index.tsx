@@ -1,41 +1,62 @@
 import * as React from 'react'
 import GenericComponent from './../Generic/index'
-import { NavLink } from 'react-router-dom'
+import Link from 'next/link'
+import { withRouter } from 'next/router'
 import { INavLists, INavList } from './../../config/nav'
 import classNames from 'classnames'
 import { changePageMode } from './../../utils/utils'
 import './nav.less'
 import { HomeNav, MusicNav } from './../../config/nav'
 import { NameSpaceStore } from './../../store/types'
+import Constance from './../../config/constance'
 
 interface INavProps {
-  navStore: NameSpaceStore.INavModel
-  location? : any
+  lists: INavLists
 }
 
-interface INavState {}
+interface INavState {
+  needActive: boolean
+}
 
-export default class Nav extends GenericComponent<INavProps, INavState> {
+class Nav extends GenericComponent<INavProps, INavState> {
   constructor (props: any) {
     super(props)
-  }
-
-  public setNavList = () => {
-    const { location, navStore } = this.props
-    if (location.pathname.includes('/music')) {
-      navStore.setNavLists(MusicNav)
-    } else {
-      navStore.setNavLists(HomeNav)
+    this.state = {
+      needActive: false
     }
   }
 
+  lists = HomeNav
+
+  public setNavList = () => {
+    // const { navStore } = this.props
+    // if (location.pathname.includes('/music')) {
+    //   navStore.setNavLists(MusicNav)
+    // } else {
+    //   navStore.setNavLists(HomeNav)
+    // }
+  }
+  public async componentDidMount () {
+    setTimeout(() => {
+      this.setState({
+        needActive: true
+      })
+    }, 0)
+  }
+
   public render () {
-    const { navStore, prefixClass } = this.props
+    const { prefixClass, router } = this.props
+    const { needActive } = this.state
+    this.lists = router.asPath.includes('/music') ? MusicNav : HomeNav
     const classes = classNames({
       [`${prefixClass}-nav`]: true
     })
-    this.setNavList()
-    const { lists } = navStore
+    const activeLink = (item: INavList) => classNames({
+      [`nav-list`]: true,
+      [`active`]: item.link === router.asPath && needActive
+    })
+
+    // this.setNavList()
     return (
       <div className={classes}>
         <div className="nav-content">
@@ -44,11 +65,13 @@ export default class Nav extends GenericComponent<INavProps, INavState> {
           </div>
           <div className="nav-lists">
             {
-              lists.slice().map((item: INavList, index: number) => {
+              this.lists.map((item: INavList, index: number) => {
                 return (
-                  <NavLink className="nav-list"
-                          to={item.link}
-                          key={index}>{item.name}</NavLink>
+                  <a className={activeLink(item)}
+                      key={index}
+                      href={item.link}>
+                        {item.name}
+                  </a>
                 )
               })
             }
@@ -59,3 +82,5 @@ export default class Nav extends GenericComponent<INavProps, INavState> {
     )
   }
 }
+
+export default withRouter(Nav)

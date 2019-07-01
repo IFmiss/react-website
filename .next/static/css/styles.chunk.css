@@ -1,51 +1,13 @@
-.right {
-  float: right;
+.generic-component {
+  transition: color, background-color 0.3s;
 }
-.left {
-  float: left;
+.generic-component .transition-text {
+  transition: color 0.3s;
 }
-.center {
-  margin: 0 auto;
-  float: none;
+.generic-component .transition-ele {
+  transition: color, background-color 0.3s;
 }
-.clear-both {
-  clear: both;
-  height: 1px;
-  margin-top: -1px;
-  overflow: hidden;
-}
-.clear-both:before {
-  display: none;
-}
-.clear-both:after {
-  display: none;
-}
-.block_area {
-  margin: 0 auto;
-  position: relative;
-  font-size: 14px;
-}
-.text-left {
-  text-align: left;
-}
-.text-right {
-  text-align: right;
-}
-.text-center {
-  text-align: center;
-}
-.text-bold {
-  font-weight: bold;
-}
-.activeB {
-  display: block;
-}
-.activeF {
-  display: flex;
-}
-.activeN {
-  display: none;
-}
+
 body,
 html {
   margin: 0;
@@ -95,6 +57,54 @@ body.dark {
   --bg-nav: #1e1e22;
   --bg-nav-active: #1a1a1d;
   --bg: #201e1e;
+}
+.right {
+  float: right;
+}
+.left {
+  float: left;
+}
+.center {
+  margin: 0 auto;
+  float: none;
+}
+.clear-both {
+  clear: both;
+  height: 1px;
+  margin-top: -1px;
+  overflow: hidden;
+}
+.clear-both:before {
+  display: none;
+}
+.clear-both:after {
+  display: none;
+}
+.block_area {
+  margin: 0 auto;
+  position: relative;
+  font-size: 14px;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+.text-bold {
+  font-weight: bold;
+}
+.activeB {
+  display: block;
+}
+.activeF {
+  display: flex;
+}
+.activeN {
+  display: none;
 }
 #dw-react-web {
   position: relative;
@@ -159,6 +169,81 @@ body {
 .side-up-fade-exit-done {
   opacity: 0;
   transform: translate(0, -10px);
+}
+.dw-react-web-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  z-index: 28;
+  overflow: hidden;
+  background-color: var(--bg-nav);
+  box-shadow: 1px 1px 25px 0 var(--shadow-color);
+  transition: background-color, color, box-shadow 0.3s;
+}
+.dw-react-web-nav .nav-content {
+  width: 768px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 1;
+}
+.dw-react-web-nav .nav-content .nav-logo {
+  flex: 0 0 150px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.dw-react-web-nav .nav-content .nav-logo .nav-img {
+  height: 50px;
+  border-radius: 50%;
+}
+.dw-react-web-nav .nav-content .nav-lists {
+  height: 100%;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.dw-react-web-nav .nav-content .nav-lists .nav-list {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 15px;
+  margin: 0 10px;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s;
+  overflow: hidden;
+  font-size: 14px;
+  color: var(--text-color);
+  transition: color, background-color 0.3s;
+}
+.dw-react-web-nav .nav-content .nav-lists .nav-list:hover {
+  color: var(--primary-color);
+  background-color: var(--bg-nav-active);
+}
+.dw-react-web-nav .nav-content .nav-lists .nav-list::before {
+  content: '';
+  position: absolute;
+  background: var(--primary-color);
+  bottom: 5px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  border-radius: 4px;
+  transition: all 0.3s;
+  transform: translate(-50%, 400%);
+}
+.dw-react-web-nav .nav-content .nav-lists .nav-list.active {
+  color: var(--text-color-active);
+}
+.dw-react-web-nav .nav-content .nav-lists .nav-list.active::before {
+  width: 50%;
+  transform: translate(-50%, 0);
 }
 
 

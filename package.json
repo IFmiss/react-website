@@ -6,6 +6,7 @@
     "@babel/preset-react": "^7.0.0",
     "@dw/d-utils": "^1.1.48",
     "@types/classnames": "^2.2.8",
+    "@types/next": "^8.0.5",
     "@types/qs": "^6.5.3",
     "@types/react-dom": "^16.8.4",
     "@types/react-loadable": "5.5.0",

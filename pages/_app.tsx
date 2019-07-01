@@ -1,28 +1,78 @@
+// import App from './../app'
 // import * as React from 'react'
-// export default class Home extends React.Component {
+// import store from './../store/index'
+// import Head from 'next/head'
+// import './../style/index.less'
+// import Nav from './../components/Nav'
+// import { isBrowser } from './../utils/utils'
+// import { initPageMode } from './../utils/utils'
+// import { observer } from 'mobx-react';
+
+// isBrowser() && store.colorStore.initSelfColor()
+
+// // // 初始化页面主题
+// isBrowser() && initPageMode()
+
+// @observer
+// export default class Index extends React.Component {
 //   render () {
+//     // const { store } = this.props
+//     console.log(this.props)
 //     return (
-//       <div>111</div>
+//       <div>
+//         <Head>
+//           <title>个人网站</title>
+//           <meta name="viewport" content="initial-scale=1.0, width=device-width" key="viewport" />
+//         </Head>
+//         <div>
+//           <Nav/>
+//         </div>
+//       </div>
 //     )
 //   }
 // }
-
-
-// import * as ReactDOM from 'react-dom'
-import App from './../app'
+import { observer } from 'mobx-react';
+import App, {Container} from 'next/app'
 import * as React from 'react'
-import store from './../store/index'
-import './../style/index.less'
-import { initPageMode } from './../utils/utils'
-process.browser && store.colorStore.initSelfColor()
+import Nav from './../components/Nav'
+import store, {initializeStore} from './../store/index'
+import { Provider } from 'mobx-react'
+import { isBrowser } from './../utils/utils'
 
-// // 初始化页面主题
-process.browser && initPageMode()
+interface IappContext {
+  Component: any;
+  ctx: any;
+  router: any;
+}
 
-export default class Index extends React.Component {
+@observer
+export default class MyApp extends App {
+  static async getInitialProps (appContext: IappContext) {
+    let pageProps = {}
+
+    if (appContext.Component.getInitialProps) {
+      pageProps = await appContext.Component.getInitialProps(appContext.ctx)
+    }
+
+    return {pageProps}
+  }
+
+  mobxStore = {}
+
+  constructor (props: any) {
+    super(props)
+    this.mobxStore = props.initialMobxState
+  }
+
   render () {
+    const {Component, pageProps} = this.props
     return (
-      <div>11111</div>
+      <Container>
+        <Nav {...store}></Nav>
+        <Provider {...store}>
+          <Component {...pageProps} {...store}/>
+        </Provider>
+      </Container>
     )
   }
 }

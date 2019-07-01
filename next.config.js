@@ -5,5 +5,13 @@ const withLess = require('@zeit/next-less')
 // console.log(withPlugins)
 module.exports = withPlugins([
   [withTypescript],
-  [withLess],
+  [withLess, {
+    cssModules: false,
+    cssLoaderOptions: {
+      javascriptEnabled : true,
+			importLoaders: 1,
+			camelCase: true,
+			localIdentName: "[local]___[hash:base64:5]",
+    },
+  }],
 ])
