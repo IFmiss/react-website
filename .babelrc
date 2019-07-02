@@ -6,6 +6,9 @@
     }],
     ["@babel/preset-react"],
     ["next/babel", {
+      "preset-env": {
+        "modules": "commonjs"
+      },
       "transform-runtime": {
         "useESModules": false
       }
@@ -13,6 +16,7 @@
     "@zeit/next-typescript/babel"
   ],
   "plugins":[
+    ["babel-plugin-styled-components"],
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
     ["@babel/plugin-proposal-class-properties", { "loose" : true }],
     [

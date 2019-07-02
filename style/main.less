@@ -6,12 +6,13 @@
 .dw-page-router {
   width: @container-width;
   margin: 0 auto;
-  margin-top: @nav-height;
-  padding: 15px;
+  padding: 15px + @nav-height 15px 15px;
+  overflow: hidden;
+  height: -webkit-fill-available;
   .mixinTextColor();
 }
 
-body {
+#dw-theme-container {
   .mixinBg();
   transition: background-color 0.3s;
 }

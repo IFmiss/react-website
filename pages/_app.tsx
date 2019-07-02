@@ -37,7 +37,7 @@ import * as React from 'react'
 import Nav from './../components/Nav'
 import store, {initializeStore} from './../store/index'
 import { Provider } from 'mobx-react'
-import { isBrowser } from './../utils/utils'
+import { isBrowser, initPageMode, changePageMode } from './../utils/utils'
 
 interface IappContext {
   Component: any;
@@ -45,33 +45,49 @@ interface IappContext {
   router: any;
 }
 
+interface AppProps {}
+
+interface AppState {
+  mode?: string
+}
+
 @observer
-export default class MyApp extends App {
+export default class MyApp extends App<AppProps, AppState> {
   static async getInitialProps (appContext: IappContext) {
     let pageProps = {}
-
+    let mode = {}
     if (appContext.Component.getInitialProps) {
       pageProps = await appContext.Component.getInitialProps(appContext.ctx)
     }
-
-    return {pageProps}
+    return {pageProps, mode}
   }
 
-  mobxStore = {}
+  mode!: string;
 
   constructor (props: any) {
     super(props)
-    this.mobxStore = props.initialMobxState
+    this.mode = isBrowser() && initPageMode()
+  }
+
+  componentDidMount () {
+    // setTimeout(() => {
+    //   changePageMode(initPageMode() === 'light' ? 'dark' : 'light')
+    // }, 3000)
+    // changePageMode(initPageMode() === 'light' ? 'dark' : 'light')
   }
 
   render () {
     const {Component, pageProps} = this.props
+    // const { mode } = this.state
+    console.log('_app.this.mode', this.mode)
     return (
       <Container>
-        <Nav {...store}></Nav>
-        <Provider {...store}>
-          <Component {...pageProps} {...store}/>
-        </Provider>
+        <div id="dw-theme-container" className={isBrowser() && initPageMode()}>
+          <Nav {...store}></Nav>
+          <Provider {...store}>
+            <Component {...pageProps} {...store}/>
+          </Provider>
+        </div>
       </Container>
     )
   }

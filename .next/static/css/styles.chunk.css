@@ -40,7 +40,7 @@ a {
   --bg-nav-hover: #fafafa;
   --bg: #fff;
 }
-body.light {
+#dw-theme-container.light {
   --shadow-color: #f0f0f0;
   --primary-color: #369;
   --text-color: #666;
@@ -49,7 +49,7 @@ body.light {
   --bg-nav-active: #fafafa;
   --bg: #fff;
 }
-body.dark {
+#dw-theme-container.dark {
   --shadow-color: #0e0e0f;
   --primary-color: red;
   --text-color: #999;
@@ -112,11 +112,12 @@ body.dark {
 .dw-page-router {
   width: 768px;
   margin: 0 auto;
-  margin-top: 64px;
-  padding: 15px;
+  padding: 79px 15px 15px;
+  overflow: hidden;
+  height: -webkit-fill-available;
   color: var(--text-color);
 }
-body {
+#dw-theme-container {
   background-color: var(--bg);
   transition: background-color 0.3s;
 }

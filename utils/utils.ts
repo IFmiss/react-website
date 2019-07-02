@@ -1,4 +1,4 @@
-import Dutils from '@dw/d-utils'
+const Dutils = isBrowser() ? require('./d-utils.js') : undefined
 
 export function isBrowser() {
   const p: any = process
@@ -8,14 +8,20 @@ export function isBrowser() {
 /**
  * 改版页面主题模式
  */
-export function changePageMode () {
+export function changePageMode (type? :string) {
   // document.documentElement.style.setProperty(`--primary-color`, GenericUtils.randomColor());
-  const body = document.body
-  if (Dutils.DomUtils.hasClass(body, 'light')) {
-    document.body.className = 'dark'
+  const container = document.getElementById('dw-theme-container')
+  if (type) {
+    container.className = type
+    localStorage.setItem('mode', type)
+    return
+  }
+
+  if (Dutils && Dutils.DomUtils.hasClass(container, 'light')) {
+    container.className = 'dark'
     localStorage.setItem('mode', 'dark')
   } else {
-    document.body.className = 'light'
+    container.className = 'light'
     localStorage.setItem('mode', 'light')
   }
 }
@@ -24,6 +30,7 @@ export function changePageMode () {
  * 初始化页面主题模式
  */
 export function initPageMode () {
+  if (!isBrowser()) return 'dark'
   const storageMode = localStorage.getItem('mode')
   let mode!: string
   if (!storageMode) {
@@ -32,5 +39,6 @@ export function initPageMode () {
   } else {
     mode = storageMode
   }
-  document.body.className = mode
+
+  return mode
 }

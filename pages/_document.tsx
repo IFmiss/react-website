@@ -3,7 +3,11 @@ import * as React from 'react'
 import Nav from './../components/Nav'
 import { HomeNav, MusicNav } from './../config/nav'
 
-export default class SelfDocument extends Document {
+interface SlefProps {
+  mode: string;
+}
+
+export default class SelfDocument extends Document<SlefProps> {
   static async getInitialProps (ctx: any) {
     const initialProps = await Document.getInitialProps(ctx)
     return { ...initialProps }
@@ -15,7 +19,7 @@ export default class SelfDocument extends Document {
         <Head>
           <style>{`body { margin: 0 } /* custom! */`}</style>
         </Head>
-        <body className="custom_class">
+        <body>
           <Main/>
           <NextScript />
         </body>

@@ -67,11 +67,13 @@ class Nav extends GenericComponent<INavProps, INavState> {
             {
               this.lists.map((item: INavList, index: number) => {
                 return (
-                  <a className={activeLink(item)}
+                  <Link prefetch
                       key={index}
                       href={item.link}>
-                        {item.name}
-                  </a>
+                        <a className={activeLink(item)}>
+                          {item.name}
+                        </a>
+                  </Link>
                 )
               })
             }

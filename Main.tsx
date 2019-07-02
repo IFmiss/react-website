@@ -6,7 +6,7 @@ import Nav from './components/Nav'
 import { observer } from "mobx-react"
 import Constance from './config/constance'
 import { IStore } from './store/types'
-import HomeComp from './pages/home/index'
+import HomeComp from './pages/index/index'
 
 interface IMainProps {
   store?: IStore;

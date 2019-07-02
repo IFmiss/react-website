@@ -2,7 +2,7 @@ import * as Loadable from 'react-loadable'
 import Loading from './components/Loading/index'
 
 export const Home = Loadable({
-  loader: () => import('./pages/home/index'),
+  loader: () => import('./pages/index/index'),
   loading: Loading
 })
 

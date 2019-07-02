@@ -1,16 +1,16 @@
 import * as React from 'react'
-import fetch from './../../utils/fetch'
-import { IStore } from './../../store/types'
+import fetch from '../../utils/fetch'
+import { IStore } from '../../store/types'
 import classNames from 'classnames'
-import GenericComponent from './../../components/Generic'
-import { isBrowser } from './../../utils/utils'
+import GenericComponent from '../../components/Generic'
+import { isBrowser, initPageMode } from '../../utils/utils'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import typeWriter from './../../utils/typewriter'
-import Constance from './../../config/constance'
+import typeWriter from '../../utils/typewriter'
+import Constance from '../../config/constance'
 import Head from "next/head"
 import { withRouter } from "next/router"
-import Nav from './../../components/Nav'
-import { HomeNav } from './../../config/nav'
+import Nav from '../../components/Nav'
+import { HomeNav } from '../../config/nav'
 
 interface IHomeProps {
   store?: IStore;
@@ -32,6 +32,7 @@ class Home extends GenericComponent<IHomeProps, IHomeState> {
   }
 
   getInitialProps = async (ctx: any) => {
+    initPageMode()
   }
 
   private homeRef: any = React.createRef()

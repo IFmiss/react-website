@@ -7,9 +7,6 @@ export type INavLists = INavList[]
 
 export const HomeNav: INavLists = [
   {
-    name: '首页',
-    link: '/home'
-  }, {
     name: '博客',
     link: '/blog'
   }, {
@@ -24,7 +21,7 @@ export const HomeNav: INavLists = [
 export const MusicNav: INavLists = [
   {
     name: '去首页',
-    link: '/home'
+    link: '/'
   }, {
     name: '搜索',
     link: '/music/search'

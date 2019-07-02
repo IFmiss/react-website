@@ -8,7 +8,7 @@ const store: IStore = {
 }
 
 console.log('this is store index.ts', store)
-export function initializeStore () {
+export function initializeStore (initialMobxState: any = {}) {
   return store
 }
 
