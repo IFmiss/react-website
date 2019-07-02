@@ -3,6 +3,12 @@
     "static/development/dll/dll_31db130a461ca5672e82.js"
   ],
   "pages": {
+    "/": [
+      "static/runtime/webpack.js",
+      "static/css/styles.chunk.css",
+      "static/chunks/styles.js",
+      "static/runtime/main.js"
+    ],
     "/_app": [
       "static/runtime/webpack.js",
       "static/css/styles.chunk.css",
@@ -19,8 +25,10 @@
       "static/chunks/styles.js",
       "static/runtime/main.js"
     ],
-    "/setting": [
+    "/index": [
       "static/runtime/webpack.js",
+      "static/css/styles.chunk.css",
+      "static/chunks/styles.js",
       "static/runtime/main.js"
     ]
   }

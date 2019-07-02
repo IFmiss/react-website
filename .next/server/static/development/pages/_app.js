@@ -1861,10 +1861,9 @@ var _index = _interopRequireDefault(__webpack_require__(/*! ./../store/index */ 
 var _utils = __webpack_require__(/*! ./../utils/utils */ "./utils/utils.ts");
 
 var _class,
-    _temp,
     _jsxFileName = "F:\\mine\\react-website\\pages\\_app.tsx";
 
-var MyApp = (0, _mobxReact.observer)(_class = (_temp =
+var MyApp = (0, _mobxReact.observer)(_class =
 /*#__PURE__*/
 function (_App) {
   (0, _inherits2["default"])(MyApp, _App);
@@ -1874,32 +1873,30 @@ function (_App) {
       var _getInitialProps = (0, _asyncToGenerator2["default"])(
       /*#__PURE__*/
       _regenerator["default"].mark(function _callee(appContext) {
-        var pageProps, mode;
+        var pageProps;
         return _regenerator["default"].wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 pageProps = {};
-                mode = {};
 
                 if (!appContext.Component.getInitialProps) {
-                  _context.next = 6;
+                  _context.next = 5;
                   break;
                 }
 
-                _context.next = 5;
+                _context.next = 4;
                 return appContext.Component.getInitialProps(appContext.ctx);
 
-              case 5:
+              case 4:
                 pageProps = _context.sent;
 
-              case 6:
+              case 5:
                 return _context.abrupt("return", {
-                  pageProps: pageProps,
-                  mode: mode
+                  pageProps: pageProps
                 });
 
-              case 7:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -1912,17 +1909,15 @@ function (_App) {
       }
 
       return getInitialProps;
-    }()
+    }() // mode!: string;
+
   }]);
 
   function MyApp(props) {
-    var _this;
-
     (0, _classCallCheck2["default"])(this, MyApp);
-    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(MyApp).call(this, props));
-    _this.mode = void 0;
-    _this.mode = (0, _utils.isBrowser)() && (0, _utils.initPageMode)();
-    return _this;
+    return (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(MyApp).call(this, props)); // if (isBrowser()) {
+    //   this.mode = initPageMode()
+    // }
   }
 
   (0, _createClass2["default"])(MyApp, [{
@@ -1938,45 +1933,57 @@ function (_App) {
       var _this$props = this.props,
           Component = _this$props.Component,
           pageProps = _this$props.pageProps; // const { mode } = this.state
+      // console.log('_app.this.mode', this.mode)
 
-      console.log('_app.this.mode', this.mode);
+      var vv = (0, _utils.initPageMode)();
+      var a = {
+        mode: vv
+      };
+      console.log('this is vv：', vv);
+      console.log('this is vv：', a);
       return React.createElement(_app.Container, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 84
+          lineNumber: 93
         },
         __self: this
       }, React.createElement("div", {
         id: "dw-theme-container",
-        className: (0, _utils.isBrowser)() && (0, _utils.initPageMode)(),
+        className: vv,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 85
+          lineNumber: 94
         },
         __self: this
-      }, React.createElement(_Nav["default"], (0, _extends2["default"])({}, _index["default"], {
+      }, React.createElement("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 86
+          lineNumber: 95
+        },
+        __self: this
+      }, vv), React.createElement(_Nav["default"], (0, _extends2["default"])({}, _index["default"], {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 96
         },
         __self: this
       })), React.createElement(_mobxReact.Provider, (0, _extends2["default"])({}, _index["default"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 87
+          lineNumber: 97
         },
         __self: this
       }), React.createElement(Component, (0, _extends2["default"])({}, pageProps, _index["default"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 88
+          lineNumber: 98
         },
         __self: this
       })))));
     }
   }]);
   return MyApp;
-}(_app["default"]), _temp)) || _class;
+}(_app["default"])) || _class;
 
 exports["default"] = MyApp;
 
@@ -7632,15 +7639,9 @@ function isBrowser() {
  */
 
 
-function changePageMode(type) {
+function changePageMode() {
   // document.documentElement.style.setProperty(`--primary-color`, GenericUtils.randomColor());
   var container = document.getElementById('dw-theme-container');
-
-  if (type) {
-    container.className = type;
-    localStorage.setItem('mode', type);
-    return;
-  }
 
   if (Dutils && Dutils.DomUtils.hasClass(container, 'light')) {
     container.className = 'dark';
@@ -7656,7 +7657,7 @@ function changePageMode(type) {
 
 
 function initPageMode() {
-  if (!isBrowser()) return 'dark';
+  if (!isBrowser()) return;
   var storageMode = localStorage.getItem('mode');
   var mode;
 

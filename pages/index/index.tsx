@@ -66,7 +66,6 @@ class Home extends GenericComponent<IHomeProps, IHomeState> {
   public render () {
     const { store, prefixClass } = this.props
     const { star } =this.state 
-    console.log('Home', this.props)
     const classes = classNames({
       [`${prefixClass}-home`]: true
     })
@@ -74,7 +73,7 @@ class Home extends GenericComponent<IHomeProps, IHomeState> {
       [`dw-page-router`]: true
     })
 
-    console.log('home', this.props)
+    console.log('index', this.props)
 
     return (
       <>

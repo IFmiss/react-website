@@ -55,18 +55,20 @@ interface AppState {
 export default class MyApp extends App<AppProps, AppState> {
   static async getInitialProps (appContext: IappContext) {
     let pageProps = {}
-    let mode = {}
     if (appContext.Component.getInitialProps) {
       pageProps = await appContext.Component.getInitialProps(appContext.ctx)
     }
-    return {pageProps, mode}
+    return {pageProps}
   }
 
-  mode!: string;
+  // mode!: string;
 
   constructor (props: any) {
     super(props)
-    this.mode = isBrowser() && initPageMode()
+
+    // if (isBrowser()) {
+    //   this.mode = initPageMode()
+    // }
   }
 
   componentDidMount () {
@@ -79,10 +81,18 @@ export default class MyApp extends App<AppProps, AppState> {
   render () {
     const {Component, pageProps} = this.props
     // const { mode } = this.state
-    console.log('_app.this.mode', this.mode)
+    // console.log('_app.this.mode', this.mode)
+
+    const vv = initPageMode()
+    const a = {
+      mode: vv
+    }
+    console.log('this is vv：', vv)
+    console.log('this is vv：', a)
     return (
       <Container>
-        <div id="dw-theme-container" className={isBrowser() && initPageMode()}>
+        <div id="dw-theme-container" className={vv}>
+          <p>{vv}</p>
           <Nav {...store}></Nav>
           <Provider {...store}>
             <Component {...pageProps} {...store}/>

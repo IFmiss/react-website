@@ -247,5 +247,11 @@ a {
   transform: translate(-50%, 0);
 }
 
+.type-writer-bar {
+  display: inline-block;
+  width: 3px;
+  background: red;
+}
+
 
 /*# sourceMappingURL=styles.chunk.css.map*/

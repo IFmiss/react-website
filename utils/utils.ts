@@ -8,15 +8,9 @@ export function isBrowser() {
 /**
  * 改版页面主题模式
  */
-export function changePageMode (type? :string) {
+export function changePageMode () {
   // document.documentElement.style.setProperty(`--primary-color`, GenericUtils.randomColor());
   const container = document.getElementById('dw-theme-container')
-  if (type) {
-    container.className = type
-    localStorage.setItem('mode', type)
-    return
-  }
-
   if (Dutils && Dutils.DomUtils.hasClass(container, 'light')) {
     container.className = 'dark'
     localStorage.setItem('mode', 'dark')
@@ -30,7 +24,7 @@ export function changePageMode (type? :string) {
  * 初始化页面主题模式
  */
 export function initPageMode () {
-  if (!isBrowser()) return 'dark'
+  if (!isBrowser()) return
   const storageMode = localStorage.getItem('mode')
   let mode!: string
   if (!storageMode) {
