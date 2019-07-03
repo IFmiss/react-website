@@ -745,10 +745,10 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@dw/d-utils@^1.1.48":
-  version "1.1.48"
-  resolved "https://registry.yarnpkg.com/@dw/d-utils/-/d-utils-1.1.48.tgz#62769eb94bbb497f5aaa953b24d80e840462e696"
-  integrity sha512-KJpoef8IQob/R7EBmnZ0TpaG0C4NO+Q3evn5lPoZBK9wmviCkHBa2OOZeqIxZeaXjB/dE7SLyK+tqEaVnaREPA==
+"@dw/d-utils@^1.1.51":
+  version "1.1.51"
+  resolved "https://registry.yarnpkg.com/@dw/d-utils/-/d-utils-1.1.51.tgz#279231bd40308596159751cad78843c7f8db41e6"
+  integrity sha512-FuvMiI98NufvsHfq8mmYQ7GbQ1hU/oROyk5gaNyZzGM1SEy+TYJLTAbV6/GtCyyB7hHfDg6E7heWNW4nM3OJRQ==
   dependencies:
     axios "^0.19.0"
     promise.prototype.finally "^3.1.0"
@@ -4442,6 +4442,11 @@ mkdirp@0.5.x, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0.5.1:
   integrity sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
   dependencies:
     minimist "0.0.8"
+
+mobx-react-lite@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/mobx-react-lite/-/mobx-react-lite-1.4.1.tgz#7307a45901f97f9a07ebed32b654235507644e1a"
+  integrity sha512-XmM+gzNv+GyXZYDLZMIGox3DufIiKULYgJsLhQj0U6Wlf+J5jv/h7limrL0aS1bEUtNilG62g9nwTeQ0KHzLFg==
 
 mobx-react@^5.4.4:
   version "5.4.4"

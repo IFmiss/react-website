@@ -4,7 +4,7 @@
   "description": "react-website",
   "dependencies": {
     "@babel/preset-react": "^7.0.0",
-    "@dw/d-utils": "^1.1.48",
+    "@dw/d-utils": "^1.1.51",
     "@types/classnames": "^2.2.8",
     "@types/qs": "^6.5.3",
     "@types/react-dom": "^16.8.4",
@@ -14,6 +14,7 @@
     "classnames": "^2.2.6",
     "mobx": "^5.9.4",
     "mobx-react": "^5.4.4",
+    "mobx-react-lite": "^1.4.1",
     "qs": "^6.7.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

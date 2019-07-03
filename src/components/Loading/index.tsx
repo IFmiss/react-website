@@ -5,26 +5,21 @@ import './loading.less';
 
 interface ILoadingProps {
   tip?: string
-  isLoading: boolean
-  pastDelay: boolean
-  timedOut: boolean
-  error: any
-  retry: () => void
+  isLoading: boolean;
+  pastDelay: boolean;
+  timedOut: boolean;
+  error: any;
+  retry: () => void;
 }
 
-interface ILoadingState {}
-
-export default class Loading extends React.Component<ILoadingProps, ILoadingState> {
-  static defualtProps = {
-    tip: 'loading ...'
-  }
-
-  render () {
-    const {tip} = this.props
-    return (
-      <div className="loadable-loading">
-        {tip}
-      </div>
-    )
-  }
+const Loading = ({
+  tip = 'loading ...',
+}: ILoadingProps) => {
+  return (
+    <div className="loadable-loading">
+      { tip }
+    </div>
+  )
 }
+
+export default Loading

@@ -1,27 +1,39 @@
 import * as React from 'react'
 import fetch from './../../utils/fetch'
 import { IStore } from './../../store/types'
+import { CSSTransition ,TransitionGroup } from 'react-transition-group';
 import classNames from 'classnames'
+import Constance from './../../config/constance'
+import BlogList from './../../components/BlogList'
 
-interface IBlogProps {
-  store?: IStore;
-  prefixClass?: string;
+interface IBlogProps {}
+
+const Blog = (props: IBlogProps) => {
+  const classString = classNames({
+    [`${Constance.PROJECT_NAME}-blog`]: true,
+    [`dw-page-router`]: true
+  })
+  const data = [1, 2, 3, 4, 5]
+  const start = false
+  return (
+    <div className={classString}>
+      this is Blog 
+      <TransitionGroup>
+        {
+          data.map((item: any, index: number) => (
+            <CSSTransition in={start}
+                           key={index}
+                           timeout={300}
+                           classNames="side-up-fade"
+                           appear={true}
+                           unmountOnExit={false}>
+              <BlogList></BlogList>
+            </CSSTransition>
+          ))
+        }
+      </TransitionGroup>
+    </div>
+  )
 }
 
-interface IBlogState {}
-
-export default class Blog extends React.Component<IBlogProps, IBlogState> {
-  public render () {
-    const { store, prefixClass } = this.props
-    console.log('blog', this.props)
-    const classes = classNames({
-      [`${prefixClass}-blog`]: true,
-      [`dw-page-router`]: true
-    })
-    return (
-      <div className={classes}>
-        this is Blog 
-      </div>
-    )
-  }
-}
+export default Blog

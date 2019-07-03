@@ -13,7 +13,7 @@ export namespace NameSpaceStore {
 
   export interface INavModel {
     lists: INavLists,
-    setNavLists: (lists: INavLists) => void
+    setNavLists: (type: number) => void
   }
 }
 

@@ -1,11 +1,20 @@
-import { observable, computed, action } from 'mobx'
-import { INavLists, HomeNav } from './../../config/nav'
+import { get, set, observable, values, computed, action } from 'mobx'
+import { INavLists, HomeNav, MusicNav } from './../../config/nav'
+import { NAV_TYPE } from './../../enum'
+import LogUtils from '@dw/d-utils/lib/logUtils'
 export default class ColorModel {
   @observable
   lists: INavLists = HomeNav
 
-  @action
-  setNavLists (navList: INavLists) {
-    this.lists = navList
+  @action.bound
+  setNavLists (type: number) {
+    switch (type) {
+      case NAV_TYPE.MUSIC:
+        this.lists = MusicNav
+        break;
+      default:
+        this.lists = HomeNav
+    }
+    LogUtils.logInfo(this.lists)
   }
 }

@@ -1,25 +1,21 @@
 import * as React from 'react'
-import { Route, Switch, Redirect } from 'react-router'
+import { Route, Switch } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
-import { Home, Blog, Music, Setting } from './loadable'
-import Nav from './components/Nav'
-import { observer } from "mobx-react"
-import Constance from './config/constance'
+import store from './store'
+import { storeContext } from './utils/use'
 import Main from './Main'
 
-@observer
-class App extends React.Component<any, any> {
-  public render () {
-    const { store } = this.props
-    console.log('this.propsthis.propsthis.propsthis.props', this.props)
-    return (
+const App = () => {
+  console.log('this.propsthis.propsthis.propsthis.props', store)
+  return (
+    <storeContext.Provider value={store}>
       <BrowserRouter>
         <Switch>
-          <Route path="/" render={(props) => <Main {...props} store={store}/>}></Route>
+          <Route path="/" render={(props) => <Main {...props}/>}></Route>
         </Switch>
       </BrowserRouter>
-    )
-  }
+    </storeContext.Provider>
+  )
 }
 
 export default App
