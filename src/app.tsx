@@ -10,9 +10,7 @@ const App = () => {
   return (
     <storeContext.Provider value={store}>
       <BrowserRouter>
-        <Switch>
-          <Route path="/" render={(props) => <Main {...props}/>}></Route>
-        </Switch>
+        <Main/>
       </BrowserRouter>
     </storeContext.Provider>
   )

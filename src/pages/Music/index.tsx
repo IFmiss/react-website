@@ -18,7 +18,7 @@ const Music = (props: IMusicProps) => {
       {/* this is Music  */}
       <Switch>
         <Route path="/music/sheet" component={Sheet}/>
-        <Redirect to="/music/sheet" exact/>
+        <Redirect to="music/sheet" exact/>
       </Switch>
     </div>
   )
