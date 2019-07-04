@@ -35,12 +35,6 @@ export const HomeNav: INavLists = [
 
 export const MusicNav: INavLists = [
   {
-    name: '111',
-    link: '/home',
-    type: NAV_TYPE.HOME,
-    key: 'home_index_1',
-  },
-  {
     name: '去首页',
     link: '/home',
     type: NAV_TYPE.HOME,
@@ -60,5 +54,10 @@ export const MusicNav: INavLists = [
     link: '/music/sheet',
     type: NAV_TYPE.MUSIC,
     key: 'music_sheet',
+  }, {
+    name: '设置',
+    link: '/setting',
+    type: NAV_TYPE.MUSIC,
+    key: 'setting_index',
   }
 ]

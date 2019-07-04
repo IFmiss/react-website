@@ -6,18 +6,13 @@ import './switch.less'
 
 interface ISwitchProps {
   checked: boolean
+  unCheckedName: string
+  checkedName: string
   onChange: (checked: boolean) => void
 }
 
 const Switch = (props: ISwitchProps) => {
   let [checked, setChecked] = useState(props.checked)
-
-  // useEffect(() => {
-  //   // setCheckedHandle()
-  //   if (props.checked !== checked) {
-  //     setCheckedHandle(props.checked)
-  //   }
-  // }, [])
 
   const setCheckedHandle = () => {
     setChecked(checked = !checked)
@@ -32,22 +27,29 @@ const Switch = (props: ISwitchProps) => {
   return (
     <div className={classString} onClick={setCheckedHandle}>
       <CSSTransition in={checked}
-                     timeout={100}
-                     classNames="fade"
+                     timeout={1}
+                     classNames="side-low-left-fade"
                      appear={true}
-                     unmountOnExit={false}>
-        <span className="switch-on">on</span>
+                     unmountOnExit={true}>
+        <span className="switch-on">{props.checkedName}</span>
       </CSSTransition>
       <CSSTransition in={!checked}
-                     timeout={100}
-                     classNames="fade"
+                     timeout={1}
+                     classNames="side-low-left-fade"
                      appear={true}
-                     unmountOnExit={false}>
-        <span className="switch-off">off</span>
+                     unmountOnExit={true}>
+        <span className="switch-off">{props.unCheckedName}</span>
       </CSSTransition>
       <span className="switch-range"></span>
     </div>
   )
+}
+
+Switch.defaultProps = {
+  checked: false,
+  unCheckedName: 'off',
+  checkedName: 'on',
+  onChange: null,
 }
 
 export default Switch

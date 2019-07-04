@@ -17,8 +17,14 @@ const Setting = observer((props: ISettingProps) => {
   })
   return (
     <div className={classString}>
-      <h1>this is Setting { useStore().colorStore.mode } </h1>
-      <Switch checked={useStore().colorStore.mode === 'dark'} onChange={changePageMode}/>
+      <h2 className={`${Constance.PROJECT_NAME}-setting-title`}>Setting</h2>
+      <p>基本设置</p>
+      <li>
+        <span>护眼模式</span>
+        <Switch checked={useStore().colorStore.mode === 'dark'} onChange={changePageMode}/>
+      </li>
+      <p>音乐设置</p>
+      <p>音乐设置</p>
     </div>
   )
 })

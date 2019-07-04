@@ -6,15 +6,17 @@
 .@{project-prefix}-comp-switch {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   position: relative;
   width: @switch-w;
   height: @switch-h;
   border-radius: @switch-h / 2;
-  padding: 2px;
+  padding: 2px 8px;
   box-sizing: border-box;
   background: var(--primary-color);
   transition: background-color 0.3s;
+  user-select: none;
+  overflow: hidden;
   cursor: pointer;
   .switch-range {
     position: absolute;
@@ -25,27 +27,26 @@
     transform: translate(0, 0);
     border-radius: 50%;
     background: #fff;
-    transition: all 0.3s;
+    transition: transform 0.3s;
   }
 
   .switch-on, .switch-off {
-    width: 50%;
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
     color: #fff;
-    display: block;
-    text-align: center;
-    line-height: @switch-h;
+    vertical-align: middle;
     text-align: center;
     font-size: 14px;
   }
 
   // .switch-on {
-  //   display: none;
+  //   padding-left: 4px;
+  // }
+
+  // .switch-off {
+  //   padding-right: 4px;
   // }
 
   &.switch-checked {
+    justify-content: flex-start;
     .switch-range {
       transform: translate(@switch-trans, 0);
     }

@@ -81,3 +81,35 @@
   opacity: 0;
   transform: translate(60px, 0);
 }
+
+
+// sideLowLeftFade
+.side-low-left-fade-enter, .side-low-left-fade-appear {
+  transform: translate(10px, 0);
+  opacity: 0;
+}
+.side-low-left-fade-enter-active, .side-low-left-fade-appear-active { 
+  // opacity: 1;
+  // transform: translate(0, 0);
+  // transition: all 300ms;
+}
+.side-low-left-fade-enter-done {
+  // opacity: 1;
+  // transform: translate(0, 0);
+  opacity: 1;
+  transform: translate(0, 0);
+  transition: all 300ms;
+}
+.side-low-left-fade-exit {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.side-low-left-fade-exit-active {
+  opacity: 0;
+  transform: translate(10px, 0);
+  transition: all 300ms;
+}
+.side-low-left-fade-exit-done {
+  opacity: 0;
+  transform: translate(10px, 0);
+}
