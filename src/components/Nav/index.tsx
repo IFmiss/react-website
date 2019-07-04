@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { INavLists, INavList } from './../../config/nav'
 import classNames from 'classnames'
-import { changePageMode } from './../../utils/utils'
 import './nav.less'
 import store from './../../store'
 import Constance from './../../config/constance'
@@ -41,9 +40,7 @@ const Nav = observer((props: INavProps) => {
               )
             })
           }
-          <span>{lists.length}</span>
         </div>
-        <div onClick={changePageMode}>点击切换颜色</div>
       </div>
     </div>
   )

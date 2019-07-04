@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import classNames from 'classnames'
 import Constance from './../../config/constance'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
@@ -6,15 +6,22 @@ import './switch.less'
 
 interface ISwitchProps {
   checked: boolean
+  onChange: (checked: boolean) => void
 }
 
 const Switch = (props: ISwitchProps) => {
-  const switchRef = useRef(null)
-
   let [checked, setChecked] = useState(props.checked)
+
+  // useEffect(() => {
+  //   // setCheckedHandle()
+  //   if (props.checked !== checked) {
+  //     setCheckedHandle(props.checked)
+  //   }
+  // }, [])
 
   const setCheckedHandle = () => {
     setChecked(checked = !checked)
+    props.onChange(checked)
   }
 
   const classString = classNames({
