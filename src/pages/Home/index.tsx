@@ -4,8 +4,7 @@ import { IStore } from './../../store/types'
 import classNames from 'classnames'
 import typeWriter from './../../utils/typewriter'
 import Constance from './../../config/constance'
-import * as React from 'react'
-import { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 interface IHomeProps {}
 

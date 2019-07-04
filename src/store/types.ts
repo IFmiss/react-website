@@ -7,8 +7,8 @@ export interface IStore {
 
 export namespace NameSpaceStore {
   export interface IColorModel {
-    primaryColor: string;
-    initSelfColor: () => void;
+    mode: string;
+    changeMode: (mode?: string) => void;
   }
 
   export interface INavModel {

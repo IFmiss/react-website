@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import './generic.less'
 import { IColorInfo } from './../../config/color'
 import { NameSpaceStore } from './../../store/types'
@@ -15,8 +15,8 @@ export interface GenericProps {
 export interface GenericState {}
 
 export default class GenericComponent<P, S> extends React.Component<P, S> {
-  props: P & GenericProps;
-  state: S & GenericState;
+  // props: P & GenericProps;
+  // state: S & GenericState;
 
   componentDidMount () {
     console.log('this.props', this.props)

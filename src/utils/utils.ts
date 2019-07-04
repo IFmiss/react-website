@@ -1,17 +1,20 @@
 import { GenericUtils } from '@dw/d-utils'
 import { hasClass } from '@dw/d-utils/lib/domUtils'
+import store from './../store'
 
 /**
  * 改版页面主题模式
  */
 export function changePageMode () {
   // document.documentElement.style.setProperty(`--primary-color`, GenericUtils.randomColor());
-  const container = document.getElementById('dw-react-web-container')
+  const container: any = document.getElementById('dw-react-web-container')
   if (hasClass(container, 'light')) {
     container.className = 'dark'
+    store.colorStore.changeMode('dark')
     localStorage.setItem('mode', 'dark')
   } else {
     container.className = 'light'
+    store.colorStore.changeMode('light')
     localStorage.setItem('mode', 'light')
   }
 }
@@ -28,5 +31,6 @@ export function initPageMode (): string {
   } else {
     mode = storageMode
   }
+  store.colorStore.changeMode(mode)
   return mode
 }

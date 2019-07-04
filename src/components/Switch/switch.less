@@ -1,0 +1,56 @@
+@switch-w: 54px;
+@switch-h: 26px;
+@range-w-h: 22px;
+@switch-trans: @switch-w - @switch-h;
+
+.@{project-prefix}-comp-switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: @switch-w;
+  height: @switch-h;
+  border-radius: @switch-h / 2;
+  padding: 2px;
+  box-sizing: border-box;
+  background: var(--primary-color);
+  cursor: pointer;
+  .switch-range {
+    position: absolute;
+    width: @range-w-h;
+    height: @range-w-h;
+    top: (@switch-h - @range-w-h) / 2;
+    left: (@switch-h - @range-w-h) / 2;
+    transform: translate(0, 0);
+    border-radius: 50%;
+    background: #fff;
+    transition: all 0.3s;
+  }
+
+  .switch-on, .switch-off {
+    width: 50%;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    color: #fff;
+    display: block;
+    text-align: center;
+    line-height: @switch-h;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  // .switch-on {
+  //   display: none;
+  // }
+
+  &.switch-checked {
+    .switch-range {
+      transform: translate(@switch-trans, 0);
+    }
+
+    // .switch-off {
+    //   display: none;
+    // }
+  }
+}

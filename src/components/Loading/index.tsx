@@ -1,6 +1,4 @@
-import * as React from 'react'
-import GenericComponent from './../../components/Generic/index'
-import { IColorInfo } from './../../config/color'
+import React from 'react'
 import './loading.less';
 
 interface ILoadingProps {
@@ -12,14 +10,16 @@ interface ILoadingProps {
   retry: () => void;
 }
 
-const Loading = ({
-  tip = 'loading ...',
-}: ILoadingProps) => {
+const Loading = (props: ILoadingProps) => {
   return (
     <div className="loadable-loading">
-      { tip }
+      { props.tip }
     </div>
   )
+}
+
+Loading.defaultPorps = {
+  tip: 'loading ...'
 }
 
 export default Loading

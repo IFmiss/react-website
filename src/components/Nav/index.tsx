@@ -1,5 +1,3 @@
-import * as React from 'react'
-import GenericComponent from './../Generic/index'
 import { NavLink } from 'react-router-dom'
 import { INavLists, INavList } from './../../config/nav'
 import classNames from 'classnames'
@@ -7,9 +5,7 @@ import { changePageMode } from './../../utils/utils'
 import './nav.less'
 import store from './../../store'
 import Constance from './../../config/constance'
-import { HomeNav, MusicNav } from './../../config/nav'
-import { NameSpaceStore } from './../../store/types'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { observer, useObservable, useObserver, useLocalStore, useStaticRendering, useComputed } from "mobx-react-lite"
 import { useStore } from './../../utils/use'
 
@@ -17,15 +13,9 @@ interface INavProps {
   location?: any
 }
 
-const Nav = (props: INavProps) => {
+const Nav = observer((props: INavProps) => {
   const nav = useStore().navStore
   const lists = nav.lists
-
-  // useEffect(() => {
-  //   if (location.pathname.includes('/music')) {
-  //     nav.setNavLists(2)
-  //   }
-  // })
 
   const classString = classNames({
     [`${Constance.PROJECT_NAME}-nav`]: true
@@ -36,6 +26,7 @@ const Nav = (props: INavProps) => {
       <div className="nav-content">
         <div className="nav-logo">
           {/* <img className="nav-img" src="http://www.daiwei.org/index/images/logo/favicon.ico" alt=""/> */}
+          <h2 className="nav-title">Dw</h2>
         </div>
         <div className="nav-lists">
           {
@@ -43,18 +34,19 @@ const Nav = (props: INavProps) => {
               return (
                 <NavLink className="nav-list"
                         to={item.link}
-                        key={index}
+                        key={item.key}
                         onClick={() => nav.setNavLists(item.type)}>
                   {item.name}
                 </NavLink>
               )
             })
           }
+          <span>{lists.length}</span>
         </div>
         <div onClick={changePageMode}>点击切换颜色</div>
       </div>
     </div>
   )
-}
+})
 
 export default Nav

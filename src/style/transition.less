@@ -5,7 +5,7 @@
 }
 .fade-enter-active, .fade-appear-active { 
   opacity: 1;
-  transition: opacity 300ms ease-in;
+  transition: opacity 300ms;
 }
 .fade-enter-done {
   opacity: 1;
@@ -15,7 +15,7 @@
 }
 .fade-exit-active {
   opacity: 0;
-  transition: opacity 300ms ease-in;
+  transition: opacity 300ms;
 }
 .fade-exit-done {
   opacity: 0;
@@ -23,17 +23,18 @@
 
 // sideUpFade
 .side-up-fade-enter, .side-up-fade-appear {
-  transform: translate(0, -10px);
+  transform: translate(0, 10px);
   opacity: 0;
 }
 .side-up-fade-enter-active, .side-up-fade-appear-active { 
-  opacity: 1;
-  transform: translate(0, 0);
-  transition: all 300ms ease-in;
+  // opacity: 1;
+  // transform: translate(0, 0);
+  // transition: all 300ms;
 }
 .side-up-fade-enter-done {
   opacity: 1;
   transform: translate(0, 0);
+  transition: all 300ms;
 }
 .side-up-fade-exit {
   opacity: 1;
@@ -41,10 +42,42 @@
 }
 .side-up-fade-exit-active {
   opacity: 0;
-  transform: translate(0, -10px);
-  transition: all 300ms ease-in;
+  transform: translate(0, 10px);
+  transition: all 300ms;
 }
 .side-up-fade-exit-done {
   opacity: 0;
-  transform: translate(0, -10px);
+  transform: translate(0, 10px);
+}
+
+
+// sideLeftFade
+.side-left-fade-enter, .side-left-fade-appear {
+  transform: translate(60px, 0);
+  opacity: 0;
+}
+.side-left-fade-enter-active, .side-left-fade-appear-active { 
+  // opacity: 1;
+  // transform: translate(0, 0);
+  // transition: all 300ms;
+}
+.side-left-fade-enter-done {
+  // opacity: 1;
+  // transform: translate(0, 0);
+  opacity: 1;
+  transform: translate(0, 0);
+  transition: all 300ms;
+}
+.side-left-fade-exit {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.side-left-fade-exit-active {
+  opacity: 0;
+  transform: translate(60px, 0);
+  transition: all 300ms;
+}
+.side-left-fade-exit-done {
+  opacity: 0;
+  transform: translate(60px, 0);
 }

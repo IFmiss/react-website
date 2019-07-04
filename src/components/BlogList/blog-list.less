@@ -1,0 +1,28 @@
+.@{project-prefix}-comp-blog-list {
+  list-style: none;
+  padding: 0 15px;
+  a {
+    text-decoration: none;
+    padding: 25px 0;
+    display: block;
+    border-bottom: 1px solid var(--border-color);
+    transition: border 0.3s;
+  }
+  &-title, &-disc, &-date {
+    .mixinTextColor();
+  }
+  &:hover {
+    &-title, &-disc, &-date {
+      .mixinTextColorActive();
+    }
+  }
+  &-title {
+    font-weight: 400;
+    color: var(--primary-color);
+    margin: 0;
+    padding: 10px 0;
+  }
+  &-disc, &-date {
+    font-size: 14px;
+  }
+}

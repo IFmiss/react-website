@@ -16,7 +16,7 @@ module.exports = selfmerge(selfcommon, {
   },
   output: {
     path: resolve('dist'),
-    publicPath: '',
+    publicPath: '/',
     filename: 'js/[name]-[hash].js'
   },
   plugins: [

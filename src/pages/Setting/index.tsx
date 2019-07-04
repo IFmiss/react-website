@@ -1,8 +1,9 @@
-import * as React from 'react'
+import React from 'react'
 import fetch from './../../utils/fetch'
 import { IStore } from './../../store/types'
 import classNames from 'classnames'
 import Constance from './../../config/constance'
+import Switch from './../../components/Switch'
 
 interface ISettingProps {}
 
@@ -13,7 +14,8 @@ const Setting = (props: ISettingProps) => {
   })
   return (
     <div className={classString}>
-      this is Setting 
+      <h1>this is Setting </h1>
+      <Switch checked/>
     </div>
   )
 }
