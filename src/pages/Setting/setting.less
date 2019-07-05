@@ -1,0 +1,38 @@
+.@{setting-prefix} {
+  &-title {
+    // font-weight: 400;
+    .mixinTextColorActive();
+    transition: color 0.3s;
+  }
+  &-wrap-title {
+    font-weight: 500;
+    position: relative;
+    text-indent: 10px;
+    margin: 20px auto 15px auto;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate(0, -50%);
+      width: 3px;
+      height: 18px;
+      border-radius: 2px;
+      .mixinPrimaryBg();
+      transition: background-color 0.3s;
+    }
+  }
+  &-wrap-content {
+    padding: 0 0 0 20px;
+    margin: 10px auto;
+    &-list {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      font-size: 14px;
+      border-bottom: 1px solid var(--border-color);
+    }
+  }
+}

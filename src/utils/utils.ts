@@ -1,4 +1,4 @@
-import { GenericUtils } from '@dw/d-utils'
+import { randomColor } from '@dw/d-utils/lib/genericUtils'
 import { hasClass } from '@dw/d-utils/lib/domUtils'
 import store from './../store'
 
@@ -6,7 +6,6 @@ import store from './../store'
  * 改版页面主题模式
  */
 export function changePageMode () {
-  // document.documentElement.style.setProperty(`--primary-color`, GenericUtils.randomColor());
   const container: any = document.getElementById('dw-react-web-container')
   if (hasClass(container, 'light')) {
     container.className = 'dark'
@@ -17,6 +16,12 @@ export function changePageMode () {
     store.colorStore.changeMode('light')
     localStorage.setItem('mode', 'light')
   }
+}
+
+export function randomPrimaryColor () {
+  const color = randomColor()
+  const container: any = document.getElementById('dw-react-web-container')
+  container.style.setProperty(`--primary-color`, color);
 }
 
 /**

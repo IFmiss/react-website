@@ -1,6 +1,6 @@
-@switch-w: 54px;
-@switch-h: 26px;
-@range-w-h: 22px;
+@switch-w: 52px;
+@switch-h: 24px;
+@range-w-h: 20px;
 @switch-trans: @switch-w - @switch-h;
 
 .@{project-prefix}-comp-switch {
@@ -13,7 +13,7 @@
   border-radius: @switch-h / 2;
   padding: 2px 8px;
   box-sizing: border-box;
-  background: var(--primary-color);
+  background: var(--text-color);
   transition: background-color 0.3s;
   user-select: none;
   overflow: hidden;
@@ -36,23 +36,12 @@
     text-align: center;
     font-size: 14px;
   }
-
-  // .switch-on {
-  //   padding-left: 4px;
-  // }
-
-  // .switch-off {
-  //   padding-right: 4px;
-  // }
-
+  
   &.switch-checked {
     justify-content: flex-start;
+    background: var(--primary-color);
     .switch-range {
       transform: translate(@switch-trans, 0);
     }
-
-    // .switch-off {
-    //   display: none;
-    // }
   }
 }

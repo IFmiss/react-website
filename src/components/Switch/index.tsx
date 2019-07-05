@@ -12,11 +12,18 @@ interface ISwitchProps {
 }
 
 const Switch = (props: ISwitchProps) => {
-  let [checked, setChecked] = useState(props.checked)
+  console.log('Switch', 'useState(props.checked)', props.checked)
+  const [checked, setChecked] = useState(props.checked)
+
+  useEffect(() => {
+    setChecked(props.checked);
+  }, [props.checked])
 
   const setCheckedHandle = () => {
-    setChecked(checked = !checked)
-    props.onChange(checked)
+    props.onChange && props.onChange(checked)
+    // checked = !checked
+    setChecked(checked => !checked)
+    console.log('setCheckedHandle', checked)
   }
 
   const classString = classNames({
