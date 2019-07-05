@@ -7,12 +7,15 @@ import store from './../store'
  */
 export function changePageMode () {
   const container: any = document.getElementById('dw-react-web-container')
+  const body: HTMLElement = document.body
   if (hasClass(container, 'light')) {
     container.className = 'dark'
+    body.className = 'dark'
     store.colorStore.changeMode('dark')
     localStorage.setItem('mode', 'dark')
   } else {
     container.className = 'light'
+    body.className = 'light'
     store.colorStore.changeMode('light')
     localStorage.setItem('mode', 'light')
   }
@@ -29,6 +32,7 @@ export function randomPrimaryColor () {
  */
 export function initPageMode (): string {
   const storageMode = localStorage.getItem('mode')
+  const body: HTMLElement = document.body
   let mode!: string
   if (!storageMode) {
     mode = 'light'
@@ -37,5 +41,6 @@ export function initPageMode (): string {
     mode = storageMode
   }
   store.colorStore.changeMode(mode)
+  body.className = mode
   return mode
 }

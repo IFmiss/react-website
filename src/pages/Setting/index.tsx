@@ -9,6 +9,7 @@ import Constance from './../../config/constance'
 import Switch from './../../components/Switch'
 import { changePageMode } from './../../utils/utils'
 import { randomPrimaryColor } from './../../utils/utils'
+import LogUtils from '@dw/d-utils/lib/logUtils';
 
 interface ISettingProps {}
 
@@ -22,14 +23,12 @@ const Setting = observer((props: ISettingProps) => {
   
   const changePageModeFn = (isDarkMode: boolean) => {
     setDark(isDark = isDarkMode)
-    console.log('isDark----', isDark)
     changePageMode()
   }
 
-  const [testProps, setTestProps] = useState(false)
+  let [testProps, setTestProps] = useState(true)
   const changeTest = (checked: boolean) => {
-    setTestProps(checked)
-    changePageMode()
+    setTestProps(testProps => checked)
   }
   return (
     <div className={classString}>
@@ -39,8 +38,16 @@ const Setting = observer((props: ISettingProps) => {
       </h4>
       <ul className={`${Constance.PROJECT_NAME}-setting-wrap-content`}>
         <li className={`${Constance.PROJECT_NAME}-setting-wrap-content-list`}>
-          <span>护眼模式 {String(useStore().colorStore.mode === 'dark')}</span>
-          <Switch checked={useStore().colorStore.mode === 'dark'} onChange={changePageModeFn}/>
+          <span>护眼模式</span>
+          <Switch checked={isDark} onChange={changePageModeFn}/>
+        </li>
+        <li className={`${Constance.PROJECT_NAME}-setting-wrap-content-list`}>
+          <span>护眼模式</span>
+          <Switch checked={isDark} onChange={changePageModeFn}/>
+        </li>
+        <li className={`${Constance.PROJECT_NAME}-setting-wrap-content-list`}>
+          <span>护眼模式</span>
+          <Switch checked={isDark} onChange={changePageModeFn}/>
         </li>
       </ul>
       <h4 className={`${Constance.PROJECT_NAME}-setting-wrap-title`}>
@@ -54,7 +61,7 @@ const Setting = observer((props: ISettingProps) => {
                   unCheckedName="关"
                   checkedName="开"/> */}
           {/* <Switch checked={testProps} onChange={changeTest}/> */}
-          <Switch checked={useStore().colorStore.mode === 'dark'} onChange={changePageModeFn}/>
+          <Switch checked={testProps} onChange={changeTest}/>
         </li>
       </ul>
     </div>
