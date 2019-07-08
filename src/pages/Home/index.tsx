@@ -3,7 +3,7 @@ import fetch from './../../utils/fetch'
 import { IStore } from './../../store/types'
 import classNames from 'classnames'
 import typeWriter from './../../utils/typewriter'
-import Constance from './../../config/constance'
+import { PROJECT_NAME, TYPE_WRITER} from './../../config/constance'
 import React, { useState, useEffect, useRef } from 'react'
 
 interface IHomeProps {}
@@ -12,9 +12,9 @@ const Home = (props: IHomeProps) => {
   const homeRef: any = useRef(null);
 
   const initTypeWriter = () => {
-    typeWriter(Constance.TYPE_WRITER[0].text, Constance.TYPE_WRITER[0].tagName, homeRef.current, Constance.TYPE_WRITER[0].config)
-      .then(() => typeWriter(Constance.TYPE_WRITER[1].text, Constance.TYPE_WRITER[1].tagName, homeRef.current, Constance.TYPE_WRITER[1].config))
-        .then(() => typeWriter(Constance.TYPE_WRITER[2].text, Constance.TYPE_WRITER[2].tagName, homeRef.current, Constance.TYPE_WRITER[2].config))
+    typeWriter(TYPE_WRITER[0].text, TYPE_WRITER[0].tagName, homeRef.current, TYPE_WRITER[0].config)
+      .then(() => typeWriter(TYPE_WRITER[1].text, TYPE_WRITER[1].tagName, homeRef.current, TYPE_WRITER[1].config))
+        .then(() => typeWriter(TYPE_WRITER[2].text, TYPE_WRITER[2].tagName, homeRef.current, TYPE_WRITER[2].config))
   }
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const Home = (props: IHomeProps) => {
   })
 
   const classString = classNames({
-    [`${Constance.PROJECT_NAME}-home`]: true,
+    [`${PROJECT_NAME}-home`]: true,
     [`dw-page-router`]: true
   })
   return (
@@ -37,7 +37,7 @@ const Home = (props: IHomeProps) => {
         !window.__FIRST_IN_HOME__ ? (
           <div ref={homeRef}></div>
         ) : (
-          Constance.TYPE_WRITER.map((item, index) => {
+          TYPE_WRITER.map((item, index) => {
             return (
               item.tagName === 'h1' ? (
                 <h1 key={index}>{item.text}</h1>

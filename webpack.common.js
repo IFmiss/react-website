@@ -18,6 +18,7 @@ module.exports = {
       filename: 'index.html',
       template: 'index.html',
 			inject: true,
+			title: "未曾遗忘的青春，戴伟的个人博客",
 			favicon: 'src/assets/favicon/favicon.ico'
 		}),
 

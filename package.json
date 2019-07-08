@@ -2,10 +2,6 @@
   "name": "react-website",
   "version": "1.0.0",
   "description": "react-website",
-  "dependencies": {
-    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@types/react-transition-group": "^2.9.2"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --progress --config ./webpack.prod.js",
@@ -19,6 +15,7 @@
     "@babel/core": "^7.4.3",
     "@babel/plugin-proposal-class-properties": "^7.4.0",
     "@babel/plugin-proposal-decorators": "^7.4.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
@@ -31,6 +28,7 @@
     "@types/react-dom": "16.8.4",
     "@types/react-loadable": "^5.5.1",
     "@types/react-router-dom": "^4.3.4",
+    "@types/react-transition-group": "^2.9.2",
     "babel-loader": "^8.0.5",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.6",

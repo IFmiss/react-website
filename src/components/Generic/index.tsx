@@ -3,7 +3,7 @@ import './generic.less'
 import { IColorInfo } from './../../config/color'
 import { NameSpaceStore } from './../../store/types'
 import { IStore } from './../../store/types'
-import Constance from './../../config/constance'
+import { PROJECT_NAME } from './../../config/constance'
 
 export interface GenericProps {
   className?: string;
@@ -23,7 +23,7 @@ export default class GenericComponent<P, S> extends React.Component<P, S> {
   }
 
   static defaultProps = {
-    prefixClass: Constance.PROJECT_NAME,
-    className: `generic-component ${Constance.PROJECT_NAME}`
+    prefixClass: PROJECT_NAME,
+    className: `generic-component ${PROJECT_NAME}`
   }
 }

@@ -3,7 +3,7 @@ import { INavLists, INavList } from './../../config/nav'
 import classNames from 'classnames'
 import './nav.less'
 import store from './../../store'
-import Constance from './../../config/constance'
+import { PROJECT_NAME } from './../../config/constance'
 import React, { useState, useEffect } from 'react'
 import { observer, useObservable, useObserver, useLocalStore, useStaticRendering, useComputed } from "mobx-react-lite"
 import { useStore } from './../../utils/use'
@@ -17,7 +17,7 @@ const Nav = observer((props: INavProps) => {
   const lists = nav.lists
 
   const classString = classNames({
-    [`${Constance.PROJECT_NAME}-nav`]: true
+    [`${PROJECT_NAME}-nav`]: true
   })
 
   return (

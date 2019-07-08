@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import classNames from 'classnames'
-import Constance from './../../config/constance'
+import { PROJECT_NAME } from './../../config/constance'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './switch.less'
 
@@ -24,7 +24,7 @@ const Switch = (props: ISwitchProps) => {
   }
 
   const classString = classNames({
-    [`${Constance.PROJECT_NAME}-comp-switch`]: true,
+    [`${PROJECT_NAME}-comp-switch`]: true,
     [`switch-checked`]: !!checked
   })
 

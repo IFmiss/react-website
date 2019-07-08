@@ -3,14 +3,14 @@ import fetch from './../../utils/fetch'
 import { IStore } from './../../store/types'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import classNames from 'classnames'
-import Constance from './../../config/constance'
+import { PROJECT_NAME } from './../../config/constance'
 import BlogList from './../../components/BlogList'
 
 interface IBlogProps {}
 
 const Blog: React.FC = (props: IBlogProps) => {
   const classString = classNames({
-    [`${Constance.PROJECT_NAME}-blog`]: true,
+    [`${PROJECT_NAME}-blog`]: true,
     [`dw-page-router`]: true
   })
   const [data, setData] = useState([1, 2])

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './blog-list.less'
-import Constance from './../../config/constance'
+import { PROJECT_NAME } from './../../config/constance'
 import classNames from 'classnames'
 
 interface IBlogList {
@@ -18,7 +18,7 @@ interface IBlogListProps {
 
 const BlogList = (props: IBlogListProps) => {
   const classString = classNames({
-    [`${Constance.PROJECT_NAME}-comp-blog-list`]: true
+    [`${PROJECT_NAME}-comp-blog-list`]: true
   })
 
   const { list } = props
