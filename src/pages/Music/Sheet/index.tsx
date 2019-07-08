@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import MenuBar from './../../../components/MenuBar'
+import classNames from 'classnames'
+import { PROJECT_NAME } from '../../../config/constance'
 import * as UrlUtils from '@dw/d-utils/lib/urlUtils'
 import { MUSCI_MENU } from './../../../config/music'
 import { IMenuSub } from './../../../components/MenuBar'
@@ -9,6 +11,9 @@ import SheetGroup from './../../../components/SheetGroup'
 interface MusicSheetProps {}
 
 const MusicSheet = (props: MusicSheetProps) => {
+  const classString = classNames({
+    [`${PROJECT_NAME}-music-sheet`]: true
+  })
   const { cat } = UrlUtils.parseUrl(decodeURIComponent(location.href))
 
   const getType = () => {
@@ -27,7 +32,7 @@ const MusicSheet = (props: MusicSheetProps) => {
 
   console.log(props)
   return(
-    <div>
+    <div className={classString}>
       <MenuBar menuType={sheetType} cat={cat} checkMusicType={checkMusicType} {...props}/>
       <SheetGroup/>
     </div>
