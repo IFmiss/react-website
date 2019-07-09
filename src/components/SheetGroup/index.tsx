@@ -3,9 +3,14 @@ import classNames from 'classnames'
 import { PROJECT_NAME } from '../../config/constance'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import SheetList from './../SheetList'
+import { SheetGroupLists, SheetGroupList } from './../../type'
 import './sheet-group.less'
 
-const SheetGroup = () => {
+interface ISheetGroup {
+  lists: SheetGroupLists;
+}
+
+const SheetGroup = (props: ISheetGroup) => {
   const classString = classNames({
     [`${PROJECT_NAME}-sheet-group`]: true,
   })
@@ -26,18 +31,19 @@ const SheetGroup = () => {
     }
   }, [])
   
+  console.log(props.lists)
   return (
     <div className={classString}>
       <TransitionGroup>
         {
-          data.map((item: any, index: number) => (
+          props.lists.map((item: any, index: number) => (
             <CSSTransition  in={start}
                           key={index}
-                          timeout={300 + index * 100}
-                          classNames="side-left-fade"
+                          timeout={300 + index * 200}
+                          classNames="side-up-fade"
                           appear={true}
                           unmountOnExit={false}>
-              <SheetList/>
+              <SheetList list={item}/>
             </CSSTransition>
           ))
         }

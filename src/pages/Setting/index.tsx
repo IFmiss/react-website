@@ -22,7 +22,7 @@ const Setting = observer((props: ISettingProps) => {
   let [isDark, setDark] = useState(useStore().colorStore.mode === 'dark')
   
   const changePageModeFn = (isDarkMode: boolean) => {
-    setDark(isDark = isDarkMode)
+    setDark(() => isDark = isDarkMode)
     changePageMode()
   }
 

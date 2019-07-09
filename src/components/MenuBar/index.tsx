@@ -32,7 +32,7 @@ const MenuBar = (props: any) => {
   }
 
   const setCatListsFn = () => {
-    setCatLists(catLists = getCatLists())
+    setCatLists(() => catLists = getCatLists())
   }
 
   const checkMusicType = (t: number) => {

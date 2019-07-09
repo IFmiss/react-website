@@ -1,4 +1,5 @@
 import 'whatwg-fetch';
+import * as UrlUtils from '@dw/d-utils/lib/urlUtils'
 import * as qs from 'qs'
 
 export default {
@@ -7,9 +8,10 @@ export default {
    * @param {*} url 请求地址
    * @param {*} showMessage 是否显示成功的提示
    */
-  get: function (url: string, showMessage: boolean = false) {
+  get: function (url: string, data: any = {}, showMessage: boolean = false) {
+    const newUrl = `${url}?${UrlUtils.stringifyUrl(data)}`
     return new Promise((resolve, reject) => {
-      fetch(url, {
+      fetch(newUrl, {
         mode: 'cors',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -17,8 +19,9 @@ export default {
       })
       .then(res => res.json())
       .then((data) => {
+        console.log(data)
         if (parseInt(data.code, 10) === 200) {
-          resolve(data.data)
+          resolve(data)
           return
         }
         reject(data.msg)
@@ -48,7 +51,7 @@ export default {
       .then(res => res.json())
       .then((response) => {
         if (parseInt(response.code, 10) === 200) {
-          resolve(response.data)
+          resolve(response)
           return
         }
         reject(response.msg)
