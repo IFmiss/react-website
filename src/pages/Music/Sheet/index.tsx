@@ -8,6 +8,7 @@ import { IMenuSub } from './../../../components/MenuBar'
 import { MUSIC_SHEET_TYPE } from './../../../enum'
 import SheetGroup from './../../../components/SheetGroup'
 import * as MusicFetch from './../action'
+import './sheet.less'
 
 interface MusicSheetProps {}
 
