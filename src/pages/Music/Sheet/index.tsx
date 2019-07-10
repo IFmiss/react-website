@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react'
+import React, { useState, useEffect, useMemo, useLayoutEffect, useCallback } from 'react'
 import MenuBar from './../../../components/MenuBar'
 import classNames from 'classnames'
 import { PROJECT_NAME } from '../../../config/constance'
@@ -56,6 +56,10 @@ const MusicSheet = (props: MusicSheetProps) => {
     //   initDefaultConfig()
     // }
   }, [getSheetLists, limit, cat])
+
+  useLayoutEffect(() => {
+    initDefaultConfig()
+  }, [cat])
 
   const checkMusicType = (t: number) => {
     setSheetType((sheetType: number) => sheetType = t)

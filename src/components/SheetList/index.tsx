@@ -20,7 +20,7 @@ const SheetList = (props: ISheetListProps) => {
         </div>
         <p className={`${PROJECT_NAME}-sheet-list-content-title`}>
           {
-            `${props.list.name}哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈啊哈哈哈`
+            `${props.list.name}`
           }
         </p>
       </div>
