@@ -11,6 +11,7 @@ import * as MusicFetch from './../action'
 import './sheet.less'
 
 interface MusicSheetProps {}
+export const DEFAULT_LIMIT = 20
 
 const MusicSheet = (props: MusicSheetProps) => {
   const classString = classNames({
@@ -18,6 +19,7 @@ const MusicSheet = (props: MusicSheetProps) => {
   })
 
   const { cat } = UrlUtils.parseUrl(decodeURIComponent(location.href))
+  console.log('this is 11111111111111')
 
   const getType = () => {
     if (cat) {
@@ -38,12 +40,22 @@ const MusicSheet = (props: MusicSheetProps) => {
     setSheetLists(() => sheetLists = res.playlists)
   }, [cat, limit])
 
+  const initDefaultConfig = (() => {
+    setLimit(() => limit = DEFAULT_LIMIT)
+    setSheetLists(() => sheetLists = [])
+  })
+
   useEffect(() => {
     getSheetLists()
+    console.log('useEffect')
     setTimeout(() => {
       setLimit(() => limit = 40)
     }, 3000)
-  }, [getSheetLists, limit])
+
+    // return () => {
+    //   initDefaultConfig()
+    // }
+  }, [getSheetLists, limit, cat])
 
   const checkMusicType = (t: number) => {
     setSheetType((sheetType: number) => sheetType = t)

@@ -18,17 +18,16 @@ export interface IMenuSub {
 interface IMenuProps {
   menuType: number
   cat: string
-  history: any
+  history?: any
   checkMusicType: (t: number) => void
 }
 
-const MenuBar = (props: any) => {
+const MenuBar = (props: IMenuProps) => {
   let [catLists, setCatLists] = useState([{}])
 
-
+  // 获取分类信息
   const getCatLists = () => {
-    const data = MUSCI_MENU['sub'].filter((item: IMenuSub) => item.category === props.menuType)
-    return data
+    return MUSCI_MENU['sub'].filter((item: IMenuSub) => item.category === props.menuType)
   }
 
   const setCatListsFn = () => {
