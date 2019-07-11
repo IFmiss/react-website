@@ -16,22 +16,10 @@ const SheetGroup = (props: ISheetGroup) => {
   })
 
   const [start, setStart] = useState(false)
-  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  const [data, setData] = useState(arr)
 
   useEffect(() => {
-    const t = setTimeout(() => {
-      setData(
-        data.concat(arr)
-      )
-    }, 3000)
-
-    return function remove () {
-      clearTimeout(t)
-    }
-  }, [])
+  }, [props.lists])
   
-  console.log(props.lists)
   return (
     <div className={classString}>
       <TransitionGroup>
@@ -42,7 +30,7 @@ const SheetGroup = (props: ISheetGroup) => {
                           timeout={300 + index * 200}
                           classNames="side-up-fade"
                           appear={true}
-                          unmountOnExit={false}>
+                          unmountOnExit={true}>
               <SheetList list={item}/>
             </CSSTransition>
           ))

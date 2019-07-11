@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import classNames from 'classnames'
 import { PROJECT_NAME } from './../../config/constance'
 import './sheet-list.less'
+import LazyImg from './../LazyImg'
 
 interface ISheetListProps {
   list: any
@@ -16,7 +17,7 @@ const SheetList = (props: ISheetListProps) => {
     <div className={classString}>
       <div className={`${PROJECT_NAME}-sheet-list-content`}>
         <div className={`${PROJECT_NAME}-sheet-list-content-top`}>
-          <img className={`${PROJECT_NAME}-sheet-list-content-top-img`} src={props.list.coverImgUrl}/>
+          <LazyImg src={props.list.coverImgUrl} selfClassName="sheet-list-lazy-img"/>
         </div>
         <p className={`${PROJECT_NAME}-sheet-list-content-title`}>
           {

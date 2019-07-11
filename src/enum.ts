@@ -11,3 +11,9 @@ export enum MUSIC_SHEET_TYPE {
   THEME,
   ALL
 }
+
+export enum IAMGE_LOAD_STATUS {
+  LOADING,
+  SUCCES,
+  ERRER
+}

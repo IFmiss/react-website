@@ -2,6 +2,8 @@ import 'whatwg-fetch';
 import * as UrlUtils from '@dw/d-utils/lib/urlUtils'
 import * as qs from 'qs'
 
+export const controller = new AbortController();
+
 export default {
   /**
    * get 请求
@@ -10,12 +12,14 @@ export default {
    */
   get: function (url: string, data: any = {}, showMessage: boolean = false) {
     const newUrl = `${url}?${UrlUtils.stringifyUrl(data)}`
+    const signal = controller.signal;
     return new Promise((resolve, reject) => {
       fetch(newUrl, {
         mode: 'cors',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
-        }
+        },
+        signal
       })
       .then(res => res.json())
       .then((data) => {
@@ -27,6 +31,10 @@ export default {
         reject(data.msg)
       })
       .catch((err: any) => {
+        if (err.name === 'AbortError') {
+          reject(`request was aborted${err}`)
+          return
+        }
         reject(`请求未知错误${err}`)
       })
     }) 
@@ -40,13 +48,15 @@ export default {
    */
   post: function (url: string, data: any, showMessage = false) {
     return new Promise((resolve, reject) => {
+      const signal = controller.signal;
       fetch(url, {
         method: 'POST',
         // mode: 'cors',
         body: qs.stringify(data),
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
-        }
+        },
+        signal
       })
       .then(res => res.json())
       .then((response) => {
@@ -56,6 +66,13 @@ export default {
         }
         reject(response.msg)
       })
+      .catch((err) => {
+        if (err.name === 'AbortError') {
+          reject(`request was aborted${err}`)
+          return
+        }
+        reject(`请求未知错误${err}`)
+      })
     })
-  }
+  },
 }

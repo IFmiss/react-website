@@ -9,9 +9,14 @@ import { MUSIC_SHEET_TYPE } from './../../../enum'
 import SheetGroup from './../../../components/SheetGroup'
 import * as MusicFetch from './../action'
 import './sheet.less'
+import { controller } from './../../../utils/fetch'
+import { useScroll } from './../../../utils/use'
 
-interface MusicSheetProps {}
-export const DEFAULT_LIMIT = 20
+interface MusicSheetProps {
+  history: any;
+}
+
+export const DEFAULT_LIMIT = 15
 
 const MusicSheet = (props: MusicSheetProps) => {
   const classString = classNames({
@@ -19,7 +24,6 @@ const MusicSheet = (props: MusicSheetProps) => {
   })
 
   const { cat } = UrlUtils.parseUrl(decodeURIComponent(location.href))
-  console.log('this is 11111111111111')
 
   const getType = () => {
     if (cat) {
@@ -29,11 +33,17 @@ const MusicSheet = (props: MusicSheetProps) => {
     return MUSIC_SHEET_TYPE.ALL
   }
 
+  const loadMoreInfo = () => {
+    setLimit(() => limit = limit + DEFAULT_LIMIT)
+  }
+
   let [sheetType, setSheetType] = useState(() => getType())
 
   let [sheetLists, setSheetLists] = useState([])
 
   let [limit, setLimit] = useState(20)
+
+  useScroll(document.getElementById('dw-react-web-container'), loadMoreInfo)
 
   const getSheetLists = useCallback(async () => {
     const res: any = await MusicFetch.getSheetLists(cat, limit)
@@ -47,15 +57,7 @@ const MusicSheet = (props: MusicSheetProps) => {
 
   useEffect(() => {
     getSheetLists()
-    console.log('useEffect')
-    setTimeout(() => {
-      setLimit(() => limit = 40)
-    }, 3000)
-
-    // return () => {
-    //   initDefaultConfig()
-    // }
-  }, [getSheetLists, limit, cat])
+  }, [getSheetLists])
 
   useLayoutEffect(() => {
     initDefaultConfig()
@@ -65,7 +67,6 @@ const MusicSheet = (props: MusicSheetProps) => {
     setSheetType((sheetType: number) => sheetType = t)
   }
 
-  console.log(sheetLists)
   return(
     <div className={classString}>
       <MenuBar menuType={sheetType} cat={cat} checkMusicType={checkMusicType} {...props}/>
