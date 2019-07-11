@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo, useLayoutEffect, useCallback } from 'react'
 import MenuBar from './../../../components/MenuBar'
 import classNames from 'classnames'
-import { PROJECT_NAME } from '../../../config/constance'
+import { PROJECT_NAME, MUSIC_SHEET_DEFAULT_LIMIT } from '../../../config/constance'
 import * as UrlUtils from '@dw/d-utils/lib/urlUtils'
 import { MUSCI_MENU } from './../../../config/music'
 import { IMenuSub } from './../../../components/MenuBar'
@@ -11,12 +11,11 @@ import * as MusicFetch from './../action'
 import './sheet.less'
 import { controller } from './../../../utils/fetch'
 import { useScroll } from './../../../utils/use'
+import LoadingTips from '../../../components/LoadingTips';
 
 interface MusicSheetProps {
   history: any;
 }
-
-export const DEFAULT_LIMIT = 15
 
 const MusicSheet = (props: MusicSheetProps) => {
   const classString = classNames({
@@ -34,24 +33,28 @@ const MusicSheet = (props: MusicSheetProps) => {
   }
 
   const loadMoreInfo = () => {
-    setLimit(() => limit = limit + DEFAULT_LIMIT)
+    setLimit((limit) => limit = limit + MUSIC_SHEET_DEFAULT_LIMIT)
   }
 
   let [sheetType, setSheetType] = useState(() => getType())
 
   let [sheetLists, setSheetLists] = useState([])
 
-  let [limit, setLimit] = useState(20)
+  const [limit, setLimit] = useState(20)
+
+  const [loading, setLoading] = useState(false)
 
   useScroll(document.getElementById('dw-react-web-container'), loadMoreInfo)
 
   const getSheetLists = useCallback(async () => {
+    setLoading((loading) => loading = true)
     const res: any = await MusicFetch.getSheetLists(cat, limit)
     setSheetLists(() => sheetLists = res.playlists)
+    setLoading((loading) => loading = false)
   }, [cat, limit])
 
   const initDefaultConfig = (() => {
-    setLimit(() => limit = DEFAULT_LIMIT)
+    setLimit((limit) => limit = MUSIC_SHEET_DEFAULT_LIMIT)
     setSheetLists(() => sheetLists = [])
   })
 
@@ -71,6 +74,7 @@ const MusicSheet = (props: MusicSheetProps) => {
     <div className={classString}>
       <MenuBar menuType={sheetType} cat={cat} checkMusicType={checkMusicType} {...props}/>
       <SheetGroup lists={sheetLists}/>
+      <LoadingTips show={loading}/>
     </div>
   )
 }

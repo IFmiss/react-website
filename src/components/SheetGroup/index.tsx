@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import classNames from 'classnames'
-import { PROJECT_NAME } from '../../config/constance'
+import { PROJECT_NAME, MUSIC_SHEET_DEFAULT_LIMIT } from '../../config/constance'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import SheetList from './../SheetList'
 import { SheetGroupLists, SheetGroupList } from './../../type'
@@ -27,7 +27,7 @@ const SheetGroup = (props: ISheetGroup) => {
           props.lists.map((item: any, index: number) => (
             <CSSTransition  in={start}
                           key={index}
-                          timeout={300 + index * 200}
+                          timeout={300 + (index % MUSIC_SHEET_DEFAULT_LIMIT) * 200}
                           classNames="side-up-fade"
                           appear={true}
                           unmountOnExit={true}>

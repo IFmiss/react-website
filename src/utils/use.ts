@@ -1,4 +1,6 @@
 import { useContext, useState } from 'react'
+import { debounce } from '@dw/d-utils/lib/genericUtils'
+import { MUSIC_SHEET_TRANSITION_DURATION } from './../config/constance'
 import React, { useEffect } from 'react'
 import store from './../store'
 
@@ -21,20 +23,19 @@ export const useScroll = (ref: any, requestCallBack: () => void) => {
   const eventHandler = (e: any) => {
     if (ref.clientHeight + ref.scrollTop === ref.scrollHeight) {
       // 需要加载
-      console.log('load-more')
       if (!scrollLoading) {
         // loading
         setScrollLoadingFn(true)
         // 请求数据
-        console.log(requestCallBack)
-        requestCallBack()
-        setScrollLoadingFn(false)
+        debounce(() => {
+          requestCallBack()
+          setScrollLoadingFn(false)
+        }, MUSIC_SHEET_TRANSITION_DURATION, false)()
       } else {
         return
       }
     }
   }
-  console.log(ref)
   // ref.addEventLiseter () {}
   useEffect(() => {
     // do something
@@ -43,5 +44,5 @@ export const useScroll = (ref: any, requestCallBack: () => void) => {
     // return () => {
     //   ref.removeEventLiseter('onscroll', eventHandler)
     // }
-  })
+  }, [])
 }

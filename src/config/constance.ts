@@ -19,3 +19,7 @@ export const TYPE_WRITER = [
     },
   }
 ]
+
+
+export const MUSIC_SHEET_DEFAULT_LIMIT = 15
+export const MUSIC_SHEET_TRANSITION_DURATION = MUSIC_SHEET_DEFAULT_LIMIT * 200 / 2
