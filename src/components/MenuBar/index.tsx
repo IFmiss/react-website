@@ -72,7 +72,7 @@ const MenuBar = (props: IMenuProps) => {
         {
           catLists.map((item: IMenuSub | any, index: number) => 
             <li className={props.cat === item.name ? `${classString}-cat-list active` : `${classString}-cat-list`}
-                key={index}
+                key={`${index}-${props.cat}`}
                 onClick={selectMusicSheetType.bind(null, item.name)}
               >
               {item.name}

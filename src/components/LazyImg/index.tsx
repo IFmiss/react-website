@@ -10,7 +10,7 @@ interface lazyImgProps {
 }
 
 const LazyImg = (props: lazyImgProps) => {
-  const imgRef = useRef(null)
+  const imgRef: any = useRef(null)
   let [imageStatus, setImageStatus] = useState(IAMGE_LOAD_STATUS.LOADING)
 
   const classString = classNames({
@@ -18,28 +18,35 @@ const LazyImg = (props: lazyImgProps) => {
     [props.selfClassName || '']: true
   })
 
+  const OnLoadHandler = () => {
+    setImageStatus(() => imageStatus = IAMGE_LOAD_STATUS.SUCCES)
+    imgRef.current.src = props.src
+  }
+
+  const OnErrorHandler = () => {
+    setImageStatus(() => imageStatus = IAMGE_LOAD_STATUS.SUCCES)
+  }
+
   const pic = props.src
   const img = new Image()
   img.crossOrigin = 'anonymous'
   img.src = pic
 
   const initImageEvent = () => {
-    img.onload = () => {
-      setImageStatus(() => imageStatus = IAMGE_LOAD_STATUS.SUCCES)
-    }
-    img.onerror = () => {
-      setImageStatus(() => imageStatus = IAMGE_LOAD_STATUS.ERRER)
-    }
+    img.addEventListener('load', OnLoadHandler)
+    img.addEventListener('error', OnErrorHandler)
+  }
+
+  const destoryImageEvent = () => {
+    img.removeEventListener('load', OnLoadHandler)
+    img.removeEventListener('error', OnErrorHandler)
   }
 
   useEffect(() => {
     initImageEvent()
 
     return () => {
-      delete img.onload
-      delete img.onerror
-      delete img.crossOrigin
-      delete img.src
+      destoryImageEvent()
     }
   }, [imageStatus, img])
 
@@ -48,13 +55,12 @@ const LazyImg = (props: lazyImgProps) => {
       {
         imageStatus === IAMGE_LOAD_STATUS.LOADING ? (
           <div className="tips">图片加载中</div>
-        ) : imageStatus === IAMGE_LOAD_STATUS.SUCCES ? (
-          <img className={`${PROJECT_NAME}-sheet-list-content-top-img`}
-            src={props.src}
-            ref={imgRef}/>
-        ) : (
+        ) : imageStatus === IAMGE_LOAD_STATUS.ERRER ? (
           <div className="tips">图片加载失败</div>
-        )
+        ) : imageStatus === IAMGE_LOAD_STATUS.SUCCES ? (
+          <img className={`${PROJECT_NAME}-lazy-img`}
+            ref={imgRef}/>
+        ) : null
       }
     </div>
   )

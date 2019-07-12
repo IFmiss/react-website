@@ -16,33 +16,17 @@ export const useStore = () => {
 
 // 滚动监听
 export const useScroll = (ref: any, requestCallBack: () => void) => {
-  const [scrollLoading, setScrollLoading] = useState(false)
-  const setScrollLoadingFn = (isLoading: boolean) => {
-    setScrollLoading((scrollLoading) => scrollLoading = isLoading)
-  }
   const eventHandler = (e: any) => {
     if (ref.clientHeight + ref.scrollTop === ref.scrollHeight) {
-      // 需要加载
-      if (!scrollLoading) {
-        // loading
-        setScrollLoadingFn(true)
-        // 请求数据
-        debounce(() => {
-          requestCallBack()
-          setScrollLoadingFn(false)
-        }, MUSIC_SHEET_TRANSITION_DURATION, false)()
-      } else {
-        return
-      }
+      requestCallBack()
     }
   }
-  // ref.addEventLiseter () {}
-  useEffect(() => {
-    // do something
-    ref.onscroll = eventHandler
 
-    // return () => {
-    //   ref.removeEventLiseter('onscroll', eventHandler)
-    // }
+  useEffect(() => {
+    ref.addEventListener('scroll', eventHandler)
+
+    return () => {
+      ref.removeEventListener('scroll', eventHandler)
+    }
   }, [])
 }

@@ -20,7 +20,7 @@
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.4.3",
-    "@dw/d-utils": "^1.1.51",
+    "@dw/d-utils": "^1.1.52",
     "@types/classnames": "^2.2.8",
     "@types/node": "^11.13.2",
     "@types/qs": "^6.5.3",

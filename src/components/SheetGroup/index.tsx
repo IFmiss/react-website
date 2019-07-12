@@ -22,15 +22,20 @@ const SheetGroup = (props: ISheetGroup) => {
   
   return (
     <div className={classString}>
-      <TransitionGroup>
+      <TransitionGroup transitionleave="false">
         {
           props.lists.map((item: any, index: number) => (
             <CSSTransition  in={start}
-                          key={index}
-                          timeout={300 + (index % MUSIC_SHEET_DEFAULT_LIMIT) * 200}
-                          classNames="side-up-fade"
-                          appear={true}
-                          unmountOnExit={true}>
+                            key={item.id}
+                            timeout={
+                              {
+                                enter: 300 + (index % MUSIC_SHEET_DEFAULT_LIMIT) * 200,
+                                exit: 0
+                              }
+                            }
+                            classNames="side-up-fade"
+                            appear={false}
+                            unmountOnExit={false}>
               <SheetList list={item}/>
             </CSSTransition>
           ))

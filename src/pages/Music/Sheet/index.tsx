@@ -12,6 +12,7 @@ import './sheet.less'
 import { controller } from './../../../utils/fetch'
 import { useScroll } from './../../../utils/use'
 import LoadingTips from '../../../components/LoadingTips';
+import PromiseUtils from '@dw/d-utils/lib/promiseUtils'
 
 interface MusicSheetProps {
   history: any;
@@ -32,29 +33,33 @@ const MusicSheet = (props: MusicSheetProps) => {
     return MUSIC_SHEET_TYPE.ALL
   }
 
-  const loadMoreInfo = () => {
-    setLimit((limit) => limit = limit + MUSIC_SHEET_DEFAULT_LIMIT)
-  }
-
   let [sheetType, setSheetType] = useState(() => getType())
 
   let [sheetLists, setSheetLists] = useState([])
 
-  const [limit, setLimit] = useState(20)
+  const [offset, setOffset] = useState(0)
 
   const [loading, setLoading] = useState(false)
+
+  const loadMoreInfo = () => {
+    if (loading) return
+    setOffset((offset) => offset = offset + MUSIC_SHEET_DEFAULT_LIMIT)
+  }
 
   useScroll(document.getElementById('dw-react-web-container'), loadMoreInfo)
 
   const getSheetLists = useCallback(async () => {
+    // await PromiseUtils.sleep(3000)
     setLoading((loading) => loading = true)
-    const res: any = await MusicFetch.getSheetLists(cat, limit)
-    setSheetLists(() => sheetLists = res.playlists)
+    const res: any = await MusicFetch.getSheetLists(cat, offset)
+    console.log(sheetLists)
+    setSheetLists(() => sheetLists = sheetLists.concat(res.playlists))
+    console.log(sheetLists)
     setLoading((loading) => loading = false)
-  }, [cat, limit])
+  }, [cat, offset])
 
   const initDefaultConfig = (() => {
-    setLimit((limit) => limit = MUSIC_SHEET_DEFAULT_LIMIT)
+    setOffset((offset) => offset = 0)
     setSheetLists(() => sheetLists = [])
   })
 
@@ -63,6 +68,7 @@ const MusicSheet = (props: MusicSheetProps) => {
   }, [getSheetLists])
 
   useLayoutEffect(() => {
+    console.log(11111)
     initDefaultConfig()
   }, [cat])
 
@@ -70,12 +76,18 @@ const MusicSheet = (props: MusicSheetProps) => {
     setSheetType((sheetType: number) => sheetType = t)
   }
 
+  // const [inputState, setInputSatte] = useState(0)
+  // const handleToggle = () => {
+
+  // }
+
   return(
-    <div className={classString}>
+    <section className={classString}>
       <MenuBar menuType={sheetType} cat={cat} checkMusicType={checkMusicType} {...props}/>
       <SheetGroup lists={sheetLists}/>
       <LoadingTips show={loading}/>
-    </div>
+      <button>点击toggle</button>
+    </section>
   )
 }
 

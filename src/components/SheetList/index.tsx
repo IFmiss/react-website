@@ -17,7 +17,7 @@ const SheetList = (props: ISheetListProps) => {
     <div className={classString}>
       <div className={`${PROJECT_NAME}-sheet-list-content`}>
         <div className={`${PROJECT_NAME}-sheet-list-content-top`}>
-          <LazyImg src={props.list.coverImgUrl} selfClassName="sheet-list-lazy-img"/>
+          <LazyImg src={`${props.list.coverImgUrl}?param=250y250`} selfClassName="sheet-list-lazy-img"/>
         </div>
         <p className={`${PROJECT_NAME}-sheet-list-content-title`}>
           {

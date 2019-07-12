@@ -3,7 +3,6 @@ import * as UrlUtils from '@dw/d-utils/lib/urlUtils'
 import * as qs from 'qs'
 
 export const controller = new AbortController();
-
 export default {
   /**
    * get 请求
