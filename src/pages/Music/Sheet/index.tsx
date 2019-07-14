@@ -76,17 +76,11 @@ const MusicSheet = (props: MusicSheetProps) => {
     setSheetType((sheetType: number) => sheetType = t)
   }
 
-  // const [inputState, setInputSatte] = useState(0)
-  // const handleToggle = () => {
-
-  // }
-
   return(
     <section className={classString}>
       <MenuBar menuType={sheetType} cat={cat} checkMusicType={checkMusicType} {...props}/>
       <SheetGroup lists={sheetLists}/>
       <LoadingTips show={loading}/>
-      <button>点击toggle</button>
     </section>
   )
 }

@@ -1,17 +1,31 @@
 .@{project-prefix}-music-search {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
   height: stretch;
-  &-input {
-    background: transparent;
-    border: none;
-    outline: none;
-    border-bottom: 2px solid var(--text-color);
-    margin-bottom: 30px;
-    height: 36px;
-    width: 320px;
-    font-size: 16px;
-    color: var(--text-color);
+  position: relative;
+  // transition: all 0.3s;
+  &-entry {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    transition: all 0.3s;
+    &-input {
+      background: transparent;
+      border: none;
+      outline: none;
+      border-bottom: 2px solid var(--text-color);
+      margin-bottom: 30px;
+      height: 36px;
+      width: 320px;
+      font-size: 16px;
+      color: var(--text-color);
+    }
+  }
+  &.input-active {
+    .dw-react-web-music-search-entry {
+      top: 40px;
+    }
   }
 }
