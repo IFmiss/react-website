@@ -3,7 +3,11 @@ import MusicList from './../MusicList'
 import classNames from 'classnames'
 import './music-list-group.less'
 
-const MusicListGroup = () => {
+interface IMusicListsGroupProps {
+  lists: any;
+}
+
+const MusicListGroup = (props: IMusicListsGroupProps) => {
   return (
     <div>
       <MusicList></MusicList>
