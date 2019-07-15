@@ -31,10 +31,13 @@ const MusicSearch = () => {
     return isEmptyStr(inputVal)
   }, [inputVal])
 
+  const selfLog = () => {
+    console.log('test log')
+  }
+
   const handleSearch = (e: any) => {
     e.persist()
     setInputVal((inputVal) => inputVal = e.target.value)
-    debounce(() => getSearchLists, 3000)()
   }
 
   const loadMoreInfo = () => {
@@ -60,7 +63,7 @@ const MusicSearch = () => {
         <input className={`${PROJECT_NAME}-music-search-entry-input`} 
                 type="text"
                 placeholder="想听的音乐？"
-                onChange={handleSearch}
+                onChange={debounce(handleSearch, 3000, true)}
                 ref={searchInput}/>
       </div>
       <MusicListGroup lists={searchLists}/>
