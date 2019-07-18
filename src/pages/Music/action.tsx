@@ -15,8 +15,9 @@ export const getSheetLists = async (cat: string = '', offset: number = 0, limit:
 }
 
 // 歌曲搜索
-export const getSearchLists = async (offset: number = 0, limit: number = MUSIC_SEARCH_DEFAULT_LISMIT) => {
+export const getSearchLists = async (keywords: string, offset: number = 0, limit: number = MUSIC_SEARCH_DEFAULT_LISMIT) => {
   const data = await Http.get(API.MUSIC.MUSIC_SEARCH, {
+    keywords,
     offset,
     limit,
   })

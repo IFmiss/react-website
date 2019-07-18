@@ -12,8 +12,6 @@ import { debounce } from '@dw/d-utils/lib/genericUtils'
 const MusicSearch = () => {
   const searchInput: any = useRef(null)
 
-  const [inputStatus, setInputStatus] = useState(MUSIC_SEARCH_INPUT_TYPE.DEFAULT)
-  const [inputVal, setInputVal] = useState('')
   const [loading, setLoading] = useState(false)
   const [offset, setOffset] = useState(0)
   const [searchLists, setSearchList] = useState([])
@@ -22,26 +20,13 @@ const MusicSearch = () => {
     searchInput.current.focus()
   }, [searchInput])
 
-  const setInputStatusFn = () => {
-    setInputStatus((inputStatus) => inputStatus = inputStatus === MUSIC_SEARCH_INPUT_TYPE.DEFAULT ? 
-                                    MUSIC_SEARCH_INPUT_TYPE.ACTIVE : MUSIC_SEARCH_INPUT_TYPE.DEFAULT)
-  }
-
   const memoInputStatus = useMemo(() => {
-    return isEmptyStr(inputVal)
-  }, [inputVal])
+    return searchLists.length > 0
+  }, [searchLists])
 
-  const selfLog = () => {
-    console.log('test log')
-  }
-
-  const handleSearch = debounce(function(e: any) {
-    const val = e.target.value
-    // setInputVal((inputVal) => inputVal = val)
-    console.log(e)
-    getSearchLists()
-    console.log('111111111')
-  }, 1000)
+  const handleSearch = debounce(async (e: any) => {
+    await getSearchLists()
+  }, 1500, false)
 
   const loadMoreInfo = () => {
     if (loading) return
@@ -49,9 +34,15 @@ const MusicSearch = () => {
   }
 
   const getSearchLists = useCallback(async () => {
+    const keywords = searchInput.current.value
+    console.log(isEmptyStr(keywords))
+    if (!isEmptyStr(keywords)) {
+      return
+    }
+
     setLoading((loading) => loading = true)
-    const res: any = await MusicFetch.getSearchLists(offset)
-    setSearchList((searchLists) => searchLists = searchLists.concat(res.playlists))
+    const res: any = await MusicFetch.getSearchLists(keywords, offset)
+    setSearchList((searchLists) => searchLists = searchLists.concat(Array.isArray(res.result.songs) ? res.result.songs : []))
     setLoading((loading) => loading = false)
   }, [])
 
@@ -71,7 +62,6 @@ const MusicSearch = () => {
       </div>
       <MusicListGroup lists={searchLists}/>
       <LoadingTips show={loading}/>
-      <button onClick={setInputStatusFn}>点击toggle{inputVal}</button>
     </section>
   )
 }

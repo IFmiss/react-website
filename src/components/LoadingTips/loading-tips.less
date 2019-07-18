@@ -1,6 +1,9 @@
 .@{project-prefix}-comp-loading-tips {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   padding: 5px 0;
+  &.loading-tips-active {
+    display: flex;
+  }
 }
