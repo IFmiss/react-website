@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, useLayoutEffect, useCallback } fro
 import MenuBar from './../../../components/MenuBar'
 import classNames from 'classnames'
 import { PROJECT_NAME, MUSIC_SHEET_DEFAULT_LIMIT } from '../../../config/constance'
-import * as UrlUtils from '@dw/d-utils/lib/urlUtils'
+import * as UrlUtils from 'd-utils/lib/urlUtils'
 import { MUSCI_MENU } from './../../../config/music'
 import { IMenuSub } from './../../../components/MenuBar'
 import { MUSIC_SHEET_TYPE } from './../../../enum'
@@ -12,7 +12,7 @@ import './sheet.less'
 import { controller } from './../../../utils/fetch'
 import { useScroll } from './../../../utils/use'
 import LoadingTips from '../../../components/LoadingTips';
-import PromiseUtils from '@dw/d-utils/lib/promiseUtils'
+import PromiseUtils from 'd-utils/lib/promiseUtils'
 
 interface MusicSheetProps {
   history: any;

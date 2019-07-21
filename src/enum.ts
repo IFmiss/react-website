@@ -17,8 +17,3 @@ export enum IAMGE_LOAD_STATUS {
   SUCCES,
   ERRER
 }
-
-export enum MUSIC_SEARCH_INPUT_TYPE {
-  DEFAULT,
-  ACTIVE
-}

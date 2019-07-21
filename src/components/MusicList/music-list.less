@@ -1,3 +1,44 @@
 .@{project-prefix}-music-list {
-  
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-color);
+  width: 100%;
+  padding: 15px;
+  border-bottom: 1px solid var(--border-color);
+  &-name, &-artists, &-durantion {
+    font-size: 14px;
+    font-weight: 400;
+  }
+  &-name {
+    flex: 0 0 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0;
+  }
+  &-artists {
+    flex: 1 1 auto;
+    margin: 0;
+    &-list{
+      cursor: pointer;
+      &::after {
+        cursor: default;
+        content: '/';
+        margin: 0 5px;
+      }
+      &:last-child {
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+  &-durantion {
+    flex: 0 0 120px;
+    text-align: right;
+    margin: 0;
+  }
 }

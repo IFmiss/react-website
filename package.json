@@ -20,7 +20,6 @@
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.4.3",
-    "@dw/d-utils": "^1.1.52",
     "@types/classnames": "^2.2.8",
     "@types/node": "^11.13.2",
     "@types/qs": "^6.5.3",
@@ -62,6 +61,7 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
+    "d-utils": "^3.0.0",
     "lodash": "^4.17.14",
     "whatwg-fetch": "^3.0.0"
   }

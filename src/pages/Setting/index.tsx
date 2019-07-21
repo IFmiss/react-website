@@ -9,7 +9,7 @@ import { PROJECT_NAME } from './../../config/constance'
 import Switch from './../../components/Switch'
 import { changePageMode } from './../../utils/utils'
 import { randomPrimaryColor } from './../../utils/utils'
-import LogUtils from '@dw/d-utils/lib/logUtils';
+import LogUtils from 'd-utils/lib/logUtils';
 
 interface ISettingProps {}
 

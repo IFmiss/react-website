@@ -1,5 +1,5 @@
-import { randomColor } from '@dw/d-utils/lib/genericUtils'
-import { hasClass } from '@dw/d-utils/lib/domUtils'
+import { randomColor } from 'd-utils/lib/genericUtils'
+import { hasClass } from 'd-utils/lib/domUtils'
 import store from './../store'
 
 /**

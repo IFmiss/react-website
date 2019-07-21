@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
-import { debounce } from '@dw/d-utils/lib/genericUtils'
+import { debounce } from 'd-utils/lib/genericUtils'
 import { MUSIC_SHEET_TRANSITION_DURATION } from './../config/constance'
-import React, { useEffect } from 'react'
+import React, { useEffect, useLayoutEffect } from 'react'
 import store from './../store'
 
 // react context
@@ -16,17 +16,24 @@ export const useStore = () => {
 
 // 滚动监听
 export const useScroll = (ref: any, requestCallBack: () => void) => {
+  if (!ref) return
   const eventHandler = (e: any) => {
-    if (ref.clientHeight + ref.scrollTop === ref.scrollHeight) {
+    const newRef = ref.current ? ref.current : ref
+    console.log('clientHeight', newRef.clientHeight)
+    console.log('clientHeight', newRef.scrollTop)
+    console.log('clientHeight', newRef.scrollHeight)
+    console.log('====================================')
+    if (newRef.clientHeight + newRef.scrollTop === newRef.scrollHeight) {
       requestCallBack()
     }
   }
 
   useEffect(() => {
-    ref.addEventListener('scroll', eventHandler)
+    const newRef = ref.current ? ref.current : ref
+    newRef.addEventListener('scroll', eventHandler)
 
     return () => {
-      ref.removeEventListener('scroll', eventHandler)
+      newRef.removeEventListener('scroll', eventHandler)
     }
   }, [])
 }

@@ -749,16 +749,6 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@dw/d-utils@^1.1.52":
-  version "1.1.52"
-  resolved "https://registry.yarnpkg.com/@dw/d-utils/-/d-utils-1.1.52.tgz#282fe97165593a417779a2acd086e0817f82f382"
-  integrity sha512-TPUb5VezYMKsqoELqFhEhLGCYXu/VppGnxQn8W1za1r4hwcEC12WnPMy7mSMQCoUCl0kaZsveJf/pofNlmIT4w==
-  dependencies:
-    axios "^0.19.0"
-    promise.prototype.finally "^3.1.0"
-    sha1 "^1.1.1"
-    weixin-js-sdk "^1.4.0-test"
-
 "@types/anymatch@*":
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@types/anymatch/-/anymatch-1.3.1.tgz#336badc1beecb9dacc38bea2cf32adf627a8421a"
@@ -2364,6 +2354,16 @@ cyclist@~0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-0.2.2.tgz#1b33792e11e914a2fd6d6ed6447464444e5fa640"
   integrity sha1-GzN5LhHpFKL9bW7WRHRkRE5fpkA=
+
+d-utils@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/d-utils/-/d-utils-3.0.0.tgz#9f44a18a99599f3dfe37772dbf636d765c05f449"
+  integrity sha512-+gs9K0IXIJrQbYXPTkT0MRuPRgxUFT00+AvIaRUuyMMqYwGpZ6zRLBqG7gX9OuZpuwPay5GdpLObijA+tRlmkA==
+  dependencies:
+    axios "^0.19.0"
+    promise.prototype.finally "^3.1.0"
+    sha1 "^1.1.1"
+    weixin-js-sdk "^1.4.0-test"
 
 dashdash@^1.12.0:
   version "1.14.1"

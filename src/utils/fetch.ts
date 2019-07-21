@@ -1,5 +1,5 @@
 import 'whatwg-fetch';
-import * as UrlUtils from '@dw/d-utils/lib/urlUtils'
+import * as UrlUtils from 'd-utils/lib/urlUtils'
 import * as qs from 'qs'
 
 export const controller = new AbortController();
