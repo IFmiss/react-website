@@ -26,7 +26,6 @@ const MusicSearch = (props: MusicSearchProps) => {
   const [loadingText, setLoadingText] = useState('搜索中...')
 
   const loadMoreInfo = () => {
-    console.log('loading', loading)
     if (loading) return
     setOffset((offset) => offset = offset + MUSIC_SEARCH_DEFAULT_LISMIT)
   }
@@ -54,11 +53,19 @@ const MusicSearch = (props: MusicSearchProps) => {
     var code = event.keyCode || event.which || event.charCode
     if (code === 13) {
       const words = searchInput.current.value
-      console.log(props.history)
-      setKeywords((keywords: any) => keywords = words)
+      if (isEmptyStr(words) || words === keywords) {
+        return
+      }
+      reset(words)
       props.history.replace(`/music/search?keywords=${words}`)
     }
   })
+
+  const reset = (words: string) => {
+    setSearchList((searchLists) => searchLists = [])
+    setOffset((offset) => offset = MUSIC_SEARCH_DEFAULT_LISMIT)
+    setKeywords((keywords: any) => keywords = words)
+  }
 
   const showLoadingTipsFn = (text: string = '加载中') => {
     setLoading((loading) => loading = true)
@@ -75,11 +82,6 @@ const MusicSearch = (props: MusicSearchProps) => {
       return
     }
 
-    // 搜索新的数据会清除之前的数据
-    if (isSearch) {
-      setSearchList((searchLists) => searchLists = [])
-    }
-
     showLoadingTipsFn()
     const res: any = await MusicFetch.getSearchLists(keywords, offset)
     const loadLists = Array.isArray(res.result.songs) ? res.result.songs : []
@@ -91,10 +93,6 @@ const MusicSearch = (props: MusicSearchProps) => {
     }
     hideLoadingTipsFn()
   }, [offset])
-
-  // if (searchGroup && searchGroup.current) {
-  //   useScroll(searchGroup.current, loadMoreInfo)
-  // }
 
   const classString = className({
     [`${PROJECT_NAME}-music-search`]: true,

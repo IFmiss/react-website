@@ -12,7 +12,8 @@ interface IMusicListProps {
 
 const MusicList = (props: IMusicListProps) => {
   const classString = classNames({
-    [`${PROJECT_NAME}-music-list`]: true
+    [`play`]: true,
+    [`${PROJECT_NAME}-music-list`]: true,
   })
   useEffect(() => {
     console.log(props.list)
@@ -23,15 +24,22 @@ const MusicList = (props: IMusicListProps) => {
   }
   return (
     <div className={classString} onClick={handlePlay}>
-      <h3 className={`${classString}-name`}>{props.list.name}</h3>
-      <p className={`${classString}-artists`}>
+      <h3 className={`${`${PROJECT_NAME}-music-list`}-name name`}>
+        {props.list.name}
+        <div className="config">
+          <span>播放</span>
+          <span>下载</span>
+        </div>
+      </h3>
+      <div className={`${`${PROJECT_NAME}-music-list`}-artists`}>
         {
           props.list.artists.map((artist: artist, index: number) => 
-            <span className={`${classString}-artists-list`} key={artist.id}>{artist.name}</span>
+            <span className={`${`${PROJECT_NAME}-music-list`}-artists-list`} key={artist.id}>{artist.name}</span>
           )
         }
-      </p>
-      <p className={`${classString}-durantion`}>{parseDuraiton(props.list.duration)}</p>
+      </div>
+      <div className={`${`${PROJECT_NAME}-music-list`}-album`}>{props.list.album.name}</div>
+      <div className={`${`${PROJECT_NAME}-music-list`}-durantion`}>{parseDuraiton(props.list.duration)}</div>
     </div>
   )
 }

@@ -10,5 +10,8 @@ export default {
 
     /** 获取视频播放地址 */
     MUSIC_PLAY_URL_BY_ID: `${musicBaseUrl}/video/url`,
+
+    /** 获取排行榜数据 */
+    MUSIC_TOP_LIST: `${musicBaseUrl}/top/list`,
   }
 }

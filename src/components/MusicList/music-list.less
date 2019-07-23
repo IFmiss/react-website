@@ -1,3 +1,4 @@
+@config_music_list_w: 120px;
 .@{project-prefix}-music-list {
   display: flex;
   align-items: center;
@@ -8,16 +9,27 @@
   width: 100%;
   padding: 15px;
   border-bottom: 1px solid var(--border-color);
-  &-name, &-artists, &-durantion {
+  &-name, &-artists, &-durantion, &-album {
     font-size: 14px;
     font-weight: 400;
-  }
-  &-name {
-    flex: 0 0 300px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    margin-right: 20px;
+  }
+  &-name {
+    flex: 0 0 400px;
     margin: 0;
+    padding-right: @config_music_list_w;
+    position: relative;
+    .config {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      display: none;
+      width: @config_music_list_w;
+    }
   }
   &-artists {
     flex: 1 1 auto;
@@ -40,5 +52,22 @@
     flex: 0 0 120px;
     text-align: right;
     margin: 0;
+    margin-right: 0;
+  }
+  &-album {
+    flex: 0 0 200px;
+    text-align: left;
+    margin: 0;
+  }
+  &.play {
+    color: var(--primary-color);
+  }
+
+  &:hover {
+    .name {
+      .config {
+        display: flex;
+      }
+    }
   }
 }
