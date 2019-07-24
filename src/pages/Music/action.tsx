@@ -25,7 +25,7 @@ export const getSearchLists = async (keywords: string, offset: number = 0, limit
 }
 
 // 歌曲排行列表
-export const getRankLists = async (idx: number = 1, offset: number = 0, limit: number = MUSIC_SEARCH_DEFAULT_LISMIT) => {
+export const getRankLists = async (idx: string = '1', offset: number = 0, limit: number = MUSIC_SEARCH_DEFAULT_LISMIT) => {
   const data = await Http.get(API.MUSIC.MUSIC_TOP_LIST, {
     idx,
     offset,
