@@ -7,7 +7,9 @@ import { isEmptyStr } from 'd-utils/lib/expUtils/index'
 import LoadingTips from '../../../components/LoadingTips';
 import * as MusicFetch from './../action'
 import * as UrlUtils from 'd-utils/lib/urlUtils'
-import { useScroll } from './../../../utils/use'
+
+import useScroll from './../../../use/useScroll'
+import useLoadingTips from './../../../use/useLoadingTips'
 
 interface MusicSearchProps {
   history: any;
@@ -17,16 +19,15 @@ const MusicSearch = (props: MusicSearchProps) => {
   const searchInput: any = useRef(null)
   const searchGroup: any = useRef(null)
 
-  const [loading, setLoading] = useState(false)
   const [offset, setOffset] = useState(0)
   const [searchLists, setSearchList] = useState([])
 
   const [keywords, setKeywords] = useState(UrlUtils.parseUrl(decodeURIComponent(location.href)).keywords)
-  
-  const [loadingText, setLoadingText] = useState('搜索中...')
+
+  const LoadingTipsFn = useLoadingTips(false, '搜索中...')
 
   const loadMoreInfo = () => {
-    if (loading) return
+    if (LoadingTipsFn.loading) return
     setOffset((offset) => offset = offset + MUSIC_SEARCH_DEFAULT_LISMIT)
   }
 
@@ -67,31 +68,24 @@ const MusicSearch = (props: MusicSearchProps) => {
     setKeywords((keywords: any) => keywords = words)
   }
 
-  const showLoadingTipsFn = (text: string = '加载中') => {
-    setLoading((loading) => loading = true)
-    setLoadingText((loadingText) => loadingText = text)
-  }
-
-  const hideLoadingTipsFn = () => {
-    setLoading((loading) => loading = false)
-  }
-
   const getSearchLists = useCallback(async (isSearch = false) => {
     const keywords = searchInput.current.value
     if (isEmptyStr(keywords)) {
       return
     }
 
-    showLoadingTipsFn()
+    LoadingTipsFn.showLoading(isSearch ? '搜索中' : '加载中')
+
     const res: any = await MusicFetch.getSearchLists(keywords, offset)
     const loadLists = Array.isArray(res.result.songs) ? res.result.songs : []
     setSearchList((searchLists) => searchLists = searchLists.concat(loadLists))
+    
     // 搜索之后为空的时候判断是否是没有数据 且是否是第一次搜索
     if (isSearch && loadLists.length === 0) {
-      showLoadingTipsFn(`未能搜索到关于 '${keywords}' 相关的各歌曲`)
+      LoadingTipsFn.showLoading(`未能搜索到关于 '${keywords}' 相关的各歌曲`)
       return
     }
-    hideLoadingTipsFn()
+    LoadingTipsFn.hideLoading()
   }, [offset])
 
   const classString = className({
@@ -117,7 +111,7 @@ const MusicSearch = (props: MusicSearchProps) => {
       <div className={classSearchGroup}
            ref={searchGroup}>
         <MusicListGroup lists={searchLists}/>
-        <LoadingTips show={loading} text={loadingText}/>
+        <LoadingTips show={LoadingTipsFn.loading} text={LoadingTipsFn.text}/>
       </div>
     </section>
   )

@@ -10,7 +10,8 @@ import SheetGroup from './../../../components/SheetGroup'
 import * as MusicFetch from './../action'
 import './sheet.less'
 import { controller } from './../../../utils/fetch'
-import { useScroll } from './../../../utils/use'
+import useScroll from './../../../use/useScroll'
+import useLoadingTips from './../../../use/useLoadingTips'
 import LoadingTips from '../../../components/LoadingTips';
 import PromiseUtils from 'd-utils/lib/promiseUtils'
 
@@ -33,34 +34,31 @@ const MusicSheet = (props: MusicSheetProps) => {
     return MUSIC_SHEET_TYPE.ALL
   }
 
-  let [sheetType, setSheetType] = useState(() => getType())
+  const [sheetType, setSheetType] = useState(() => getType())
 
-  let [sheetLists, setSheetLists] = useState([])
+  const [sheetLists, setSheetLists] = useState([])
 
   const [offset, setOffset] = useState(0)
 
-  const [loading, setLoading] = useState(false)
+  const loadingTipsFn = useLoadingTips(false, '加载中')
 
   const loadMoreInfo = () => {
-    if (loading) return
+    if (loadingTipsFn.loading) return
     setOffset((offset) => offset = offset + MUSIC_SHEET_DEFAULT_LIMIT)
   }
 
   useScroll(document.getElementById('dw-react-web-container'), loadMoreInfo)
 
   const getSheetLists = useCallback(async () => {
-    // await PromiseUtils.sleep(3000)
-    setLoading((loading) => loading = true)
+    loadingTipsFn.showLoading()
     const res: any = await MusicFetch.getSheetLists(cat, offset)
-    console.log(sheetLists)
-    setSheetLists(() => sheetLists = sheetLists.concat(res.playlists))
-    console.log(sheetLists)
-    setLoading((loading) => loading = false)
+    setSheetLists((sheetLists) => sheetLists = sheetLists.concat(res.playlists))
+    loadingTipsFn.hideLoading()
   }, [cat, offset])
 
   const initDefaultConfig = (() => {
     setOffset((offset) => offset = 0)
-    setSheetLists(() => sheetLists = [])
+    setSheetLists((sheetLists) => sheetLists = [])
   })
 
   useEffect(() => {
@@ -68,7 +66,6 @@ const MusicSheet = (props: MusicSheetProps) => {
   }, [getSheetLists])
 
   useLayoutEffect(() => {
-    console.log(11111)
     initDefaultConfig()
   }, [cat])
 
@@ -80,7 +77,7 @@ const MusicSheet = (props: MusicSheetProps) => {
     <section className={classString}>
       <MenuBar menuType={sheetType} cat={cat} checkMusicType={checkMusicType} {...props}/>
       <SheetGroup lists={sheetLists}/>
-      <LoadingTips show={loading}/>
+      <LoadingTips show={loadingTipsFn.loading}/>
     </section>
   )
 }
