@@ -5,6 +5,7 @@ import { PROJECT_NAME, MUSIC_SEARCH_DEFAULT_LISMIT, MUSIC_RANK_TYPE } from '../.
 import MusicListGroup from './../../../components/MusicListGroup'
 import LoadingTips from '../../../components/LoadingTips';
 import * as UrlUtils from 'd-utils/lib/urlUtils'
+import DAudio from './../../../components/DAudio';
 
 const MusicRank = () => {
   const [offset, setOffset] = useState(0)
@@ -28,12 +29,17 @@ const MusicRank = () => {
     [`${PROJECT_NAME}-music-rank-group`]: true
   })
   console.log(Object.entries(MUSIC_RANK_TYPE))
+  
+  const handlePlay = () => {
+    DAudio.list
+    console.log(DAudio.list)
+  }
   return(
     <div className={classString}>
       <div className={`${classString}-type-lists`}>
         {
           Object.entries(MUSIC_RANK_TYPE).map((item, index) => (
-            <div key={item[0]}>{item[1]}</div>
+            <div key={item[0]} onClick={handlePlay}>{item[1]}</div>
           ))
         }
       </div>

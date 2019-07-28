@@ -1,0 +1,86 @@
+@d-audio-h: 55px;
+@d-audio-w: 240px;
+
+.d-audio {
+  position: fixed;
+  width: @d-audio-w;
+  height: @d-audio-h;
+  bottom: 50px;
+  background: red;
+  z-index: 120;
+  left: 50px;
+  border-radius: 10px;
+  transition: all 0.3s;
+  &.bottom-left {
+    left: 50px;
+  }
+  &.bottom-right {
+    right: 50px;
+  }
+
+  &.rect {
+    border-radius: 10px;
+    .d-audio-detail {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &.circle {
+    width: @d-audio-h;
+    border-radius: 50%;
+    .d-audio-circle {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &-circle {
+    background: pink;
+    width: @d-audio-h;
+    height: @d-audio-h;
+    border-radius: 50%;
+    transition: all 0.3s;
+    opacity: 0;
+    visibility: hidden;
+    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    .d-audio-range {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: @d-audio-h;
+      height: @d-audio-h;
+      border-radius: 50%;
+      transition: border 0.3s;
+    }
+  }
+  &-detail {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    opacity: 0;
+    visibility: hidden;
+    &-config {
+      flex: 0 0 100px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      .d-audio-play-pause {
+        width: 36px;
+        height: 36px;
+        background: green;
+      }
+      .d-audio-next {
+        width: 32px;
+        height: 32px;
+        background: blue;
+      }
+    }
+    &-info {
+       
+    }
+  }
+}

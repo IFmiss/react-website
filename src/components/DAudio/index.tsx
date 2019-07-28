@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useLayoutEffect, useRef, useImperativeHandle } from 'react'
+import React, { useState, useMemo, useLayoutEffect, useRef, useImperativeHandle, useCallback, useEffect } from 'react'
 import classNames from 'classnames'
 import Vibrant from 'node-vibrant'
 import ReactDOM from 'react-dom';
@@ -9,6 +9,13 @@ interface IMusicInfo {
   coverUrl: string;
   name: string;
   singer: string;
+}
+
+interface IDAudioImageColor {
+  defaultColor: string;
+  circleBorderColor: string;
+  progressLeftColor: string;
+  progressRightColor: string;
 }
 
 enum DAudioType {
@@ -27,8 +34,6 @@ enum DAudioPosition {
 interface IDAudioProps {
   position?: DAudioPosition;
   type?: DAudioType;
-  width?: number;
-  height?: number;
 }
 
 interface IDAudioState {
@@ -42,50 +47,51 @@ interface IDAudioState {
 
 const defaultList = {
   url: '',
-  coverUrl: 'http://www.daiwei.org/sunmmer.jpg',
+  coverUrl: '',
   name: 'd-audio player',
   singer: '未曾遗忘的青春'
 }
 
+const defaultImageColor = {
+  defaultColor: `rgba(255, 56, 56, 1)`,
+  circleBorderColor: `rgba(255, 56, 56, 0.36)`,
+  progressLeftColor: `rgba(255, 56, 56, 0.12)`,
+  progressRightColor: `rgba(255, 56, 56, 0.66)`,
+}
+
 const DAudio: React.FC<IDAudioProps> = function (props, ref) {
-  const audioWidth = props.width && props.width > 240 ? props.width : 240
-  const audioHeight = props.height && props.height > 50 ? props.width : 50
   const audioRef = useRef(null)
   const [type, setType] = useState<DAudioType>(props.type || DAudioType.CIRCLE)
   const [list, setList] = useState<IMusicInfo>(defaultList)
   const [isPlay, setIsPlay] = useState<Boolean>(false)
   const [loading, setLoading] = useState<Boolean>(false)
+  const [imageColor, setImageColor] = useState<IDAudioImageColor>(defaultImageColor)
 
-  const imageColor = useMemo(() => {
-    Vibrant.from(list.coverUrl).getPalette()
-    .then((palette: any) => {
-      const {r, g, b} = palette.LightMuted
-      return {
+  useEffect(() => {
+    changeImageColor()
+  }, [])
+
+  const changeImageColor = useCallback(async () => {
+    const palette: any = await Vibrant.from(list.coverUrl).getPalette()
+    const {r, g, b} = palette.LightMuted
+    setImageColor((imageColor: IDAudioImageColor): any => {
+      imageColor = {
         defaultColor: `rgba(${r}, ${g}, ${b}, 1)`,
         circleBorderColor: `rgba(${r}, ${g}, ${b}, 0.36)`,
         progressLeftColor: `rgba(${r}, ${g}, ${b}, 0.12)`,
         progressRightColor: `rgba(${r}, ${g}, ${b}, 0.66)`,
       }
-    }).catch((err) => {
-      return {
-        defaultColor: `rgba(255, 56, 56, 1)`,
-        circleBorderColor: `rgba(255, 56, 56, 0.36)`,
-        progressLeftColor: `rgba(255, 56, 56, 0.12)`,
-        progressRightColor: `rgba(255, 56, 56, 0.66)`,
-      }
     })
   }, [list.coverUrl])
-
-  // style
-  const circleStyle = {
-    width: audioWidth,
-    height: audioHeight
-  }
 
   const blurStyle = {
     backgroundImage: `url(${list.coverUrl})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center center'
+  }
+  
+  const rangeStyle = {
+    border: `3px solid ${imageColor.circleBorderColor}`
   }
 
   const progressStyle = {
@@ -99,7 +105,7 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
   })
 
   const classString = classNames({
-    selfClass,
+    [`d-audio`]: true,
     [`bottom-left`]: props.position === DAudioPosition.BOTTOM_LEFT,
     [`bottom-right`]: props.position === DAudioPosition.BOTTOM_RIGHT,
     [`circle`]: type === DAudioType.CIRCLE,
@@ -137,6 +143,14 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
     audioRef.current
   }
 
+  const checkType = () => {
+    if (type === DAudioType.RECT) {
+      setType((type) => type = DAudioType.CIRCLE)
+    } else {
+      setType((type) => type = DAudioType.RECT)
+    }
+  }
+
   useImperativeHandle(ref, () => ({
     start,
     next,
@@ -145,12 +159,11 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
   }));
 
   return (
-    <div className={classString}>
+    <div className={classString} onClick={checkType}>
       <div className={`${selfClass}-circle`}
-           title={`${list.name} - ${list.singer}`}
-           style={circleStyle}>
+           title={`${list.name} - ${list.singer}`}>
         <img src={list.coverUrl}/>
-        <div className={`${selfClass}-range`}></div>
+        <div className={`${selfClass}-range`} style={rangeStyle}></div>
       </div>
       <div className={`${selfClass}-detail`}>
         <div className={`${selfClass}-detail-config`}>
@@ -184,7 +197,17 @@ function newInstance(props: IDAudioProps) {
     (div.parentNode as HTMLDivElement ).removeChild(div);
   }
 
-  const { error, finish, start, reset } = DAudioRef.current as IDAudioState;
+  console.log(DAudioRef.current)
+  const { list, loop, type, ended, next  } = DAudioRef.current as IDAudioState;
+
+  return {
+    list,
+    loop,
+    type,
+    ended,
+    next,
+    destroy
+  }
 }
 
-export default newInstance
+export default newInstance({})
