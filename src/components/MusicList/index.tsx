@@ -24,7 +24,7 @@ const MusicList = (props: IMusicListProps) => {
     const { list } = props
     DAudio.start({
       url: '',
-      coverUrl: list.album.picUrl,
+      coverUrl: `http://p1.music.126.net/IsXVJLJWBwPcBZsffLBeOA==/2333163674159374.jpg`,
       name: list.name,
       singer: formatMusicArtists(list.artists)
     })
