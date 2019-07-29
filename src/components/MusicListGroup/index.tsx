@@ -8,6 +8,7 @@ import { MusicGroupList, MusicGroupLists } from './../../type'
 
 interface IMusicListsGroupProps {
   lists: MusicGroupLists;
+  transition: boolean;
 }
 
 const MusicListGroup = (props: IMusicListsGroupProps) => {
@@ -19,27 +20,45 @@ const MusicListGroup = (props: IMusicListsGroupProps) => {
   }, [props.lists])
   return (
     <div className={classString}>
-      <TransitionGroup className={`${classString}-transition`} transitionleave="false">
-        {
-          props.lists.map((item: MusicGroupList, index: number) => (
-            <CSSTransition  in={start}
-                            key={item.id}
-                            timeout={
-                              {
-                                enter: 300 + (index % MUSIC_SEARCH_DEFAULT_LISMIT) * 30,
-                                exit: 0
-                              }
-                            }
-                            classNames="side-up-fade"
-                            appear={false}
-                            unmountOnExit={false}>
-              <MusicList list={item}/>
-            </CSSTransition>
-          ))
-        }
-      </TransitionGroup>
+      {
+        props.transition ? (
+          <TransitionGroup className={`${classString}-transition`} 
+                        transitionleave="false">
+            {
+              props.lists.map((item: MusicGroupList, index: number) => (
+                <CSSTransition  in={start}
+                                key={item.id}
+                                timeout={
+                                  {
+                                    enter: 300 + (index % MUSIC_SEARCH_DEFAULT_LISMIT) * 30,
+                                    exit: 0
+                                  }
+                                }
+                                classNames="side-up-fade"
+                                appear={false}
+                                unmountOnExit={false}>
+                  <MusicList list={item}/>
+                </CSSTransition>
+              ))
+            }
+          </TransitionGroup>
+        ) : (
+          <React.Fragment>
+            {
+              props.lists.map((item: MusicGroupList, index: number) => (
+                <MusicList key={item.id} list={item}/>
+              ))
+            }
+          </React.Fragment>
+        )
+      }
     </div>
   )
+}
+
+MusicListGroup.defaultProps = {
+  lists: [],
+  transition: true
 }
 
 export default MusicListGroup

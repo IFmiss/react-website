@@ -1,26 +1,28 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { getRankLists } from './../action'
 import className from 'classnames'
+import { formatMusicLists } from './../../../utils/music'
 import { PROJECT_NAME, MUSIC_SEARCH_DEFAULT_LISMIT, MUSIC_RANK_TYPE } from '../../../config/constance'
 import MusicListGroup from './../../../components/MusicListGroup'
 import LoadingTips from '../../../components/LoadingTips';
 import * as UrlUtils from 'd-utils/lib/urlUtils'
 import DAudio from './../../../components/DAudio';
+import './rank.less'
 
 const MusicRank = () => {
-  const [offset, setOffset] = useState(0)
-  const [rankLists, setRankLists] = useState([])
-  const [loadingText, setLoadingText] = useState('加载中...')
-  const [loading, setLoading] = useState(false)
-  const [rankType, setRankType] = useState(UrlUtils.parseUrl(decodeURIComponent(location.href)).keywords) || '1'
+  const urlKeywords = UrlUtils.parseUrl(decodeURIComponent(location.href)).keywords
+  const [showType, setType] = useState(false)
+  const [rankLists, setRankLists] = useState<any[]>([])
+  const [rankType, setRankType] = useState<string>(Object.values(MUSIC_RANK_TYPE).includes(urlKeywords) ? urlKeywords : '1')
 
   const rankListDispatch = useCallback(async (rankId: string = '1') => {
-    await getRankLists(rankId)
-  }, [offset])
+    const res: any = await getRankLists(rankId)
+    setRankLists((rankLists) => rankLists = formatMusicLists(res.playlist.tracks))
+  }, [rankType])
 
   useEffect(() => {
-    rankListDispatch()
-  }, [])
+    rankListDispatch(rankType)
+  }, [rankType])
 
   const classString = className({
     [`${PROJECT_NAME}-music-rank`]: true
@@ -28,24 +30,63 @@ const MusicRank = () => {
   const classRankGroup = className({
     [`${PROJECT_NAME}-music-rank-group`]: true
   })
-  console.log(Object.entries(MUSIC_RANK_TYPE))
+
+  const classTypeList = className({
+    [`${classString}-type-lists`]: true,
+    ['active']: showType
+  })
   
   const handlePlay = () => {
     DAudio.list
     console.log(DAudio.list)
   }
+
+  const showTypeList = () => {
+    setType((showType) => showType = true)
+  }
+
+  const selectRankType = (typeId: string, e: any) => {
+    e.stopPropagation()
+    if (typeId === rankType) {
+      setType((showType) => showType = false)
+      return
+    }
+    setRankLists((rankLists) => rankLists = [])
+    setRankType((rankType) => rankType = typeId)
+    setType((showType) => showType = false)
+  }
+
+  const hideTypeList = () => {
+    setType((showType) => showType = false)
+  }
+
   return(
     <div className={classString}>
-      <div className={`${classString}-type-lists`}>
-        {
-          Object.entries(MUSIC_RANK_TYPE).map((item, index) => (
-            <div key={item[0]} onClick={handlePlay}>{item[1]}</div>
-          ))
-        }
+      <div className={`${classString}-type`}>
+        <div className={classTypeList} onClick={hideTypeList}>
+          <div className="content">
+            {
+              Object.entries(MUSIC_RANK_TYPE).map((item: any) => (
+                <div key={item[0]}
+                    className={rankType === item[0] ? 'type-list active' : 'type-list'}
+                    onClick={selectRankType.bind(null, item[0])}>{item[1]}</div>
+              ))
+            }
+          </div>
+        </div>
+        <div className={`${classString}-type-current`}>
+          <span className="desc">分类: </span>
+          <span className="info" onClick={showTypeList}>{MUSIC_RANK_TYPE[rankType]}</span>
+        </div>
       </div>
       <div className={classRankGroup}>
-        <MusicListGroup lists={rankLists}/>
-        <LoadingTips show={loading} text={loadingText}/>
+        {
+          rankLists.length ? (
+            <MusicListGroup lists={rankLists} transition={false}/>
+          ) : (
+            <LoadingTips show={!rankLists.length} text="加载中..."/>
+          )
+        }
       </div>
     </div>
   )

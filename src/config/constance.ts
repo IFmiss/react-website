@@ -27,7 +27,7 @@ export const MUSIC_SHEET_TRANSITION_DURATION = MUSIC_SHEET_DEFAULT_LIMIT * 200 /
 export const MUSIC_SEARCH_DEFAULT_LISMIT = 20
 
 // 排行榜信息
-export const MUSIC_RANK_TYPE = {
+export const MUSIC_RANK_TYPE: any = {
   '0': '云音新歌榜',
   '1': '云音热歌榜',
   '2': '网易原创歌曲榜',

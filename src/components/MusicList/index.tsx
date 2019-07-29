@@ -22,6 +22,7 @@ const MusicList = (props: IMusicListProps) => {
   const handlePlay = () => {
     // const 
   }
+  console.log('listlistlistlist', props.list)
   return (
     <div className={classString} onClick={handlePlay}>
       <h3 className={`${`${PROJECT_NAME}-music-list`}-name name`}>
@@ -33,7 +34,7 @@ const MusicList = (props: IMusicListProps) => {
       </h3>
       <div className={`${`${PROJECT_NAME}-music-list`}-artists`}>
         {
-          props.list.artists.map((artist: artist, index: number) => 
+          props.list.artists && props.list.artists.map((artist: artist, index: number) => 
             <span className={`${`${PROJECT_NAME}-music-list`}-artists-list`} key={artist.id}>{artist.name}</span>
           )
         }

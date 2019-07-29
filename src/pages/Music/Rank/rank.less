@@ -1,0 +1,47 @@
+.@{project-prefix}-music-rank {
+  &-type-lists {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 111;
+    background: var(--bg);
+    transition: opacity 0.3s;
+    .content {
+      width: 400px;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      .type-list {
+        margin: 0 20px;
+        &.active {
+          color: var(--primary-color);
+        }
+      }
+    }
+    &.active {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &-type-current {
+    margin-bottom: 20px;
+    text-align: right;
+    span {
+      &.desc {}
+      &.info {
+        cursor: pointer;
+        color: var(--text-color-active);
+      }
+    }
+  }
+}
