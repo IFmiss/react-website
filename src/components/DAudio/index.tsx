@@ -42,12 +42,13 @@ interface IDAudioState {
   loop: boolean;
   type: DAudioType;
   ended: () => void;
+  start: (list: IMusicInfo) => void;
   next: () => void;
 }
 
 const defaultList = {
   url: '',
-  coverUrl: '',
+  coverUrl: 'https://desk-fd.zol-img.com.cn/t_s720x360c5/g2/M00/03/09/ChMlWV06gc-IWeCjABDEZHv0cp8AAMHrQPh5vAAEMR8961.jpg',
   name: 'd-audio player',
   singer: '未曾遗忘的青春'
 }
@@ -65,7 +66,7 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
   const [list, setList] = useState<IMusicInfo>(defaultList)
   const [isPlay, setIsPlay] = useState<Boolean>(false)
   const [loading, setLoading] = useState<Boolean>(false)
-  const [imageColor, setImageColor] = useState<IDAudioImageColor>(defaultImageColor)
+  const [imageColor, setImageColor] = useState<IDAudioImageColor>({...defaultImageColor})
 
   useEffect(() => {
     changeImageColor()
@@ -75,7 +76,7 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
     const palette: any = await Vibrant.from(list.coverUrl).getPalette()
     const {r, g, b} = palette.LightMuted
     setImageColor((imageColor: IDAudioImageColor): any => {
-      imageColor = {
+      return imageColor = {
         defaultColor: `rgba(${r}, ${g}, ${b}, 1)`,
         circleBorderColor: `rgba(${r}, ${g}, ${b}, 0.36)`,
         progressLeftColor: `rgba(${r}, ${g}, ${b}, 0.12)`,
@@ -89,7 +90,7 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
     backgroundSize: 'cover',
     backgroundPosition: 'center center'
   }
-  
+  console.log(imageColor)
   const rangeStyle = {
     border: `3px solid ${imageColor.circleBorderColor}`
   }
@@ -162,7 +163,7 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
     <div className={classString} onClick={checkType}>
       <div className={`${selfClass}-circle`}
            title={`${list.name} - ${list.singer}`}>
-        <img src={list.coverUrl}/>
+        <img className="avatar" src={list.coverUrl}/>
         <div className={`${selfClass}-range`} style={rangeStyle}></div>
       </div>
       <div className={`${selfClass}-detail`}>
@@ -198,12 +199,13 @@ function newInstance(props: IDAudioProps) {
   }
 
   console.log(DAudioRef.current)
-  const { list, loop, type, ended, next  } = DAudioRef.current as IDAudioState;
+  const { list, loop, type, ended, next, start  } = DAudioRef.current as IDAudioState;
 
   return {
     list,
     loop,
     type,
+    start,
     ended,
     next,
     destroy

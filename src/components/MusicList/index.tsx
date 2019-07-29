@@ -4,7 +4,8 @@ import './music-list.less'
 import { MusicGroupList, MusicGroupLists } from './../../type'
 import { PROJECT_NAME } from '../../config/constance'
 import { artists, artist } from './../../type'
-import { parseDuraiton } from './../../utils/music'
+import { parseDuraiton, formatMusicArtists } from './../../utils/music'
+import DAudio from './../DAudio'
 
 interface IMusicListProps {
   list: MusicGroupList;
@@ -20,15 +21,21 @@ const MusicList = (props: IMusicListProps) => {
   }, [props.list])
 
   const handlePlay = () => {
-    // const 
+    const { list } = props
+    DAudio.start({
+      url: '',
+      coverUrl: list.album.picUrl,
+      name: list.name,
+      singer: formatMusicArtists(list.artists)
+    })
   }
   console.log('listlistlistlist', props.list)
   return (
-    <div className={classString} onClick={handlePlay}>
+    <div className={classString}>
       <h3 className={`${`${PROJECT_NAME}-music-list`}-name name`}>
         {props.list.name}
         <div className="config">
-          <span>播放</span>
+          <span onClick={handlePlay}>播放</span>
           <span>下载</span>
         </div>
       </h3>

@@ -1,3 +1,5 @@
+import { artists, artist } from './../../type'
+
 export const parseDuraiton = (duration: number): string => {
   const d = Math.floor(duration / 1000)
   const minT = Math.floor(d / 60) >= 10 ? Math.floor(d / 60) : '0' + Math.floor(d / 60)
@@ -13,4 +15,8 @@ export const formatMusicLists = (lists: any[]) => {
     item.duration = item.dt
     return item
   })
+}
+
+export const formatMusicArtists = (artists: artists) => {
+  return artists.map((artist: artist) => artist.name).join(', ')
 }
