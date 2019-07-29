@@ -13,25 +13,43 @@
   transition: all 0.3s;
   &.bottom-left {
     left: 50px;
+    right: unset;
   }
   &.bottom-right {
     right: 50px;
+    left: unset;
   }
 
   &.rect {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     border-radius: 10px;
+    transform: translateZ(0);
     .d-audio-detail {
       opacity: 1;
       visibility: visible;
+      transition: all 0.5s;
+    }
+    .d-audio-circle {
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
     }
   }
 
   &.circle {
     width: @d-audio-h;
     border-radius: 50%;
+    .d-audio-detail {
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+    }
     .d-audio-circle {
       opacity: 1;
       visibility: visible;
+      transition: all 0.5s;
     }
   }
 
@@ -40,13 +58,13 @@
     width: @d-audio-h;
     height: @d-audio-h;
     border-radius: 50%;
-    transition: all 0.3s;
     opacity: 0;
     visibility: hidden;
     position: relative;
     position: absolute;
     top: 0;
     left: 0;
+    transform: translateZ(0);
     .d-audio-range {
       position: absolute;
       top: 0;
@@ -63,24 +81,70 @@
     justify-content: flex-start;
     opacity: 0;
     visibility: hidden;
+    width: 100%;
+    transition: all 0.5s;
+    transform: translateZ(0);
+    padding: 4px 6px;
     &-config {
-      flex: 0 0 100px;
+      flex: 0 0 80px;
+      height: 100%;
+      overflow: hidden;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      padding: 0 4px 0 4px;
+      box-sizing: border-box;
       .d-audio-play-pause {
         width: 36px;
         height: 36px;
         background: green;
       }
       .d-audio-next {
-        width: 32px;
-        height: 32px;
+        margin-left: 10px;
+        width: 28px;
+        height: 28px;
         background: blue;
       }
     }
     &-info {
-       
+      flex: 1 1 auto;
+      flex: 1 1 auto;
+      height: 100%;
+      overflow: hidden;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      box-sizing: border-box;
+      padding: 0 4px 0 4px;
+      visibility: visible;
+      opacity: 1;
+      transform: translateZ(0);
+      transition: all 0.5s;
+      .music-name {
+        font-size: 16px;
+        padding: 1px 0;
+        margin: 0;
+        font-weight: 200;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 100%;
+        text-align: center;
+      }
+      .music-singer {
+        font-weight: 200;
+        padding: 1px 0;
+        font-size: 12px;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.8);
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 4px;
+      }
     }
   }
 }

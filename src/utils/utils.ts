@@ -1,6 +1,7 @@
 import { randomColor } from 'd-utils/lib/genericUtils'
 import { hasClass } from 'd-utils/lib/domUtils'
 import store from './../store'
+import { DAudioPosition } from './../components/DAudio'
 
 /**
  * 改版页面主题模式
@@ -43,4 +44,17 @@ export function initPageMode (): string {
   store.colorStore.changeMode(mode)
   body.className = mode
   return mode
+}
+
+/**
+ * 初始化音频配置
+ */
+export function initDAudiConfig () {
+  console.log(DAudioPosition)
+  const position = localStorage.getItem('daudio-positon')
+  if (Number(position) === DAudioPosition.BOTTOM_LEFT) {
+    localStorage.setItem('daudio-positon', String(DAudioPosition.BOTTOM_LEFT))
+  } else {
+    localStorage.setItem('daudio-positon', String(DAudioPosition.BOTTOM_RIGHT))
+  }
 }

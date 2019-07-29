@@ -26,12 +26,12 @@ enum DAudioType {
   CIRCLE,
 }
 
-enum DAudioPosition {
+export enum DAudioPosition {
   BOTTOM_LEFT = 1,
   BOTTOM_RIGHT
 }
 
-interface IDAudioProps {
+export interface IDAudioProps {
   position?: DAudioPosition;
   type?: DAudioType;
 }
@@ -171,7 +171,7 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
           <div className="d-audio-next"></div>
         </div>
         <div className={`${selfClass}-detail-info`}>
-          <div className="music-name">{list.name}</div>
+          <h3 className="music-name">{list.name}</h3>
           <div className="music-singer">{list.singer}</div>
         </div>
       </div>
@@ -210,4 +210,6 @@ function newInstance(props: IDAudioProps) {
   }
 }
 
-export default newInstance({})
+export default newInstance({
+  position: DAudioPosition.BOTTOM_LEFT
+})
