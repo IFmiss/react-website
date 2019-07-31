@@ -13,5 +13,8 @@ export default {
 
     /** 获取排行榜数据 */
     MUSIC_TOP_LIST: `${musicBaseUrl}/top/list`,
+
+    /** 根据id获取音乐详情 */
+    MUSIC_DETAIL_BY_ID: `${musicBaseUrl}/song/detail`
   }
 }

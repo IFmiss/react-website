@@ -20,3 +20,11 @@ export const formatMusicLists = (lists: any[]) => {
 export const formatMusicArtists = (artists: artists) => {
   return artists.map((artist: artist) => artist.name).join(', ')
 }
+
+export const clipImage = (src: string, w: number = 120, h?: number): string => {
+  return `${src}?param=${w}y${h ? h : w}`
+}
+
+export const getUrlById = (id: number) => {
+  return `http://music.163.com/song/media/outer/url?id=${id}.mp3`
+}

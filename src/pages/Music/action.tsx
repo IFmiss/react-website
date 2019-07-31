@@ -34,3 +34,11 @@ export const getRankLists = async (idx: string = '1', offset: number = 0, limit:
   return data
 }
 
+// 获取歌曲的详细信息
+export const getMusicDetailById = async (id: number) => {
+  const data = await Http.get(API.MUSIC.MUSIC_DETAIL_BY_ID, {
+    ids: id
+  })
+  return data
+}
+

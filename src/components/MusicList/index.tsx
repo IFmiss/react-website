@@ -4,7 +4,12 @@ import './music-list.less'
 import { MusicGroupList, MusicGroupLists } from './../../type'
 import { PROJECT_NAME } from '../../config/constance'
 import { artists, artist } from './../../type'
-import { parseDuraiton, formatMusicArtists } from './../../utils/music'
+import { parseDuraiton,
+         formatMusicArtists,
+         clipImage,
+         formatMusicLists,
+         getUrlById } from './../../utils/music'
+import { getMusicDetailById } from './../../pages/Music/action'
 import DAudio from './../DAudio'
 
 interface IMusicListProps {
@@ -20,11 +25,14 @@ const MusicList = (props: IMusicListProps) => {
     console.log(props.list)
   }, [props.list])
 
-  const handlePlay = () => {
+  const handlePlay = async () => {
     const { list } = props
+    const { songs : musicDetail } = await getMusicDetailById(list.id) as any
+    const formatDetail = formatMusicLists(musicDetail)
+
     DAudio.start({
-      url: '',
-      coverUrl: `http://p1.music.126.net/IsXVJLJWBwPcBZsffLBeOA==/2333163674159374.jpg`,
+      url: getUrlById(list.id),
+      coverUrl: clipImage(formatDetail[0].album.picUrl),
       name: list.name,
       singer: formatMusicArtists(list.artists)
     })

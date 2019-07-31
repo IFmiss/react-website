@@ -125,13 +125,14 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
   })
 
   const start = (musicList: IMusicInfo) => {
+    console.log('musicList', musicList)
     setList((list) => list = musicList)
     play()
   }
 
   const play = () => {
-    console.log('play')
-    audioRef.current
+    const audio: any = audioRef.current
+    audio.play()
   }
 
   const next = () => {
