@@ -42,3 +42,10 @@ export const getMusicDetailById = async (id: number) => {
   return data
 }
 
+// 获取歌曲的URL
+export const getMusicUrlById = async (id: number) => {
+  const data = await Http.get(API.MUSIC.MUSIC_PLAY_URL_BY_ID, {
+    id
+  })
+  return data
+}

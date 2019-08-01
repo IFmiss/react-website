@@ -15,6 +15,9 @@ export default {
     MUSIC_TOP_LIST: `${musicBaseUrl}/top/list`,
 
     /** 根据id获取音乐详情 */
-    MUSIC_DETAIL_BY_ID: `${musicBaseUrl}/song/detail`
+    MUSIC_DETAIL_BY_ID: `${musicBaseUrl}/song/detail`,
+    
+    /** 根据id获取音乐Url */
+    MUSIC_URL_BY_ID: `${musicBaseUrl}/song/url`
   }
 }

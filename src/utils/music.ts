@@ -26,5 +26,5 @@ export const clipImage = (src: string, w: number = 120, h?: number): string => {
 }
 
 export const getUrlById = (id: number) => {
-  return `http://music.163.com/song/media/outer/url?id=${id}.mp3`
+  return `https://music.163.com/song/media/outer/url?id=${id}.mp3`
 }
