@@ -18,6 +18,9 @@ export default {
     MUSIC_DETAIL_BY_ID: `${musicBaseUrl}/song/detail`,
     
     /** 根据id获取音乐Url */
-    MUSIC_URL_BY_ID: `${musicBaseUrl}/song/url`
+    MUSIC_URL_BY_ID: `${musicBaseUrl}/song/url`,
+
+    /** 校验音频是否可以播放 */
+    MUSIC_CHECK: `${musicBaseUrl}/check/music`
   }
 }

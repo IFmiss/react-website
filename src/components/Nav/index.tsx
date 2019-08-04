@@ -21,7 +21,7 @@ const Nav = observer((props: INavProps) => {
   })
 
   return (
-    <div className={ classString }>
+    <nav className={ classString }>
       <div className="nav-content">
         <div className="nav-logo">
           {/* <img className="nav-img" src="http://www.daiwei.org/index/images/logo/favicon.ico" alt=""/> */}
@@ -42,7 +42,7 @@ const Nav = observer((props: INavProps) => {
           }
         </div>
       </div>
-    </div>
+    </nav>
   )
 })
 

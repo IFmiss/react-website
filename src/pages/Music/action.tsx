@@ -49,3 +49,11 @@ export const getMusicUrlById = async (id: number) => {
   })
   return data
 }
+
+// 校验音乐是否可以播放
+export const checkMusicById = async (id: number) => {
+  const data = await Http.get(API.MUSIC.MUSIC_CHECK, {
+    id
+  })
+  return data
+}

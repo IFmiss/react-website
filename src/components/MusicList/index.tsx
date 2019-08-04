@@ -9,7 +9,7 @@ import { parseDuraiton,
          clipImage,
          formatMusicLists,
          getUrlById } from './../../utils/music'
-import { getMusicDetailById, getMusicUrlById } from './../../pages/Music/action'
+import { getMusicDetailById, checkMusicById } from './../../pages/Music/action'
 import DAudio from './../DAudio'
 
 interface IMusicListProps {
@@ -22,23 +22,21 @@ const MusicList = (props: IMusicListProps) => {
     [`${PROJECT_NAME}-music-list`]: true,
   })
   useEffect(() => {
-    console.log(props.list)
   }, [props.list])
 
   const handlePlay = async () => {
     const { list } = props
+    await checkMusicById(list.id)
     const { songs : musicDetail } = await getMusicDetailById(list.id) as any
-    const { url } = await getMusicUrlById(list.id) as any
     const formatDetail = formatMusicLists(musicDetail)
 
     DAudio.start({
-      url: url,
+      url: getUrlById(list.id),
       coverUrl: clipImage(formatDetail[0].album.picUrl),
       name: list.name,
       singer: formatMusicArtists(list.artists)
     })
   }
-  console.log('listlistlistlist', props.list)
   return (
     <div className={classString}>
       <h3 className={`${`${PROJECT_NAME}-music-list`}-name name`}>

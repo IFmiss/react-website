@@ -1,5 +1,6 @@
 import 'whatwg-fetch';
 import * as UrlUtils from 'd-utils/lib/urlUtils'
+import LogUtils from 'd-utils/lib/logUtils'
 import * as qs from 'qs'
 
 export const controller = new AbortController();
@@ -22,11 +23,13 @@ export default {
       })
       .then(res => res.json())
       .then((data) => {
-        console.log(data)
-        if (parseInt(data.code, 10) === 200) {
+        LogUtils.logInfo(data, `http-request: url: ${url} => `)
+        if (parseInt(data.code, 10) === 200 ||
+            data.success) {
           resolve(data)
           return
         }
+        LogUtils.logError(data.msg)
         reject(data.msg)
       })
       .catch((err: any) => {
@@ -34,6 +37,7 @@ export default {
           reject(`request was aborted${err}`)
           return
         }
+        LogUtils.logError(err)
         reject(`请求未知错误${err}`)
       })
     }) 
@@ -63,6 +67,7 @@ export default {
           resolve(response)
           return
         }
+        LogUtils.logError(response.msg)
         reject(response.msg)
       })
       .catch((err) => {
@@ -70,6 +75,7 @@ export default {
           reject(`request was aborted${err}`)
           return
         }
+        LogUtils.logError(err)
         reject(`请求未知错误${err}`)
       })
     })
