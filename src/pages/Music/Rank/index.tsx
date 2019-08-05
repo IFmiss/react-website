@@ -8,6 +8,7 @@ import LoadingTips from '../../../components/LoadingTips';
 import * as UrlUtils from 'd-utils/lib/urlUtils'
 import DAudio from './../../../components/DAudio';
 import './rank.less'
+import Message from '../../../components/Message/index'
 
 const MusicRank = () => {
   const urlKeywords = UrlUtils.parseUrl(decodeURIComponent(location.href)).keywords
@@ -42,6 +43,7 @@ const MusicRank = () => {
   }
 
   const showTypeList = () => {
+    // Message.success(111111)
     setType((showType) => showType = true)
   }
 
