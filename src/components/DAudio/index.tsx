@@ -193,7 +193,7 @@ function newInstance(props: IDAudioProps) {
   const div = document.createElement('div')
   document.body.appendChild(div)
   ReactDOM.render(<DuadioComponent {...props} ref={DAudioRef}/>, div)
-
+  console.log(DAudioRef.current)
   const destroy = () => {
     ReactDOM.unmountComponentAtNode(div);
     (div.parentNode as HTMLDivElement ).removeChild(div);

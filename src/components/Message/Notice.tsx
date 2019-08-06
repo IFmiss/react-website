@@ -14,7 +14,7 @@ export enum NoticeType {
 
 export interface INoticeProps {
   type: NoticeType;
-  text: string;
+  text: string | number;
 }
 
 const Notice: React.FC<INoticeProps> = (props) => {

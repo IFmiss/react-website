@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef, useImperativeHandle } from 'react'
 import classNames from 'classnames'
 import ReactDOM from 'react-dom'
 import { PROJECT_NAME } from '../../config/constance'
@@ -10,6 +10,7 @@ export interface IMessageState {
   text: string | number;
   duration?: number;
   key?: string;
+  id?: number;
   onClose?: () => void;
 }
 
@@ -19,7 +20,8 @@ export interface IMessageQueueState {
 
 export interface IMessageQueueProps {}
 
-export const MessageQueue: React.FC<IMessageQueueProps> = () => {
+const MessageQueue: React.FC<IMessageQueueProps> = (props, ref) => {
+  let noticeId = 0
   const transitionTime: number = 300
   const [messageQueue, setMessageQueue] = useState<IMessageState[]>([])
   
@@ -28,14 +30,16 @@ export const MessageQueue: React.FC<IMessageQueueProps> = () => {
   }
 
   const addMessage = (message: IMessageState) => {
+    noticeId ++
     message.key = getMessagekey()
+    message.id = noticeId
     message.duration = message.duration ? message.duration : 3000
     if (!messageInclude(message)) {
       // push message
       setMessageQueue((messageQueue: IMessageState[]) => messageQueue.concat([message]))
       if (message.duration > 0) {
         setTimeout(() => {
-          removeMessage(message.key)
+          message.key && removeMessage(message.key)
         }, message.duration)
       }
     }
@@ -56,13 +60,19 @@ export const MessageQueue: React.FC<IMessageQueueProps> = () => {
   }
 
   const classString = classNames({
-    [`${PROJECT_NAME}-comp-queue`]: true,
+    [`${PROJECT_NAME}-comp-notice-queue`]: true,
   })
+
+  useImperativeHandle(ref, () => ({
+    addMessage
+  }))
+
   return (
     <div className={classString}>
       {
         messageQueue.map((message) => (
           <Notice type={message.type}
+                  key={message.id}
                   text={message.text}/>
         ))
       }
@@ -78,14 +88,12 @@ function newInstance(props: IMessageQueueProps) {
   const div = document.createElement('div')
   document.body.appendChild(div)
   ReactDOM.render(<MessageQueueComponent {...props} ref={MessageQueueRef}/>, div)
-
-  const { addMessage } = MessageQueueRef.current as IMessageQueueState
-
   const destroy = () => {
     ReactDOM.unmountComponentAtNode(div);
     (div.parentNode as HTMLDivElement ).removeChild(div);
   }
 
+  const { addMessage } = MessageQueueRef.current as IMessageQueueState
   return {
     addMessage (message: IMessageState) {
       return addMessage(message)

@@ -8,7 +8,7 @@ import LoadingTips from '../../../components/LoadingTips';
 import * as UrlUtils from 'd-utils/lib/urlUtils'
 import DAudio from './../../../components/DAudio';
 import './rank.less'
-import Message from '../../../components/Message/index'
+import Notice from '../../../components/Message'
 
 const MusicRank = () => {
   const urlKeywords = UrlUtils.parseUrl(decodeURIComponent(location.href)).keywords
@@ -43,7 +43,6 @@ const MusicRank = () => {
   }
 
   const showTypeList = () => {
-    // Message.success(111111)
     setType((showType) => showType = true)
   }
 
@@ -62,8 +61,14 @@ const MusicRank = () => {
     setType((showType) => showType = false)
   }
 
+  const testMessage = () => {
+    Notice.success('你好呀！！！')
+    Notice.error(19940320)
+  }
+
   return(
     <div className={classString}>
+      <p onClick={testMessage}>11111</p>
       <div className={`${classString}-type`}>
         <div className={classTypeList} onClick={hideTypeList}>
           <div className="content">
