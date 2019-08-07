@@ -64,6 +64,9 @@ const MusicRank = () => {
   const testMessage = () => {
     Notice.success('你好呀！！！')
     Notice.error(19940320)
+    Notice.info('你好呀！！！')
+    Notice.default(19940320)
+    Notice.warning('你好呀！！！')
   }
 
   return(

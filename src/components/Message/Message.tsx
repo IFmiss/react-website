@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 import { PROJECT_NAME } from '../../config/constance'
 import Notice, { NoticeType } from './Notice'
 import './message.less'
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 export interface IMessageState {
   type: NoticeType;
@@ -71,9 +72,16 @@ const MessageQueue: React.FC<IMessageQueueProps> = (props, ref) => {
     <div className={classString}>
       {
         messageQueue.map((message) => (
-          <Notice type={message.type}
-                  key={message.id}
-                  text={message.text}/>
+          <CSSTransition in={true}
+                        timeout={0}
+                        key={message.id}
+                        classNames="side-left-fade"
+                        appear={true}
+                        unmountOnExit={false}>
+            <Notice type={message.type}
+                    key={message.id}
+                    text={message.text}/>
+          </CSSTransition>
         ))
       }
     </div>

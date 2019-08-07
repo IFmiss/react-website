@@ -16,23 +16,23 @@ const notice = (type: NoticeType,
 }
 
 const fn = {
-  info (text: string | number, duration: number = 11113000, onClose?: () => void) {
+  info (text: string | number, duration: number = 3000, onClose?: () => void) {
     return notice(NoticeType.INFO, text, duration, onClose)
   },
 
-  success (text: string | number, duration: number = 11113000, onClose?: () => void) {
+  success (text: string | number, duration: number = 3000, onClose?: () => void) {
     return notice(NoticeType.SUCCESS, text, duration, onClose)
   },
 
-  error (text: string | number, duration: number = 31111000, onClose?: () => void) {
+  error (text: string | number, duration: number = 3000, onClose?: () => void) {
     return notice(NoticeType.ERROR, text, duration, onClose)
   },
 
-  warning (text: string | number, duration: number = 3111000, onClose?: () => void) {
+  warning (text: string | number, duration: number = 3000, onClose?: () => void) {
     return notice(NoticeType.WARNING, text, duration, onClose)
   },
 
-  default (text: string | number, duration: number = 3111000, onClose?: () => void) {
+  default (text: string | number, duration: number = 3000, onClose?: () => void) {
     return notice(NoticeType.DEFAULT, text, duration, onClose)
   }
 }

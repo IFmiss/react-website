@@ -1,4 +1,54 @@
 .@{project-prefix}-comp-notice {
-  padding: 10px;
-  background: var(--primary-color);
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  &.notice-success {
+    color: @success-color;
+    &.light {
+      background: @success-color-low;
+    }
+    &.dark {
+      background: @success-color-deep;
+    }
+  }
+
+  &.notice-error {
+    color: @error-color;
+    &.light {
+      background: @error-color-low;
+    }
+    &.dark {
+      background: @error-color-deep;
+    }
+  }
+
+  &.notice-warning {
+    color: @warning-color;
+    &.light {
+      background: @warning-color-low;
+    }
+    &.dark {
+      background: @warning-color-deep;
+    }
+  }
+
+  &.notice-info {
+    color: @primary-color;
+    &.light {
+      background: @primary-color-low;
+    }
+    &.dark {
+      background: @primary-color-deep;
+    }
+  }
+  
+  &.notice-default {
+    color: @default-color;
+    &.light {
+      background: @default-color-low;
+    }
+    &.dark {
+      background: @default-color-deep;
+    }
+  }
 }
