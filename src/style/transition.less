@@ -113,3 +113,28 @@
   opacity: 0;
   transform: translate(10px, 0);
 }
+
+
+// sideLeft
+.side-left-enter, .side-left-appear {
+  transform: translate(200%, 0);
+}
+.side-left-enter-active, .side-left-appear-active { 
+  // transform: translate(0, 0);
+  // transition: all 300ms;
+}
+.side-left-enter-done {
+  // transform: translate(0, 0);
+  transform: translate(0, 0);
+  transition: transform 500ms;
+}
+.side-left-exit {
+  transform: translate(0, 0);
+}
+.side-left-exit-active {
+  transform: translate(200%, 0);
+  transition: transform 500ms;
+}
+.side-left-exit-done {
+  transform: translate(200%, 0);
+}

@@ -8,7 +8,7 @@ import LoadingTips from '../../../components/LoadingTips';
 import * as UrlUtils from 'd-utils/lib/urlUtils'
 import DAudio from './../../../components/DAudio';
 import './rank.less'
-import Notice from '../../../components/Message'
+import Notice from '../../../components/Notice'
 
 const MusicRank = () => {
   const urlKeywords = UrlUtils.parseUrl(decodeURIComponent(location.href)).keywords
@@ -62,11 +62,7 @@ const MusicRank = () => {
   }
 
   const testMessage = () => {
-    Notice.success('你好呀！！！')
-    Notice.error(19940320)
-    Notice.info('你好呀！！！')
-    Notice.default(19940320)
-    Notice.warning('你好呀！！！')
+    Notice.default('你好呀！！！')
   }
 
   return(

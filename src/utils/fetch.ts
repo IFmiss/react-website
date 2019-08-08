@@ -2,6 +2,7 @@ import 'whatwg-fetch';
 import * as UrlUtils from 'd-utils/lib/urlUtils'
 import LogUtils from 'd-utils/lib/logUtils'
 import * as qs from 'qs'
+import Notice from './../components/Notice'
 
 export const controller = new AbortController();
 export default {
@@ -29,8 +30,11 @@ export default {
           resolve(data)
           return
         }
-        LogUtils.logError(data.msg)
-        reject(data.msg)
+
+        const msg = data.message ? data.message : data.msg
+        LogUtils.logError(msg)
+        Notice.error(msg)
+        reject(msg)
       })
       .catch((err: any) => {
         if (err.name === 'AbortError') {
@@ -67,8 +71,10 @@ export default {
           resolve(response)
           return
         }
-        LogUtils.logError(response.msg)
-        reject(response.msg)
+        const msg = response.message ? response.message : response.msg
+        LogUtils.logError(msg)
+        Notice.error(msg)
+        reject(msg)
       })
       .catch((err) => {
         if (err.name === 'AbortError') {

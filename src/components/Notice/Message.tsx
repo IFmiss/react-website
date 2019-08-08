@@ -57,7 +57,7 @@ const MessageQueue: React.FC<IMessageQueueProps> = (props, ref) => {
   }
 
   const getMessagekey = () => {
-    return `message-${new Date().getTime()}-${messageQueue.length}`
+    return `message-${new Date().getTime()}-${messageQueue.length}-${Math.floor(Math.random() * 10000)}`
   }
 
   const classString = classNames({
@@ -70,20 +70,22 @@ const MessageQueue: React.FC<IMessageQueueProps> = (props, ref) => {
 
   return (
     <div className={classString}>
-      {
-        messageQueue.map((message) => (
-          <CSSTransition in={true}
-                        timeout={0}
-                        key={message.id}
-                        classNames="side-left-fade"
-                        appear={true}
-                        unmountOnExit={false}>
-            <Notice type={message.type}
-                    key={message.id}
-                    text={message.text}/>
-          </CSSTransition>
-        ))
-      }
+      <TransitionGroup>
+        {
+          messageQueue.map((message) => (
+            <CSSTransition in={true}
+                          timeout={100}
+                          key={message.id}
+                          classNames="side-left"
+                          appear={false}
+                          unmountOnExit={false}>
+              <Notice type={message.type}
+                      key={message.id}
+                      text={message.text}/>
+            </CSSTransition>
+          ))
+        }
+      </TransitionGroup>
     </div>
   )
 }

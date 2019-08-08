@@ -1,9 +1,14 @@
 .@{project-prefix}-comp-notice-queue {
   position: fixed;
-  right: 40px;
+  right: 0;
+  padding-right: 40px;
   top: @nav-height + 40px;
   width: 300px;
-  max-height: 500px;
+  max-height: calc(100vh - (@nav-height + 80px));
   z-index: @notice-z-index;
   overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0;
+  }
 }

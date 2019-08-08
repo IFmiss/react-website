@@ -1,6 +1,6 @@
 .@{project-prefix}-comp-notice {
   padding: 10px 15px;
-  border-radius: 10px;
+  border-radius: 6px;
   margin-bottom: 20px;
   &.notice-success {
     color: @success-color;
@@ -8,6 +8,7 @@
       background: @success-color-low;
     }
     &.dark {
+      color: darken(@success-color, 26%);
       background: @success-color-deep;
     }
   }
@@ -18,6 +19,7 @@
       background: @error-color-low;
     }
     &.dark {
+      color: darken(@error-color, 26%);
       background: @error-color-deep;
     }
   }
@@ -28,6 +30,7 @@
       background: @warning-color-low;
     }
     &.dark {
+      color: darken(@warning-color, 26%);
       background: @warning-color-deep;
     }
   }
@@ -38,6 +41,7 @@
       background: @primary-color-low;
     }
     &.dark {
+      color: darken(@primary-color, 26%);
       background: @primary-color-deep;
     }
   }
@@ -48,6 +52,7 @@
       background: @default-color-low;
     }
     &.dark {
+      color: darken(@default-color, 26%);
       background: @default-color-deep;
     }
   }
