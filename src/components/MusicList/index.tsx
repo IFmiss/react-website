@@ -14,6 +14,7 @@ import DAudio from './../DAudio'
 
 interface IMusicListProps {
   list: MusicGroupList;
+  addMusicQueue: () => void;
 }
 
 const MusicList = (props: IMusicListProps) => {
@@ -31,11 +32,15 @@ const MusicList = (props: IMusicListProps) => {
     const formatDetail = formatMusicLists(musicDetail)
 
     DAudio.start({
+      id: list.id,
       url: getUrlById(list.id),
       coverUrl: clipImage(formatDetail[0].album.picUrl),
       name: list.name,
       singer: formatMusicArtists(list.artists)
     })
+
+    // 添加播放列表
+    props.addMusicQueue()
   }
   return (
     <div className={classString}>

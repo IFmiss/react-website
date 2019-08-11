@@ -3,8 +3,10 @@ import classNames from 'classnames'
 import Vibrant from 'node-vibrant'
 import ReactDOM from 'react-dom';
 import './d-audio.less'
+import { useStore } from './../../utils/use'
 
 interface IMusicInfo {
+  id: number;
   url: string;
   coverUrl: string;
   name: string;
@@ -47,6 +49,7 @@ interface IDAudioState {
 }
 
 const defaultList = {
+  id: -1,
   url: '',
   coverUrl: 'https://desk-fd.zol-img.com.cn/t_s720x360c5/g2/M00/03/09/ChMlWV06gc-IWeCjABDEZHv0cp8AAMHrQPh5vAAEMR8961.jpg',
   name: 'd-audio player',
@@ -70,7 +73,7 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
 
   useEffect(() => {
     changeImageColor()
-  }, [])
+  }, [list.id])
 
   const changeImageColor = useCallback(async () => {
     const palette: any = await Vibrant.from(list.coverUrl).getPalette()
@@ -83,14 +86,13 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
         progressRightColor: `rgba(${r}, ${g}, ${b}, 0.66)`,
       }
     })
-  }, [list.coverUrl])
+  }, [list.id])
 
   const blurStyle = {
     backgroundImage: `url(${list.coverUrl})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center center'
   }
-  console.log(imageColor)
   const rangeStyle = {
     border: `3px solid ${imageColor.circleBorderColor}`
   }
@@ -131,8 +133,8 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
   }
 
   const play = () => {
-    const audio: any = audioRef.current
-    audio.play()
+    setIsPlay(isPlay => isPlay = true);
+    (audioRef.current as any).play()
   }
 
   const next = () => {
@@ -141,8 +143,14 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
   }
 
   const pause = () => {
-    console.log('play')
-    audioRef.current
+    setIsPlay(isPlay => isPlay = false);
+    (audioRef.current as any).pause()
+  }
+
+  const playPause = (e: any) => {
+    e.preventDefault()
+    e.stopPropagation()
+    isPlay ? pause() : play()
   }
 
   const checkType = () => {
@@ -169,7 +177,7 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
       </div>
       <div className={`${selfClass}-detail`}>
         <div className={`${selfClass}-detail-config`}>
-          <div className={classPlayPause}></div>
+          <div className={classPlayPause} onClick={playPause}></div>
           <div className="d-audio-next"></div>
         </div>
         <div className={`${selfClass}-detail-info`}>

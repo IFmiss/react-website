@@ -60,14 +60,8 @@ const MusicRank = () => {
   const hideTypeList = () => {
     setType((showType) => showType = false)
   }
-
-  const testMessage = () => {
-    Notice.default('你好呀！！！')
-  }
-
   return(
     <div className={classString}>
-      <p onClick={testMessage}>11111</p>
       <div className={`${classString}-type`}>
         <div className={classTypeList} onClick={hideTypeList}>
           <div className="content">

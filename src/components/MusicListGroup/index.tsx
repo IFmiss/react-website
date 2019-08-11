@@ -16,6 +16,11 @@ const MusicListGroup = (props: IMusicListsGroupProps) => {
   const classString = classNames({
     [`${PROJECT_NAME}-music-list-group`]: true
   })
+
+  const addMusicQueue = () => {
+    
+  }
+
   useEffect(() => {
   }, [props.lists])
   return (
@@ -37,7 +42,7 @@ const MusicListGroup = (props: IMusicListsGroupProps) => {
                                 classNames="side-up-fade"
                                 appear={false}
                                 unmountOnExit={false}>
-                  <MusicList list={item}/>
+                  <MusicList list={item} addMusicQueue={addMusicQueue}/>
                 </CSSTransition>
               ))
             }
@@ -46,7 +51,7 @@ const MusicListGroup = (props: IMusicListsGroupProps) => {
           <React.Fragment>
             {
               props.lists.map((item: MusicGroupList, index: number) => (
-                <MusicList key={item.id} list={item}/>
+                <MusicList key={item.id} list={item} addMusicQueue={addMusicQueue}/>
               ))
             }
           </React.Fragment>
