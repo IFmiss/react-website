@@ -3,7 +3,8 @@ import classNames from 'classnames'
 import Vibrant from 'node-vibrant'
 import ReactDOM from 'react-dom';
 import './d-audio.less'
-import { useStore } from './../../utils/use'
+import store from './../../store'
+import { throttle } from 'd-utils/lib/genericUtils'
 import { getMusicIndexById, getPlayMuiscList, getNextMusicList} from './../../utils/music'
 
 export interface IMusicInfo {
@@ -71,10 +72,16 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
   const [isPlay, setIsPlay] = useState<Boolean>(false)
   const [loading, setLoading] = useState<Boolean>(false)
   const [imageColor, setImageColor] = useState<IDAudioImageColor>({...defaultImageColor})
+  const [progress, setProgress] = useState<number>(0)
 
   useEffect(() => {
     changeImageColor()
   }, [list.id])
+
+  useEffect(() => {
+    // audioRef
+    addSelfObserver()
+  }, [])
 
   const changeImageColor = useCallback(async () => {
     const palette: any = await Vibrant.from(list.coverUrl).getPalette()
@@ -99,8 +106,23 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
   }
 
   const progressStyle = {
-    backgroundImage: `linear-gradient(to right, ${imageColor.progressLeftColor} 30%, ${imageColor.progressRightColor})`
+    backgroundImage: `linear-gradient(to right, ${imageColor.progressLeftColor} 30%, ${imageColor.progressRightColor})`,
+    width: `${progress}%`
   }
+
+  const addSelfObserver = () => {
+    // 添加video 的事件监听
+    (audioRef.current as any).addEventListener('timeupdate', handleProgress)
+    
+    return () => {
+      (audioRef.current as any).removeEventListener('timeupdate', handleProgress)
+    }
+  }
+
+  const handleProgress = throttle(() => {
+    console.log(audioRef.current)
+    // setProgress((progress: number) => progress = )
+  }, 1500)
 
   // const imageColorL
 
@@ -138,12 +160,14 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
     (audioRef.current as any).play()
   }
 
-  const next = async (e: Event) => {
+  const next = async (e: any) => {
     e.preventDefault()
     e.stopPropagation()
     console.log('next')
     getNextMusicList(list.id)
-    // audioRef.current
+
+    const selfList = await getPlayMuiscList(store.musicStore.currentList)
+    start(selfList)
   }
 
   const pause = () => {
@@ -151,7 +175,7 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
     (audioRef.current as any).pause()
   }
 
-  const playPause = (e: Event) => {
+  const playPause = (e: any) => {
     e.preventDefault()
     e.stopPropagation()
     isPlay ? pause() : play()

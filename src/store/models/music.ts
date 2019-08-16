@@ -32,16 +32,17 @@ export default class MusicModel {
 
   /** 设置音乐播放的任务 */
   @action
-  setMusicPlayTask (lists: MusicGroupLists, list: MusicGroupList, type: MusicPlayType) {
+  setMusicPlayTask (lists: MusicGroupLists, index: number, type: MusicPlayType) {
     // this.setCurrentList(list)
+    this.setMusicPlayIndex(index)
     this.setPlayType(type)
     this.setMusicListQueue(lists)
     LogUtils.logInfo('播放队列完成')
   }
 
   /** 当前播放的音乐信息 */
-  @computed
-  currentList () {
+  @computed get
+  currentList (): MusicGroupList {
     return this.musicListQueue[this.musicPlayIndex]
   }
 

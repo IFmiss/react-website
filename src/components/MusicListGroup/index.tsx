@@ -5,7 +5,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { PROJECT_NAME, MUSIC_SEARCH_DEFAULT_LISMIT } from '../../config/constance'
 import MusicList from './../MusicList'
 import { MusicGroupList, MusicGroupLists } from './../../type'
-import {useLocalStore, observer} from 'mobx-react-lite'
+import { useLocalStore, observer } from 'mobx-react-lite'
 import { useStore } from './../../utils/use'
 import store from './../../store'
 import { MusicPlayType } from './../../store/types'
@@ -22,10 +22,10 @@ const MusicListGroup = observer((props: IMusicListsGroupProps) => {
     [`${PROJECT_NAME}-music-list-group`]: true
   })
 
-  const addMusicQueue = (list: MusicGroupList) => {
+  const addMusicQueue = (index: number) => {
     // 添加播放列表进程
     const { lists, type } = props
-    store.musicStore.setMusicPlayTask(lists, list, type)
+    store.musicStore.setMusicPlayTask(lists, index, type)
   }
 
   useEffect(() => {
@@ -50,6 +50,7 @@ const MusicListGroup = observer((props: IMusicListsGroupProps) => {
                                 appear={false}
                                 unmountOnExit={false}>
                   <MusicList list={item}
+                             index={index}
                              addMusicQueue={addMusicQueue}/>
                 </CSSTransition>
               ))
@@ -59,7 +60,9 @@ const MusicListGroup = observer((props: IMusicListsGroupProps) => {
           <React.Fragment>
             {
               props.lists.map((item: MusicGroupList, index: number) => (
-                <MusicList key={item.id} list={item} addMusicQueue={addMusicQueue}/>
+                <MusicList key={item.id} list={item}
+                           index={index}
+                           addMusicQueue={addMusicQueue}/>
               ))
             }
           </React.Fragment>

@@ -37,7 +37,7 @@ export namespace NameSpaceStore {
 
     setPlayType: (type: MusicPlayType) => void;
     setMusicPlayTask: (lists: MusicGroupLists,
-                      list: MusicGroupList,
+                      index: number,
                       type: MusicPlayType) => void;
   }
 }

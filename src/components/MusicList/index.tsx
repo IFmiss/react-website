@@ -15,7 +15,8 @@ import DAudio from './../DAudio'
 
 interface IMusicListProps {
   list: MusicGroupList;
-  addMusicQueue: (list: MusicGroupList) => void;
+  index: number;
+  addMusicQueue: (index: number) => void;
 }
 
 const MusicList = (props: IMusicListProps) => {
@@ -33,7 +34,7 @@ const MusicList = (props: IMusicListProps) => {
     DAudio.start(musicList)
 
     // 添加播放列表
-    props.addMusicQueue(list)
+    props.addMusicQueue(props.index)
   }
   return (
     <div className={classString}>

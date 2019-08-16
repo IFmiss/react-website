@@ -5,9 +5,9 @@ import { IMusicInfo } from './../components/DAudio'
 import store from '../store';
 
 export const parseDuraiton = (duration: number): string => {
-  const d = Math.floor(duration / 1000)
-  const minT = Math.floor(d / 60) >= 10 ? Math.floor(d / 60) : '0' + Math.floor(d / 60)
-  const minS = Math.floor(d % 60) >= 10 ? Math.floor(d % 60) : '0' + Math.floor(d % 60)
+  const d = ~~(duration / 1000)
+  const minT = ~~(d / 60) >= 10 ? ~~(d / 60) : '0' + ~~(d / 60)
+  const minS = ~~(d % 60) >= 10 ? ~~(d % 60) : '0' + ~~(d % 60)
   return minT + ':' + minS
 }
 
@@ -58,10 +58,18 @@ export const getPlayMuiscList = async (list: MusicGroupList): Promise<IMusicInfo
 }
 
 export const getNextMusicList = (id: number) => {
-  const [index, queue] = getMusicIndexById(id)
+  let [index, queue] = getMusicIndexById(id)
+  const length = store.musicStore.musicListQueue.length
 
   // 数据存在
-  // if (index >= 0) {
-  //   const length = store.musicStore.musicListQueue
-  // }
+  if (index >= 0 && length > 0) {
+    // 最后一个会自己跳转到第一个
+    if (index >= length) {
+      store.musicStore.setMusicPlayIndex(0)
+      return
+    }
+    store.musicStore.setMusicPlayIndex(++index)
+    return
+  }
+  store.musicStore.setMusicPlayIndex(-1)
 }
