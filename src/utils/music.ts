@@ -1,4 +1,8 @@
-import { artists, artist } from './../../type'
+import { artists, artist, MusicGroupList } from './../../type'
+import { useStore } from './../utils/use'
+import { checkMusicById, getMusicDetailById } from './../pages/Music/action'
+import { IMusicInfo } from './../components/DAudio'
+import store from '../store';
 
 export const parseDuraiton = (duration: number): string => {
   const d = Math.floor(duration / 1000)
@@ -17,6 +21,17 @@ export const formatMusicLists = (lists: any[]) => {
   })
 }
 
+export const getMusicIndexById = (id: number): number | MusicGroupList => {
+  const musicQueue = store.musicStore.musicListQueue
+  if (musicQueue.length === 0) return -1
+  for (let i = 0; i < musicQueue.length; i++) {
+    if (musicQueue[i].id === id) {
+      return [i, musicQueue[i]]
+    }
+  }
+  return [-1, null]
+}
+
 export const formatMusicArtists = (artists: artists) => {
   return artists.map((artist: artist) => artist.name).join(', ')
 }
@@ -27,4 +42,26 @@ export const clipImage = (src: string, w: number = 120, h?: number): string => {
 
 export const getUrlById = (id: number) => {
   return `https://music.163.com/song/media/outer/url?id=${id}.mp3`
+}
+
+export const getPlayMuiscList = async (list: MusicGroupList): Promise<IMusicInfo> => {
+  await checkMusicById(list.id)
+  const { songs : musicDetail } = await getMusicDetailById(list.id) as any
+  const formatDetail = formatMusicLists(musicDetail)
+  return {
+    id: list.id,
+    url: getUrlById(list.id),
+    coverUrl: clipImage(formatDetail[0].album.picUrl),
+    name: list.name,
+    singer: formatMusicArtists(list.artists)
+  }
+}
+
+export const getNextMusicList = (id: number) => {
+  const [index, queue] = getMusicIndexById(id)
+
+  // 数据存在
+  // if (index >= 0) {
+  //   const length = store.musicStore.musicListQueue
+  // }
 }

@@ -40,3 +40,8 @@ export const MusicSearch = Loadable({
   loader: () => import('./pages/Music/Search'),
   loading: Loading
 })
+
+export const MusicSheetDetail = Loadable({
+  loader: () => import('./pages/Music/SheetDetail'),
+  loading: Loading
+})

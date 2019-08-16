@@ -8,13 +8,14 @@ import { parseDuraiton,
          formatMusicArtists,
          clipImage,
          formatMusicLists,
-         getUrlById } from './../../utils/music'
+         getUrlById,
+         getPlayMuiscList } from './../../utils/music'
 import { getMusicDetailById, checkMusicById } from './../../pages/Music/action'
 import DAudio from './../DAudio'
 
 interface IMusicListProps {
   list: MusicGroupList;
-  addMusicQueue: () => void;
+  addMusicQueue: (list: MusicGroupList) => void;
 }
 
 const MusicList = (props: IMusicListProps) => {
@@ -26,21 +27,13 @@ const MusicList = (props: IMusicListProps) => {
   }, [props.list])
 
   const handlePlay = async () => {
-    const { list } = props
-    await checkMusicById(list.id)
-    const { songs : musicDetail } = await getMusicDetailById(list.id) as any
-    const formatDetail = formatMusicLists(musicDetail)
+    const list: MusicGroupList = props.list
+    const musicList = await getPlayMuiscList(list)
 
-    DAudio.start({
-      id: list.id,
-      url: getUrlById(list.id),
-      coverUrl: clipImage(formatDetail[0].album.picUrl),
-      name: list.name,
-      singer: formatMusicArtists(list.artists)
-    })
+    DAudio.start(musicList)
 
     // 添加播放列表
-    props.addMusicQueue()
+    props.addMusicQueue(list)
   }
   return (
     <div className={classString}>

@@ -7,6 +7,7 @@ import { isEmptyStr } from 'd-utils/lib/expUtils/index'
 import LoadingTips from '../../../components/LoadingTips';
 import * as MusicFetch from './../action'
 import * as UrlUtils from 'd-utils/lib/urlUtils'
+import { MusicPlayType } from './../../../store/types'
 
 import useScroll from './../../../use/useScroll'
 import useLoadingTips from './../../../use/useLoadingTips'
@@ -110,7 +111,9 @@ const MusicSearch = (props: MusicSearchProps) => {
       </div>
       <div className={classSearchGroup}
            ref={searchGroup}>
-        <MusicListGroup lists={searchLists}/>
+        <MusicListGroup lists={searchLists}
+                        transition={false}
+                        type={MusicPlayType.SEARCH}/>
         <LoadingTips show={LoadingTipsFn.loading} text={LoadingTipsFn.text}/>
       </div>
     </section>

@@ -9,6 +9,7 @@ import * as UrlUtils from 'd-utils/lib/urlUtils'
 import DAudio from './../../../components/DAudio';
 import './rank.less'
 import Notice from '../../../components/Notice'
+import { MusicPlayType } from './../../../store/types'
 
 const MusicRank = () => {
   const urlKeywords = UrlUtils.parseUrl(decodeURIComponent(location.href)).keywords
@@ -82,7 +83,9 @@ const MusicRank = () => {
       <div className={classRankGroup}>
         {
           rankLists.length ? (
-            <MusicListGroup lists={rankLists} transition={false}/>
+            <MusicListGroup lists={rankLists}
+                            transition={false}
+                            type={MusicPlayType.RANK}/>
           ) : (
             <LoadingTips show={!rankLists.length} text="加载中..."/>
           )

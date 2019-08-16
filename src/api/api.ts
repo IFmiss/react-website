@@ -21,6 +21,9 @@ export default {
     MUSIC_URL_BY_ID: `${musicBaseUrl}/song/url`,
 
     /** 校验音频是否可以播放 */
-    MUSIC_CHECK: `${musicBaseUrl}/check/music`
+    MUSIC_CHECK: `${musicBaseUrl}/check/music`,
+
+    /** 获取歌单详情 */
+    MUSIC_SHEET_DETAIL: `${musicBaseUrl}/playlist/detail`
   }
 }

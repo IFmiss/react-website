@@ -1,5 +1,6 @@
 import { INavLists } from './../config/nav'
 import { MusicGroupList, MusicGroupLists } from './../type'
+import { DAudioPosition } from './../components/DAudio'
 
 export interface IStore {
   colorStore: NameSpaceStore.IColorModel;
@@ -27,8 +28,17 @@ export namespace NameSpaceStore {
 
   export interface IMusicModel {
     currentList: MusicGroupList;
-    playLists: MusicGroupLists;
+    musicListQueue: MusicGroupLists;
     playType: MusicPlayType;
+    musicPlayIndex: number;
+    changePosition: (position: DAudioPosition) => void;
+    setMusicListQueue: (lists: MusicGroupLists) => void;
+    setMusicPlayIndex: (index: number) => void;
+
+    setPlayType: (type: MusicPlayType) => void;
+    setMusicPlayTask: (lists: MusicGroupLists,
+                      list: MusicGroupList,
+                      type: MusicPlayType) => void;
   }
 }
 

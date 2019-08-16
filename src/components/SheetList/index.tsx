@@ -5,7 +5,7 @@ import './sheet-list.less'
 import LazyImg from './../LazyImg'
 
 interface ISheetListProps {
-  list: any
+  list: any;
 }
 
 const SheetList = (props: ISheetListProps) => {

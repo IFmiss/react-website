@@ -4,8 +4,9 @@ import Vibrant from 'node-vibrant'
 import ReactDOM from 'react-dom';
 import './d-audio.less'
 import { useStore } from './../../utils/use'
+import { getMusicIndexById, getPlayMuiscList, getNextMusicList} from './../../utils/music'
 
-interface IMusicInfo {
+export interface IMusicInfo {
   id: number;
   url: string;
   coverUrl: string;
@@ -137,9 +138,12 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
     (audioRef.current as any).play()
   }
 
-  const next = () => {
-    console.log('play')
-    audioRef.current
+  const next = async (e: Event) => {
+    e.preventDefault()
+    e.stopPropagation()
+    console.log('next')
+    getNextMusicList(list.id)
+    // audioRef.current
   }
 
   const pause = () => {
@@ -147,7 +151,7 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
     (audioRef.current as any).pause()
   }
 
-  const playPause = (e: any) => {
+  const playPause = (e: Event) => {
     e.preventDefault()
     e.stopPropagation()
     isPlay ? pause() : play()
@@ -178,7 +182,7 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
       <div className={`${selfClass}-detail`}>
         <div className={`${selfClass}-detail-config`}>
           <div className={classPlayPause} onClick={playPause}></div>
-          <div className="d-audio-next"></div>
+          <div className="d-audio-next" onClick={next}></div>
         </div>
         <div className={`${selfClass}-detail-info`}>
           <h3 className="music-name">{list.name}</h3>

@@ -5,20 +5,27 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { PROJECT_NAME, MUSIC_SEARCH_DEFAULT_LISMIT } from '../../config/constance'
 import MusicList from './../MusicList'
 import { MusicGroupList, MusicGroupLists } from './../../type'
+import {useLocalStore, observer} from 'mobx-react-lite'
+import { useStore } from './../../utils/use'
+import store from './../../store'
+import { MusicPlayType } from './../../store/types'
 
 interface IMusicListsGroupProps {
   lists: MusicGroupLists;
   transition: boolean;
+  type: MusicPlayType;
 }
 
-const MusicListGroup = (props: IMusicListsGroupProps) => {
+const MusicListGroup = observer((props: IMusicListsGroupProps) => {
   const [start, setStart] = useState(false)
   const classString = classNames({
     [`${PROJECT_NAME}-music-list-group`]: true
   })
 
-  const addMusicQueue = () => {
-    
+  const addMusicQueue = (list: MusicGroupList) => {
+    // 添加播放列表进程
+    const { lists, type } = props
+    store.musicStore.setMusicPlayTask(lists, list, type)
   }
 
   useEffect(() => {
@@ -42,7 +49,8 @@ const MusicListGroup = (props: IMusicListsGroupProps) => {
                                 classNames="side-up-fade"
                                 appear={false}
                                 unmountOnExit={false}>
-                  <MusicList list={item} addMusicQueue={addMusicQueue}/>
+                  <MusicList list={item}
+                             addMusicQueue={addMusicQueue}/>
                 </CSSTransition>
               ))
             }
@@ -59,7 +67,7 @@ const MusicListGroup = (props: IMusicListsGroupProps) => {
       }
     </div>
   )
-}
+})
 
 MusicListGroup.defaultProps = {
   lists: [],

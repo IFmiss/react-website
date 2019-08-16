@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import fetch from './../../utils/fetch'
-import { IStore } from './../../store/types'
 import classNames from 'classnames'
 import { PROJECT_NAME } from './../../config/constance'
 import { Route, Switch, Redirect } from 'react-router-dom'
-import { MusicSheet, MusicRank, MusicSearch } from './../../loadable'
+import { MusicSheet, MusicRank, MusicSearch, MusicSheetDetail } from './../../loadable'
 
 interface IMusicProps {}
 
@@ -19,7 +17,7 @@ const Music: React.FC = (props: IMusicProps) => {
       {/* this is Music  */}
       <Switch>
         <Route path="/music/sheet" component={MusicSheet}/>
-        <Route path="/music/sheet" component={MusicSheet}/>
+        <Route path="/music/sheetdetail" component={MusicSheetDetail}/>
         <Route path="/music/rank" component={MusicRank}/>
         <Route path="/music/search" component={MusicSearch}/>
         <Redirect to="/music/sheet" />
