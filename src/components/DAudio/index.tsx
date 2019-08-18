@@ -73,6 +73,8 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
   const [loading, setLoading] = useState<Boolean>(false)
   const [imageColor, setImageColor] = useState<IDAudioImageColor>({...defaultImageColor})
   const [progress, setProgress] = useState<number>(0)
+  const refCurrentList = useRef<any>('')
+  refCurrentList.current = list
 
   useEffect(() => {
     changeImageColor()
@@ -112,16 +114,18 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
 
   const addSelfObserver = () => {
     // 添加video 的事件监听
-    (audioRef.current as any).addEventListener('timeupdate', handleProgress)
-    
+    (audioRef.current as any).addEventListener('timeupdate', handleProgress);
+    (audioRef.current as any).addEventListener('ended', next);
+
     return () => {
       (audioRef.current as any).removeEventListener('timeupdate', handleProgress)
+      (audioRef.current as any).removeEventListener('ended', next)
     }
   }
 
   const handleProgress = throttle(() => {
-    console.log(audioRef.current)
-    // setProgress((progress: number) => progress = )
+    const { currentTime, duration } = (audioRef.current as any)
+    setProgress((progress: number) => progress = Number((currentTime / duration * 100).toFixed(2)))
   }, 1500)
 
   // const imageColorL
@@ -151,7 +155,7 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
 
   const start = (musicList: IMusicInfo) => {
     console.log('musicList', musicList)
-    setList((list) => list = musicList)
+    setList((list) => musicList)
     play()
   }
 
@@ -163,8 +167,7 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
   const next = async (e: any) => {
     e.preventDefault()
     e.stopPropagation()
-    console.log('next')
-    getNextMusicList(list.id)
+    getNextMusicList(refCurrentList.current.id)
 
     const selfList = await getPlayMuiscList(store.musicStore.currentList)
     start(selfList)

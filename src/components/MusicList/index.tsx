@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import classNames from 'classnames'
 import './music-list.less'
 import { MusicGroupList, MusicGroupLists } from './../../type'
@@ -12,6 +12,7 @@ import { parseDuraiton,
          getPlayMuiscList } from './../../utils/music'
 import { getMusicDetailById, checkMusicById } from './../../pages/Music/action'
 import DAudio from './../DAudio'
+import store from '../../store';
 
 interface IMusicListProps {
   list: MusicGroupList;
@@ -20,8 +21,11 @@ interface IMusicListProps {
 }
 
 const MusicList = (props: IMusicListProps) => {
+  const memoPlay = useMemo(() => (props.index === store.musicStore.musicPlayIndex &&
+  props.list.id === store.musicStore.currentList.id), [props.index, props.list.id])
+
   const classString = classNames({
-    [`play`]: true,
+    [`play`]: memoPlay,
     [`${PROJECT_NAME}-music-list`]: true,
   })
   useEffect(() => {

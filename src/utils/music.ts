@@ -22,7 +22,7 @@ export const formatMusicLists = (lists: any[]) => {
 }
 
 export const getMusicIndexById = (id: number): number | MusicGroupList => {
-  const musicQueue = store.musicStore.musicListQueue
+  const musicQueue = store.musicStore.musicListQueue.slice()
   if (musicQueue.length === 0) return -1
   for (let i = 0; i < musicQueue.length; i++) {
     if (musicQueue[i].id === id) {
@@ -59,12 +59,13 @@ export const getPlayMuiscList = async (list: MusicGroupList): Promise<IMusicInfo
 
 export const getNextMusicList = (id: number) => {
   let [index, queue] = getMusicIndexById(id)
-  const length = store.musicStore.musicListQueue.length
+  const length = store.musicStore.musicListQueue.slice().length
 
+  console.log(index, length)
   // 数据存在
   if (index >= 0 && length > 0) {
     // 最后一个会自己跳转到第一个
-    if (index >= length) {
+    if (index >= length - 1) {
       store.musicStore.setMusicPlayIndex(0)
       return
     }
