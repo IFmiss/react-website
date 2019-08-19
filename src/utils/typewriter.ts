@@ -10,7 +10,9 @@ export default function typeWriter (text: string, tagName: string, container: HT
   const el = document.createElement(tagName)
   if (tagName === 'a') {
     console.log(config)
-    el.setAttribute('href', config.herf)
+    if (config && config.herf) {
+      el.setAttribute('href', config.herf)
+    }
   }
   const splitBar = document.createElement('span')
   splitBar.className = 'type-writer-bar'

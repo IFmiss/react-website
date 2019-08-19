@@ -67,6 +67,15 @@
     .name {
       .config {
         display: flex;
+        span, a {
+          cursor: pointer;
+          &:hover {
+            color: var(--text-color-active);
+          }
+        }
+        .download {
+          margin-left: 15px;
+        }
       }
     }
   }

@@ -74,7 +74,12 @@ const MessageQueue: React.FC<IMessageQueueProps> = (props, ref) => {
         {
           messageQueue.map((message) => (
             <CSSTransition in={true}
-                          timeout={100}
+                          timeout = {
+                            {
+                              enter: 100,
+                              exit: 200,
+                            }
+                          }
                           key={message.id}
                           classNames="side-left"
                           appear={false}

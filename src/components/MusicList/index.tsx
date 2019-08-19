@@ -21,7 +21,7 @@ interface IMusicListProps {
 }
 
 const MusicList = (props: IMusicListProps) => {
-  const memoPlay = useMemo(() => (props.index === store.musicStore.musicPlayIndex &&
+  const memoPlay = useMemo(() => (store.musicStore.currentList && store.musicStore.currentList.id && props.index === store.musicStore.musicPlayIndex &&
   props.list.id === store.musicStore.currentList.id), [props.index, props.list.id])
 
   const classString = classNames({
@@ -46,7 +46,7 @@ const MusicList = (props: IMusicListProps) => {
         {props.list.name}
         <div className="config">
           <span onClick={handlePlay}>播放</span>
-          <span>下载</span>
+          <a href={getUrlById(props.list.id)} target="_blank" className="download">下载</a>
         </div>
       </h3>
       <div className={`${`${PROJECT_NAME}-music-list`}-artists`}>

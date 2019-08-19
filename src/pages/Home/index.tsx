@@ -15,6 +15,9 @@ const Home = (props: IHomeProps) => {
     typeWriter(TYPE_WRITER[0].text, TYPE_WRITER[0].tagName, homeRef.current, TYPE_WRITER[0].config)
       .then(() => typeWriter(TYPE_WRITER[1].text, TYPE_WRITER[1].tagName, homeRef.current, TYPE_WRITER[1].config))
         .then(() => typeWriter(TYPE_WRITER[2].text, TYPE_WRITER[2].tagName, homeRef.current, TYPE_WRITER[2].config))
+          .then(() => typeWriter(TYPE_WRITER[3].text, TYPE_WRITER[3].tagName, homeRef.current, TYPE_WRITER[3].config))
+            .then(() => typeWriter(TYPE_WRITER[4].text, TYPE_WRITER[4].tagName, homeRef.current, TYPE_WRITER[4].config))
+              .then(() => typeWriter(TYPE_WRITER[5].text, TYPE_WRITER[5].tagName, homeRef.current, TYPE_WRITER[5].config))
   }
 
   useEffect(() => {
