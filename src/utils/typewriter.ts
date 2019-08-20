@@ -1,26 +1,41 @@
 import './../style/type-writer.less'
 
 interface ItyperConfig {
-  herf?: string
   interver?: number
   sleep?: number
 }
 
-export default function typeWriter (text: string, tagName: string, container: HTMLElement, config?: ItyperConfig): Promise<void> {
+interface IDomAttr {
+  herf?: string;
+  onclick?: () => void;
+  [propName: string]: any;
+}
+
+export interface ITypeWriterList {
+  text: string;
+  tagName: string;
+  config: ItyperConfig;
+  container?: Element;
+  domAttr: IDomAttr;
+}
+
+export default function typeWriter (typeWriterList: ITypeWriterList): Promise<void> {
+  console.log(typeWriterList)
+  const {text, tagName, container, config, domAttr } = typeWriterList
   const el = document.createElement(tagName)
-  if (tagName === 'a') {
-    console.log(config)
-    if (config && config.herf) {
-      el.setAttribute('href', config.herf)
-    }
-  }
+
+  Object.keys(domAttr).forEach(((item) => {
+    const prop = typeof (domAttr as any)[item] === 'string' ? (domAttr as any)[item] : {...(domAttr as any)[item]}
+    el.setAttribute(item, prop)
+  }))
+  
   const splitBar = document.createElement('span')
   splitBar.className = 'type-writer-bar'
 
   el.appendChild(splitBar)
 
   try {
-    container.appendChild(el)
+    container && container.appendChild(el)
   } catch (e) {}
 
   let timer: any = null,

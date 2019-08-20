@@ -1,32 +1,43 @@
+import { ITypeWriterList } from './../utils/typewriter'
 export const PROJECT_NAME = 'dw-react-web'
 export const TITLE = '未曾遗忘的青春，戴伟的个人博客'
 export const TITLE_ENTRY = '哈哈 你又来了'
 export const TITLE_OUT = '你走了啊啊'
-export const TYPE_WRITER = [
+export const TYPE_WRITER: ITypeWriterList[] = [
   {
     text: 'Hello!!!',
     tagName: 'h1',
-    config: {}
+    config: {},
+    domAttr: {
+      style: {
+        color: 'red'
+      }
+    }
   }, {
     text: '欢迎来到我的个人网站，这也是我个人的第三版网站',
     tagName: 'h2',
-    config: {}
+    config: {},
+    domAttr: {}
   }, {
     text: '自我介绍一下',
     tagName: 'h2',
-    config: {}
+    config: {},
+    domAttr: {}
   }, {
     text: '90后，来自安徽芜湖，现在在上海工作，从事前端开发，个人比较活泼开朗吧，没事学学技术，打打游戏听听歌',
     tagName: 'h4',
-    config: {}
+    config: {},
+    domAttr: {}
   }, {
     text: '说到听歌，给大家推荐一个个人收藏的歌单',
     tagName: 'span',
     config: {},
+    domAttr: {}
   }, {
     text: '《程序员必备，带上耳机代码就是全世界》',
     tagName: 'span',
     config: {},
+    domAttr: {}
   }
 ]
 
