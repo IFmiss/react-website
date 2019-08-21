@@ -48,6 +48,9 @@ interface IDAudioState {
   ended: () => void;
   start: (list: IMusicInfo) => void;
   next: () => void;
+  play: () => void;
+  pause: () => void;
+  playPause: () => void;
 }
 
 const defaultList = {
@@ -239,7 +242,7 @@ function newInstance(props: IDAudioProps) {
   }
 
   console.log(DAudioRef.current)
-  const { list, loop, type, ended, next, start  } = DAudioRef.current as IDAudioState;
+  const { list, loop, type, ended, next, start, play, pause, playPause  } = DAudioRef.current as IDAudioState;
 
   return {
     list,
@@ -248,7 +251,10 @@ function newInstance(props: IDAudioProps) {
     start,
     ended,
     next,
-    destroy
+    destroy,
+    play,
+    pause,
+    playPause
   }
 }
 

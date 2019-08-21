@@ -4,8 +4,12 @@ import { IStore } from './../../store/types'
 import classNames from 'classnames'
 import './home.less'
 import typeWriter, { ITypeWriterList } from './../../utils/typewriter'
-import { PROJECT_NAME, TYPE_WRITER} from './../../config/constance'
+import { PROJECT_NAME, TYPE_WRITER, SELF_SHEET_LIST} from './../../config/constance'
 import React, { useState, useEffect, useRef } from 'react'
+import { musicSheetDetailById } from './../Music/action'
+import store from './../../store'
+import { MusicPlayType } from './../../store/types'
+import { formatMusicLists } from './../../utils/music'
 
 interface IHomeProps {}
 
@@ -13,6 +17,10 @@ const Home = (props: IHomeProps) => {
   const homeRef: any = useRef(null);
 
   const initTypeWriter = async () => {
+    // 加载音乐专辑列表地址
+    const res: any = await musicSheetDetailById(SELF_SHEET_LIST)
+    store.musicStore.setMusicPlayTask(formatMusicLists(res.playlist.tracks), 0, MusicPlayType.HOME)
+
     for (let i = 0; i < TYPE_WRITER.length; i++) {
       let list: ITypeWriterList = TYPE_WRITER[i]
       list.container = homeRef.current
@@ -43,25 +51,25 @@ const Home = (props: IHomeProps) => {
           TYPE_WRITER.map((item, index) => {
             return (
               item.tagName === 'h1' ? (
-                <h1 {...item.config} key={index}>{item.text}</h1>
+                <h1 {...item.reactAttr} key={index}>{item.text}</h1>
               ) : item.tagName === 'h2' ? (
-                <h2 {...item.config} key={index}>{item.text}</h2>
+                <h2 {...item.reactAttr} key={index}>{item.text}</h2>
               ) : item.tagName === 'h3' ? (
-                <h3 {...item.config} key={index}>{item.text}</h3>
+                <h3 {...item.reactAttr} key={index}>{item.text}</h3>
               ) : item.tagName === 'h4' ? (
-                <h4 {...item.config} key={index}>{item.text}</h4>
+                <h4 {...item.reactAttr} key={index}>{item.text}</h4>
               ) : item.tagName === 'h5' ? (
-                <h5 {...item.config} key={index}>{item.text}</h5>
+                <h5 {...item.reactAttr} key={index}>{item.text}</h5>
               ) : item.tagName === 'h6' ? (
-                <h6 {...item.config} key={index}>{item.text}</h6>
+                <h6 {...item.reactAttr} key={index}>{item.text}</h6>
               ) : item.tagName === 'a' ? (
-                <a {...item.config} key={index}>{item.text}</a>
+                <a {...item.reactAttr} key={index}>{item.text}</a>
               ) : item.tagName === 'p' ? (
-                <p {...item.config} key={index}>{item.text}</p>
+                <p {...item.reactAttr} key={index}>{item.text}</p>
               ) : item.tagName === 'span' ? (
-                <span {...item.config} key={index}>{item.text}</span>
+                <span {...item.reactAttr} key={index}>{item.text}</span>
               ) : (
-                <p {...item.config} key={index}>{item.text}</p>
+                <p {...item.reactAttr} key={index}>{item.text}</p>
               )
             )
           })

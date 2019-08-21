@@ -12,7 +12,8 @@ export enum MusicPlayType {
   NO_TYPE,
   SEARCH,
   RANK,
-  SHEET
+  SHEET,
+  HOME
 }
 
 export namespace NameSpaceStore {

@@ -6,8 +6,6 @@ interface ItyperConfig {
 }
 
 interface IDomAttr {
-  herf?: string;
-  onclick?: () => void;
   [propName: string]: any;
 }
 
@@ -17,6 +15,7 @@ export interface ITypeWriterList {
   config: ItyperConfig;
   container?: Element;
   domAttr: IDomAttr;
+  reactAttr: IDomAttr;
 }
 
 export default function typeWriter (typeWriterList: ITypeWriterList): Promise<void> {

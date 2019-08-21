@@ -33,6 +33,7 @@ export const getMusicIndexById = (id: number): number | MusicGroupList => {
 }
 
 export const formatMusicArtists = (artists: artists) => {
+  console.log('artists', artists)
   return artists.map((artist: artist) => artist.name).join(', ')
 }
 
@@ -48,6 +49,7 @@ export const getPlayMuiscList = async (list: MusicGroupList): Promise<IMusicInfo
   await checkMusicById(list.id)
   const { songs : musicDetail } = await getMusicDetailById(list.id) as any
   const formatDetail = formatMusicLists(musicDetail)
+  console.log('list', list)
   return {
     id: list.id,
     url: getUrlById(list.id),
