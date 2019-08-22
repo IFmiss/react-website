@@ -45,7 +45,7 @@ export const TYPE_WRITER: ITypeWriterList[] = [
     config: {},
     domAttr: {
       class: 'underline',
-      onclick: async () => {
+      click: async () => {
         const list = await getPlayMuiscList(store.musicStore.currentList)
         DAudio.start(list)
       }

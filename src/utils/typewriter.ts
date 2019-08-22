@@ -1,3 +1,4 @@
+import { checkType } from 'd-utils/lib/storeUtils'
 import './../style/type-writer.less'
 
 interface ItyperConfig {
@@ -18,14 +19,32 @@ export interface ITypeWriterList {
   reactAttr: IDomAttr;
 }
 
+export function getAttrEntries (propName: string, obj: any): any[] {
+  const val = obj[propName]
+  const type = checkType(val)
+  switch (checkType(val)) {
+    case 'string':
+    case 'function':
+      return [type, val]
+    case 'object':
+      return [type, {...val}]
+    default:
+      return [type, val]
+  }
+}
+
 export default function typeWriter (typeWriterList: ITypeWriterList): Promise<void> {
   console.log(typeWriterList)
   const {text, tagName, container, config, domAttr } = typeWriterList
   const el = document.createElement(tagName)
 
   Object.keys(domAttr).forEach(((item) => {
-    const prop = typeof (domAttr as any)[item] === 'string' ? (domAttr as any)[item] : {...(domAttr as any)[item]}
-    el.setAttribute(item, prop)
+    const [type, prop] = getAttrEntries(item, domAttr)
+    if (type === 'function') {
+      el.addEventListener(item, prop)
+    } else {
+      el.setAttribute(item, prop)
+    }
   }))
   
   const splitBar = document.createElement('span')
