@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import './d-audio.less'
 import store from './../../store'
 import { throttle } from 'd-utils/lib/genericUtils'
+import Lyric from './../Lyric'
 import { getMusicIndexById, getPlayMuiscList, getNextMusicList} from './../../utils/music'
 
 export interface IMusicInfo {
@@ -143,6 +144,7 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
     [`bottom-right`]: props.position === DAudioPosition.BOTTOM_RIGHT,
     [`circle`]: type === DAudioType.CIRCLE,
     [`rect`]: type === DAudioType.RECT,
+    [`show`]: store && store.musicStore && store.musicStore.musicListQueue.length
   })
 
   const classPlayPause = classNames({
@@ -160,6 +162,7 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
     console.log('musicList', musicList)
     setList((list) => musicList)
     play()
+    Lyric.start()
   }
 
   const play = () => {

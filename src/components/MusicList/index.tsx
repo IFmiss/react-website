@@ -1,16 +1,12 @@
 import React, { useEffect, useMemo } from 'react'
 import classNames from 'classnames'
 import './music-list.less'
-import { MusicGroupList, MusicGroupLists } from './../../type'
+import { MusicGroupList } from './../../type'
 import { PROJECT_NAME } from '../../config/constance'
-import { artists, artist } from './../../type'
+import { artist } from './../../type'
 import { parseDuraiton,
-         formatMusicArtists,
-         clipImage,
-         formatMusicLists,
          getUrlById,
          getPlayMuiscList } from './../../utils/music'
-import { getMusicDetailById, checkMusicById } from './../../pages/Music/action'
 import DAudio from './../DAudio'
 import store from '../../store';
 

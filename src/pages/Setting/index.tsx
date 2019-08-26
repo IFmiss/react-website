@@ -41,14 +41,6 @@ const Setting = observer((props: ISettingProps) => {
           <span>护眼模式</span>
           <Switch checked={isDark} onChange={changePageModeFn}/>
         </li>
-        <li className={`${PROJECT_NAME}-setting-wrap-content-list`}>
-          <span>护眼模式</span>
-          <Switch checked={isDark} onChange={changePageModeFn}/>
-        </li>
-        <li className={`${PROJECT_NAME}-setting-wrap-content-list`}>
-          <span>护眼模式</span>
-          <Switch checked={isDark} onChange={changePageModeFn}/>
-        </li>
       </ul>
       <h4 className={`${PROJECT_NAME}-setting-wrap-title`}>
         音乐设置

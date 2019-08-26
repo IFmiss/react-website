@@ -48,7 +48,6 @@ module.exports = {
                 ]
             }
 					},
-					"less-loader"
 				]
 			},
 			{
@@ -56,38 +55,14 @@ module.exports = {
 				use: [
 					devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
 					"css-loader",
-					{
-						loader:"postcss-loader",
-            options: {
-                plugins: () => [
-                    require('autoprefixer')()
-                ]
-            }
-					},
 					"less-loader",
 					{
 						loader: 'style-resources-loader',
 						options: {
-							patterns: path.resolve(__dirname, './src/style/index.less')
+							patterns: path.resolve(__dirname, './src/style/common.less')
 						}
 					}
 				],
-			},
-			{
-				test: /\.styl$/,
-				use: [
-					devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-					"css-loader",
-					{
-						loader:"postcss-loader",
-            options: {
-                plugins: () => [
-                    require('autoprefixer')()
-                ]
-            }
-					},
-					"stylus-loader"
-				]
 			},
 			{
 				test: /\.(ttf|eot|svg|woff|woff2)$/,

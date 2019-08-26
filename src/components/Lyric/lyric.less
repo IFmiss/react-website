@@ -1,0 +1,31 @@
+@lyric_h: 50px;
+.@{project-prefix}-lyric-comp {
+  position: fixed;
+  bottom: 50px;
+  height: @lyric_h;
+  width: 600px;
+  left: 50%;
+  right: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  background: rgba(0, 0, 0, .1);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  &-close {
+    flex: 0 0 @lyric_h;
+    background: red;
+    height: @lyric_h;
+  }
+  &-content {
+    flex: 1 1 auto;
+    overflow: hidden;
+    &-list {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      color: var(--text-color);
+    }
+  }
+}
+

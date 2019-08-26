@@ -3,6 +3,53 @@
   position: relative;
 }
 
+:root {
+  --shadow-color: #f0f0f0;
+  --border-color: rgba(33, 33, 33, 0.03);
+  --primary-color: #158a4c;
+  --text-color: #666;
+  --text-color-active: #333;
+  --bg-nav: #fff;
+  --bg-nav-hover: #fafafa;
+  --bg: #fff;
+}
+
+#dw-react-web-container.light {
+  --auto-color: #aaa;
+  --scroll-color: #f2f2f2;
+  --shadow-color: #f0f0f0;
+  --border-color: rgba(33, 33, 33, 0.03);
+  --primary-color: #FF3300;
+  --text-color: #666;
+  --text-color-active: #333;
+  --bg-nav: #fff;
+  --bg-nav-active: #fafafa;
+  --mask-bg: rgba(244,244,244,0.3);
+  --bg: #fff;
+}
+
+#dw-react-web-container.dark {
+  --auto-color: #999;
+  --scroll-color: #666;
+  --shadow-color: #0e0e0f;
+  --border-color: rgba(222, 222, 222, 0.03);
+  --primary-color: pink;
+  --text-color: #999;
+  --text-color-active: #eee;
+  --bg-nav: #1e1e22;
+  --bg-nav-active: #1a1a1d;
+  --mask-bg: rgba(0,0,0,0.3);
+  --bg: #201e1e;
+}
+
+body.light {
+  --bg: #fff;
+}
+
+body.dark {
+  --bg: #201e1e;
+}
+
 .dw-page-router {
   width: @container-width;
   margin: 0 auto;

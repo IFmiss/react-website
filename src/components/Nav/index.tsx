@@ -3,7 +3,7 @@ import { INavLists, INavList } from './../../config/nav'
 import classNames from 'classnames'
 import './nav.less'
 import store from './../../store'
-import { PROJECT_NAME } from './../../config/constance'
+import { PROJECT_NAME, WEBSITE_TITLE } from './../../config/constance'
 import React, { useState, useEffect } from 'react'
 import { observer, useObservable, useObserver, useLocalStore, useStaticRendering, useComputed } from "mobx-react-lite"
 import { useStore } from './../../utils/use'
@@ -25,7 +25,7 @@ const Nav = observer((props: INavProps) => {
       <div className="nav-content">
         <div className="nav-logo">
           {/* <img className="nav-img" src="http://www.daiwei.org/index/images/logo/favicon.ico" alt=""/> */}
-          <h2 className="nav-title">Dw</h2>
+          <h2 className="nav-title">{WEBSITE_TITLE}</h2>
         </div>
         <div className="nav-lists">
           {

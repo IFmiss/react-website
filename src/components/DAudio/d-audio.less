@@ -11,6 +11,12 @@
   border-radius: 10px;
   transition: all 0.3s;
   overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
   &.bottom-left {
     left: 50px;
     right: unset;
