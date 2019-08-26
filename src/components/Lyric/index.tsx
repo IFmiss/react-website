@@ -5,7 +5,7 @@ import { PROJECT_NAME } from './../../config/constance'
 import { MUSCI_MENU } from './../../config/music'
 import './lyric.less'
 // import { useStore } from './../../utils/use'
-import { useObserver } from 'mobx-react-lite'
+import { useObserver, observer } from 'mobx-react-lite'
 import store from '../../store';
 
 interface ILyricState {
@@ -19,7 +19,7 @@ export const Lyric: React.FC = (props, ref) => {
 
   const classString = classNames({
     [`${PROJECT_NAME}-lyric-comp`]: true,
-    // ['dark']: useStore().colorStore.mode
+    ['dark']: store && store.colorStore.mode
   })
 
   const start = () => {
@@ -35,18 +35,15 @@ export const Lyric: React.FC = (props, ref) => {
     start
   }))
 
-  return useObserver(() => {
-    console.log(store)
-    return (
-      <div className={classString} ref={lyricRef}>
-        <ul className={`${PROJECT_NAME}-lyric-comp-content`}>
-          <li className={`${PROJECT_NAME}-lyric-comp-content-list`}>this is lyric</li>
-        </ul>
-        <i className={`${PROJECT_NAME}-lyric-comp-close`}
-           onClick={close}></i>
-      </div>
-    )
-  })
+  return (
+    <div className={classString} ref={lyricRef}>
+      <ul className={`${PROJECT_NAME}-lyric-comp-content`}>
+        <li className={`${PROJECT_NAME}-lyric-comp-content-list`}>this is lyric</li>
+      </ul>
+      <i className={`${PROJECT_NAME}-lyric-comp-close`}
+         onClick={close}></i>
+    </div>
+  )
 }
 
 const LyricComponent = React.forwardRef(Lyric)
