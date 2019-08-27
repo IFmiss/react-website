@@ -16,6 +16,36 @@ export enum MusicPlayType {
   HOME
 }
 
+export enum MusicLyricType {
+  /** 加载中。。。 */
+  LOADING,
+  /** 有歌词 */
+  HAS_LYRIC,
+  /** 纯音乐 */
+  ABSOLUTE,
+  /** 暂无歌词 */
+  NOT_FOUND
+}
+
+interface ILrc {
+  lyric: string | null;
+  version: number;
+}
+
+export interface IMusicLyric {
+  code: number;
+  klyric?: ILrc;
+  tlyric?: ILrc;
+  lrc?: ILrc;
+  qfy?: boolean;
+  sfy?: boolean;
+  sgc?: boolean;
+  needDesc?: boolean;
+  nolyric?: boolean;
+  objLrc: any[];
+  lrcType: MusicLyricType;
+}
+
 export namespace NameSpaceStore {
   export interface IColorModel {
     mode: string;
@@ -40,6 +70,8 @@ export namespace NameSpaceStore {
     setMusicPlayTask: (lists: MusicGroupLists,
                       index: number,
                       type: MusicPlayType) => void;
+    musicLyric: IMusicLyric;
+    setMusicLyric: (lyric: IMusicLyric) => void;
   }
 }
 

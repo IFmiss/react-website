@@ -1,7 +1,7 @@
 import { observable, computed, action, isComputedProp } from 'mobx'
 import { DAudioPosition } from './../../components/DAudio'
 import { MusicGroupList, MusicGroupLists } from './../../type'
-import { MusicPlayType } from './../types'
+import { MusicPlayType, MusicLyricType, IMusicLyric } from './../types'
 import LogUtils from 'd-utils/lib/logUtils'
 export default class MusicModel {
   @observable
@@ -57,4 +57,15 @@ export default class MusicModel {
   /** 当前播放的列表数据 */
   @observable
   musicListQueue: MusicGroupLists = []
+
+  /** 当前的音乐lyric */
+  @observable
+  musicLyric: IMusicLyric = { code: 0, objLrc: {}, lrcType: 0 }
+
+  /** 设置音乐lyric */
+  @action
+  setMusicLyric (lyric: IMusicLyric) {
+    this.musicLyric = lyric
+    console.log('this.musicLyric', this.musicLyric)
+  }
 }

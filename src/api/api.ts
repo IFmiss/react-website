@@ -24,6 +24,9 @@ export default {
     MUSIC_CHECK: `${musicBaseUrl}/check/music`,
 
     /** 获取歌单详情 */
-    MUSIC_SHEET_DETAIL: `${musicBaseUrl}/playlist/detail`
+    MUSIC_SHEET_DETAIL: `${musicBaseUrl}/playlist/detail`,
+
+    /** 歌词 */
+    LYRIC: `${musicBaseUrl}/lyric`
   }
 }
