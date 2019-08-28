@@ -10,12 +10,14 @@ import store from '../../store';
 
 interface ILyricState {
   start: () => void;
+  checkLrc: (lrc: string) => void;
 }
 
 interface ILyricProps {}
 
 export const Lyric: React.FC = (props, ref) => {
   const lyricRef = useRef(null)
+  const [currentLyric, setCurrentLyric] = useState<string>('')
 
   const classString = classNames({
     [`${PROJECT_NAME}-lyric-comp`]: true,
@@ -26,19 +28,25 @@ export const Lyric: React.FC = (props, ref) => {
     console.log('this is lyric start')
   }
 
+  const checkLrc = (lrc: string) => {
+    console.log('lrclrclrclrclrc', lrc)
+    setCurrentLyric(currentLyric => currentLyric = lrc)
+  }
+
   const close = () => {
     console.log('you click close')
     Ins.destroy()
   }
 
   useImperativeHandle(ref, () => ({
-    start
+    start,
+    checkLrc
   }))
 
   return (
     <div className={classString} ref={lyricRef}>
       <ul className={`${PROJECT_NAME}-lyric-comp-content`}>
-        <li className={`${PROJECT_NAME}-lyric-comp-content-list`}>this is lyric</li>
+        <li className={`${PROJECT_NAME}-lyric-comp-content-list`}>{currentLyric}</li>
       </ul>
       <i className={`${PROJECT_NAME}-lyric-comp-close`}
          onClick={close}></i>
@@ -62,11 +70,12 @@ function newInstance (props: ILyricProps) {
     (div.parentNode as HTMLDivElement ).removeChild(div);
   }
 
-  const { start } = LyricRef.current as ILyricState
+  const { start, checkLrc } = LyricRef.current as ILyricState
 
   return {
     start,
-    destroy
+    destroy,
+    checkLrc
   }
 }
 

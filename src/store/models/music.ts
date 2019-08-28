@@ -58,14 +58,41 @@ export default class MusicModel {
   @observable
   musicListQueue: MusicGroupLists = []
 
+  /** 音乐的歌词进度索引 */
+  @observable
+  musicLyricIndex: number = 0
+
+  /** 设置歌词进度索引 */
+  @action
+  setMusicLyricIndex (index: number) {
+    this.musicLyricIndex = index
+  }
+
+  /** 当前歌词内容 */
+  @computed get
+  currentLyric (): string {
+    switch (this.musicLyric.lrcType) {
+      case MusicLyricType.LOADING:
+        return '歌词加载中，请稍等'
+      case MusicLyricType.ABSOLUTE:
+        return '纯音乐，请欣赏'
+      case MusicLyricType.HAS_LYRIC:
+        const lrc = this.musicLyric.objLrc &&
+                    this.musicLyric.objLrc[this.musicLyricIndex] &&
+                    this.musicLyric.objLrc[this.musicLyricIndex].lrc
+        return lrc || '...'
+      default:
+        return '暂无歌词'
+    }
+  }
+
   /** 当前的音乐lyric */
   @observable
-  musicLyric: IMusicLyric = { code: 0, objLrc: {}, lrcType: 0 }
+  musicLyric: IMusicLyric = { code: 0, objLrc: [], lrcType: 0 }
 
   /** 设置音乐lyric */
   @action
   setMusicLyric (lyric: IMusicLyric) {
     this.musicLyric = lyric
-    console.log('this.musicLyric', this.musicLyric)
   }
 }

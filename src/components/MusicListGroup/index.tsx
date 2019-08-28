@@ -39,7 +39,7 @@ const MusicListGroup = observer((props: IMusicListsGroupProps) => {
             {
               props.lists.map((item: MusicGroupList, index: number) => (
                 <CSSTransition  in={start}
-                                key={`${item.id}-${index}`}
+                                key={`${item.id}-${new Date().getTime()}`}
                                 timeout={
                                   {
                                     enter: 300 + (index % MUSIC_SEARCH_DEFAULT_LISMIT) * 30,
@@ -50,6 +50,7 @@ const MusicListGroup = observer((props: IMusicListsGroupProps) => {
                                 appear={false}
                                 unmountOnExit={false}>
                   <MusicList list={item}
+                             key={`${item.id}--${new Date().getTime()}`}
                              index={index}
                              addMusicQueue={addMusicQueue}/>
                 </CSSTransition>

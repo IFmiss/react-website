@@ -4,6 +4,7 @@ import Vibrant from 'node-vibrant'
 import ReactDOM from 'react-dom';
 import './d-audio.less'
 import store from './../../store'
+import { IMusicLyric, MusicLyricType } from './../../store/types'
 import { throttle } from 'd-utils/lib/genericUtils'
 import Lyric from './../Lyric'
 import { getMusicIndexById, getPlayMuiscList, getNextMusicList} from './../../utils/music'
@@ -129,10 +130,28 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
 
   const handleProgress = throttle(() => {
     const { currentTime, duration } = (audioRef.current as any)
+
+    // 歌词的操作
+    if (store.musicStore.musicLyric.lrcType === MusicLyricType.HAS_LYRIC) {
+      store.musicStore.setMusicLyricIndex(lyricIndex(currentTime))
+      Lyric.checkLrc(store.musicStore.currentLyric)
+    }
+    
     setProgress((progress: number) => progress = Number((currentTime / duration * 100).toFixed(2)))
   }, 1500)
 
-  // const imageColorL
+  const lyricIndex = (currentT: number) => {
+    const objLrc = store.musicStore.musicLyric.objLrc
+    let activeIndex = -1
+    for (let i = 0; i < objLrc.length; i++) {
+      if (currentT > objLrc[i].t) {
+        activeIndex = i
+      } else {
+        break
+      }
+    }
+    return activeIndex
+  }
 
   const selfClass = classNames({
     [`d-audio`]: true,
@@ -162,7 +181,7 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
     console.log('musicList', musicList)
     setList((list) => musicList)
     play()
-    Lyric.start()
+    Lyric.checkLrc(store.musicStore.currentLyric)
   }
 
   const play = () => {

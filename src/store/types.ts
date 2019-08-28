@@ -72,6 +72,9 @@ export namespace NameSpaceStore {
                       type: MusicPlayType) => void;
     musicLyric: IMusicLyric;
     setMusicLyric: (lyric: IMusicLyric) => void;
+    currentLyric: string;
+    musicLyricIndex: number;
+    setMusicLyricIndex: (index: number) => void;
   }
 }
 

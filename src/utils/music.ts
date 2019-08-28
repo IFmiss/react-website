@@ -115,11 +115,14 @@ export const parseLrc = (lrc: any): any[] => {
       let sec = Number(String(t.match(/\:\d*/i)).slice(1))
       const time = min * 60 + sec
       // lrcObj[time] = clause
-      lrcObj.push({
-        t: time,
-        lrc: clause
-      })
+      if (clause) {
+        lrcObj.push({
+          t: time,
+          lrc: clause
+        })
+      }
     }
   }
+  console.log('lrcObj', lrcObj)
   return lrcObj
 }
