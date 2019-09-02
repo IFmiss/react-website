@@ -64,7 +64,7 @@ const MusicRank = () => {
     setType((showType) => showType = false)
   }
   return(
-    <div className={classString}>
+    <section className={classString}>
       <div className={`${classString}-type`}>
         <div className={classTypeList} onClick={hideTypeList}>
           <div className="content">
@@ -93,7 +93,7 @@ const MusicRank = () => {
           )
         }
       </div>
-    </div>
+    </section>
   )
 }
 

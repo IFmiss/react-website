@@ -33,7 +33,6 @@ const Setting = observer((props: ISettingProps) => {
   }
 
   const changeMusicLyric = () => {
-    // const show = useStore().musicStore.lyricIsShow
     if (selfSettingRef.current) {
       selfSettingRef.current = false
       Lyric.close()
