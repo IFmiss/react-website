@@ -8,6 +8,7 @@ import './sheet-group.less'
 
 interface ISheetGroup {
   lists: SheetGroupLists;
+  history: any;
 }
 
 const SheetGroup = (props: ISheetGroup) => {
@@ -36,7 +37,7 @@ const SheetGroup = (props: ISheetGroup) => {
                             classNames="side-up-fade"
                             appear={false}
                             unmountOnExit={false}>
-              <SheetList list={item}/>
+              <SheetList list={item} history={props.history}/>
             </CSSTransition>
           ))
         }

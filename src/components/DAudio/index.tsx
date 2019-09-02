@@ -142,11 +142,13 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
   const lyricIndex = (currentT: number) => {
     const objLrc = store.musicStore.musicLyric.objLrc
     let activeIndex = -1
-    for (let i = 0; i < objLrc.length; i++) {
-      if (currentT > objLrc[i].t) {
-        activeIndex = i
-      } else {
-        break
+    if (objLrc && objLrc.length) {
+      for (let i = 0; i < objLrc.length; i++) {
+        if (currentT > objLrc[i].t) {
+          activeIndex = i
+        } else {
+          break
+        }
       }
     }
     return activeIndex

@@ -1,0 +1,44 @@
+.@{project-prefix}-music-sheet-detail {
+  &-header {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 20px 0 60px 0;
+    &-avatar {
+      flex: 0 0 200px;
+      width: 200px;
+      height: 200px;
+      margin-right: 60px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    &-desc {
+      flex: 1 1 auto;
+      overflow: hidden;
+      .title {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        margin-top: 0;
+        color: var(--text-color);
+      }
+      .info {
+        width: 100%;
+        .lineclamp(66px, 2);
+      }
+
+      .count {
+        margin-top: 20px;
+        font-size: 14px;
+        color: var(--text-color);
+        span {
+          &:last-child {
+            margin-left: 20px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -10,43 +10,61 @@ import { MusicPlayType } from './../../../store/types'
 import { sheetDetailById } from './../action'
 import * as UrlUtils from 'd-utils/lib/urlUtils'
 import { formatMusicLists } from './../../../utils/music'
+// import {}
 
 const SheetDetail: React.FC = (props) => {
   const classString = classNames({
     [`${PROJECT_NAME}-music-sheet-detail`]: true
   })
   const [sheetDetailLists, setSheetDetailLists] = useState<any>([])
+  const [detialInfo, setDetailInfo] = useState<any>({})
   const sheetId = UrlUtils.parseUrl(decodeURIComponent(location.href)).sheetId
 
   useEffect(() => {
     const getSheetLists = async () => {
       const { playlist } = await sheetDetailById(sheetId) as any
       setSheetDetailLists((sheetDetailLists: any) => sheetDetailLists = formatMusicLists(playlist.tracks))
+      setDetailInfo((detialInfo: any) => detialInfo = {
+        coverImgUrl: playlist.coverImgUrl,
+        description: playlist.description,
+        name: playlist.name,
+        id: playlist.id,
+        trackCount: playlist.trackCount,
+        playCount: playlist.playCount,
+      })
     }
     getSheetLists()
   }, [])
 
   return (
     <section className={classString}>
-      <div className={`${classString}-header`}>
-        <div className={`${classString}-header-avatar`}>
-          <LazyImg src=""/>
-        </div>
-        <div className={`${classString}-header-desc`}>
-
-        </div>
-      </div>
-      <div className={`${classString}-lists`}>
-        {
-          sheetDetailLists.length ? (
-            <MusicListGroup lists={sheetDetailLists}
-                            transition={false}
-                            type={MusicPlayType.RANK}/>
+      {
+        sheetDetailLists.length ? (
+          <div>
+            <div className={`${classString}-header`}>
+              <div className={`${classString}-header-avatar`}>
+                <LazyImg src={`${detialInfo.coverImgUrl}?param=200y200`}/>
+              </div>
+              <div className={`${classString}-header-desc`}>
+                <h3 className="title">{detialInfo.name}</h3>
+                <div className="info" title={detialInfo.description}>{detialInfo.description}</div>
+                <div className="count">
+                  <span>共 { detialInfo.trackCount } 首音乐</span>
+                  <span>{ detialInfo.playCount } 人听过</span>
+                </div>
+              </div>
+            </div>
+            <div className={`${classString}-lists`}>
+                  <MusicListGroup lists={sheetDetailLists}
+                                  transition={false}
+                                  type={MusicPlayType.RANK}/>
+              }
+            </div>
+          </div>
           ) : (
             <LoadingTips show={!sheetDetailLists.length} text="加载中..."/>
           )
-        }
-      </div>
+      }
     </section>
   )
 }

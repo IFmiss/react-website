@@ -76,7 +76,7 @@ const MusicSheet = (props: MusicSheetProps) => {
   return(
     <section className={classString}>
       <MenuBar menuType={sheetType} cat={cat} checkMusicType={checkMusicType} {...props}/>
-      <SheetGroup lists={sheetLists}/>
+      <SheetGroup lists={sheetLists} history={props.history}/>
       <LoadingTips show={loadingTipsFn.loading}/>
     </section>
   )

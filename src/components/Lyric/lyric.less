@@ -26,6 +26,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: all 0.3s;
     font-size: 12px;
   }
   &-content {
@@ -50,6 +51,12 @@ body.light {
         color: var(--text-color);
       }
     }
+    &-close {
+      color: var(--text-color);
+      &:hover {
+        background: var(--shadow-color);
+      }
+    }
   }
 }
 
@@ -60,6 +67,12 @@ body.dark {
     &-content {
       &-list {
         color: var(--text-color);
+      }
+    }
+    &-close {
+      color: var(--text-color);
+      &:hover {
+        background: var(--shadow-color);
       }
     }
   }
