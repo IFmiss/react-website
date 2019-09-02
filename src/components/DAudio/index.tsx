@@ -132,7 +132,7 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
     const { currentTime, duration } = (audioRef.current as any)
 
     // 歌词的操作
-    if (store.musicStore.musicLyric.lrcType === MusicLyricType.HAS_LYRIC) {
+    if (store.musicStore.musicLyric.isShow) {
       store.musicStore.setMusicLyricIndex(lyricIndex(currentTime))
       Lyric.checkLrc(store.musicStore.currentLyric)
     }

@@ -4,7 +4,7 @@
   bottom: 20px;
   height: @lyric_h;
   z-index: @audio-lyric-index;
-  width: 600px;
+  width: 400px;
   left: 50%;
   right: 50%;
   transform: translate3d(-50%, 0, 0);
@@ -12,14 +12,26 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  opacity: 0;
+  visibility: visible;
+  transition: opacity 0.3s;
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
   &-close {
-    flex: 0 0 @lyric_h;
-    background: red;
+    flex: 0 0 @lyric_h  * 1.5;
     height: @lyric_h;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
   }
   &-content {
     flex: 1 1 auto;
     overflow: hidden;
+    padding: 0 10px 0 40px;
     &-list {
       text-overflow: ellipsis;
       white-space: nowrap;

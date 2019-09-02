@@ -17,6 +17,9 @@ export enum MusicPlayType {
 }
 
 export enum MusicLyricType {
+  /** 关闭歌词显示 */
+  CLOSE_LYRIC,
+
   /** 加载中。。。 */
   LOADING,
   /** 有歌词 */
@@ -44,6 +47,7 @@ export interface IMusicLyric {
   nolyric?: boolean;
   objLrc: any[];
   lrcType: MusicLyricType;
+  isShow: boolean;
 }
 
 export namespace NameSpaceStore {

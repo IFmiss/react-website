@@ -88,11 +88,14 @@ export default class MusicModel {
 
   /** 当前的音乐lyric */
   @observable
-  musicLyric: IMusicLyric = { code: 0, objLrc: [], lrcType: 0 }
+  musicLyric: IMusicLyric = { code: 0, objLrc: [], lrcType: MusicLyricType.LOADING, isShow: false }
 
   /** 设置音乐lyric */
   @action
   setMusicLyric (lyric: IMusicLyric) {
     this.musicLyric = lyric
   }
+
+  @observable
+  lyricIsShow: boolean = true
 }

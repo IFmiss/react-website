@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import fetch from './../../utils/fetch'
-import { IStore } from './../../store/types'
+import { IStore, MusicLyricType } from './../../store/types'
 import { observer, useObservable, useObserver, useLocalStore, useStaticRendering, useComputed } from "mobx-react-lite"
 import { useStore } from './../../utils/use'
 import classNames from 'classnames'
@@ -10,6 +10,8 @@ import Switch from './../../components/Switch'
 import { changePageMode } from './../../utils/utils'
 import { randomPrimaryColor } from './../../utils/utils'
 import LogUtils from 'd-utils/lib/logUtils';
+import store from '../../store';
+import Lyric from './../../components/Lyric'
 
 interface ISettingProps {}
 
@@ -20,10 +22,23 @@ const Setting = observer((props: ISettingProps) => {
   })
 
   let [isDark, setDark] = useState(useStore().colorStore.mode === 'dark')
-  
+
+  const [isShowLyric, setIsShowLyric] = useState<boolean>(store.musicStore.musicLyric.isShow)
+
   const changePageModeFn = (isDarkMode: boolean) => {
     setDark(() => isDark = isDarkMode)
     changePageMode()
+  }
+
+  const changeMusicLyric = () => {
+    // const show = useStore().musicStore.musicLyric.isShow
+    if (isShowLyric) {
+      setIsShowLyric((isShowLyric) => isShowLyric = false)
+      store.musicStore.musicLyric.isShow = false
+    } else {
+      setIsShowLyric((isShowLyric) => isShowLyric = true)
+      store.musicStore.musicLyric.isShow = true
+    }
   }
 
   let [testProps, setTestProps] = useState(true)
@@ -48,12 +63,10 @@ const Setting = observer((props: ISettingProps) => {
       <ul className={`${PROJECT_NAME}-setting-wrap-content`}>
         <li className={`${PROJECT_NAME}-setting-wrap-content-list`}>
           <span>歌词显示</span>
-          {/* <Switch checked={false}
-                  // onChange={changePageMode}
+          <Switch checked={isShowLyric}
+                  onChange={changeMusicLyric}
                   unCheckedName="关"
-                  checkedName="开"/> */}
-          {/* <Switch checked={testProps} onChange={changeTest}/> */}
-          <Switch checked={testProps} onChange={changeTest}/>
+                  checkedName="开"/>
         </li>
       </ul>
     </div>

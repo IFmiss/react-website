@@ -8,7 +8,12 @@ export const WEBSITE_TITLE = 'HELLO'
 export const TITLE = '未曾遗忘的青春，戴伟的个人博客'
 export const TITLE_ENTRY = '哈哈 你又来了'
 export const TITLE_OUT = '你走了啊啊'
-export const SELF_SHEET_LIST = 2179377798
+
+export const SELF_SHEET_INFO = {
+  id: 2179377798,
+  name: '程序员必备，带上耳机代码就是全世界'
+}
+
 export const TYPE_WRITER: ITypeWriterList[] = [
   {
     text: 'Hello!!!',
@@ -41,7 +46,7 @@ export const TYPE_WRITER: ITypeWriterList[] = [
     domAttr: {},
     reactAttr: {}
   }, {
-    text: '《程序员必备，带上耳机代码就是全世界》',
+    text: `《${SELF_SHEET_INFO}》`,
     tagName: 'span',
     config: {},
     domAttr: {

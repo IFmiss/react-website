@@ -7,6 +7,8 @@ import './lyric.less'
 // import { useStore } from './../../utils/use'
 import { useObserver, observer } from 'mobx-react-lite'
 import store from '../../store';
+import { MusicLyricType } from './../../store/types'
+import { bool } from 'prop-types';
 
 interface ILyricState {
   start: () => void;
@@ -18,10 +20,11 @@ interface ILyricProps {}
 export const Lyric: React.FC = (props, ref) => {
   const lyricRef = useRef(null)
   const [currentLyric, setCurrentLyric] = useState<string>('')
+  const [isShow, setIsShow] = useState<Boolean>(false)
 
   const classString = classNames({
     [`${PROJECT_NAME}-lyric-comp`]: true,
-    ['dark']: store && store.colorStore.mode
+    [`show`]: isShow
   })
 
   const start = () => {
@@ -29,12 +32,13 @@ export const Lyric: React.FC = (props, ref) => {
   }
 
   const checkLrc = (lrc: string) => {
-    console.log('lrclrclrclrclrc', lrc)
+    if (!store.musicStore.musicLyric.isShow) return
+    if (!isShow) setIsShow((isShow) => isShow = true)
     setCurrentLyric(currentLyric => currentLyric = lrc)
   }
 
   const close = () => {
-    console.log('you click close')
+    setIsShow((isShow) => isShow = false)
     Ins.destroy()
   }
 
@@ -48,8 +52,8 @@ export const Lyric: React.FC = (props, ref) => {
       <ul className={`${PROJECT_NAME}-lyric-comp-content`}>
         <li className={`${PROJECT_NAME}-lyric-comp-content-list`}>{currentLyric}</li>
       </ul>
-      <i className={`${PROJECT_NAME}-lyric-comp-close`}
-         onClick={close}></i>
+      <span className={`${PROJECT_NAME}-lyric-comp-close`}
+         onClick={close}> 关闭 </span>
     </div>
   )
 }
@@ -66,6 +70,7 @@ function newInstance (props: ILyricProps) {
   console.log(LyricRef.current)
 
   const destroy = () => {
+    store.musicStore.musicLyric.isShow = false
     ReactDOM.unmountComponentAtNode(div);
     (div.parentNode as HTMLDivElement ).removeChild(div);
   }
