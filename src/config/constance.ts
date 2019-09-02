@@ -46,7 +46,7 @@ export const TYPE_WRITER: ITypeWriterList[] = [
     domAttr: {},
     reactAttr: {}
   }, {
-    text: `《${SELF_SHEET_INFO}》`,
+    text: `《${SELF_SHEET_INFO.name}》`,
     tagName: 'span',
     config: {},
     domAttr: {
