@@ -10,6 +10,7 @@ import DAudio from './../../../components/DAudio';
 import './rank.less'
 import Notice from '../../../components/Notice'
 import { MusicPlayType } from './../../../store/types'
+import store from '../../../store';
 
 const MusicRank = () => {
   const urlKeywords = UrlUtils.parseUrl(decodeURIComponent(location.href)).keywords
@@ -42,6 +43,7 @@ const MusicRank = () => {
     DAudio.list
     console.log(DAudio.list)
   }
+  console.log('rank - store.musicStore.lyricIsShow', store.musicStore.lyricIsShow)
 
   const showTypeList = () => {
     setType((showType) => showType = true)

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useRef } from 'react'
 import fetch from './../../utils/fetch'
 import { IStore, MusicLyricType } from './../../store/types'
 import { observer, useObservable, useObserver, useLocalStore, useStaticRendering, useComputed } from "mobx-react-lite"
@@ -22,8 +22,10 @@ const Setting = observer((props: ISettingProps) => {
   })
 
   let [isDark, setDark] = useState(useStore().colorStore.mode === 'dark')
+  const selfSettingRef = useRef<null | any>(false)
 
-  const [isShowLyric, setIsShowLyric] = useState<boolean>(store.musicStore.musicLyric.isShow)
+  console.log('lyric isShowLyric', store.musicStore.lyricIsShow)
+  selfSettingRef.current = store.musicStore.lyricIsShow
 
   const changePageModeFn = (isDarkMode: boolean) => {
     setDark(() => isDark = isDarkMode)
@@ -31,13 +33,13 @@ const Setting = observer((props: ISettingProps) => {
   }
 
   const changeMusicLyric = () => {
-    // const show = useStore().musicStore.musicLyric.isShow
-    if (isShowLyric) {
-      setIsShowLyric((isShowLyric) => isShowLyric = false)
-      store.musicStore.musicLyric.isShow = false
+    // const show = useStore().musicStore.lyricIsShow
+    if (selfSettingRef.current) {
+      selfSettingRef.current = false
+      Lyric.close()
     } else {
-      setIsShowLyric((isShowLyric) => isShowLyric = true)
-      store.musicStore.musicLyric.isShow = true
+      selfSettingRef.current = true
+      Lyric.show()
     }
   }
 
@@ -46,7 +48,7 @@ const Setting = observer((props: ISettingProps) => {
     setTestProps(testProps => checked)
   }
   return (
-    <div className={classString}>
+    <div className={classString} ref={selfSettingRef}>
       <h2 className={`${PROJECT_NAME}-setting-title`}>Setting</h2>
       <h4 className={`${PROJECT_NAME}-setting-wrap-title`}>
         基本设置
@@ -63,7 +65,7 @@ const Setting = observer((props: ISettingProps) => {
       <ul className={`${PROJECT_NAME}-setting-wrap-content`}>
         <li className={`${PROJECT_NAME}-setting-wrap-content-list`}>
           <span>歌词显示</span>
-          <Switch checked={isShowLyric}
+          <Switch checked={selfSettingRef.current}
                   onChange={changeMusicLyric}
                   unCheckedName="关"
                   checkedName="开"/>

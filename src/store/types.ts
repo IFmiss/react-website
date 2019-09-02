@@ -47,7 +47,6 @@ export interface IMusicLyric {
   nolyric?: boolean;
   objLrc: any[];
   lrcType: MusicLyricType;
-  isShow: boolean;
 }
 
 export namespace NameSpaceStore {
@@ -78,6 +77,7 @@ export namespace NameSpaceStore {
     setMusicLyric: (lyric: IMusicLyric) => void;
     currentLyric: string;
     musicLyricIndex: number;
+    lyricIsShow: boolean;
     setMusicLyricIndex: (index: number) => void;
   }
 }

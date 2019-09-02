@@ -13,6 +13,8 @@ import { bool } from 'prop-types';
 interface ILyricState {
   start: () => void;
   checkLrc: (lrc: string) => void;
+  close: () => void;
+  show: () => void;
 }
 
 interface ILyricProps {}
@@ -32,19 +34,27 @@ export const Lyric: React.FC = (props, ref) => {
   }
 
   const checkLrc = (lrc: string) => {
-    if (!store.musicStore.musicLyric.isShow) return
+    console.log('store.musicStore.musicLyric.isShow', store)
+    if (!store.musicStore.lyricIsShow) return
     if (!isShow) setIsShow((isShow) => isShow = true)
     setCurrentLyric(currentLyric => currentLyric = lrc)
   }
 
   const close = () => {
     setIsShow((isShow) => isShow = false)
-    Ins.destroy()
+    store.musicStore.lyricIsShow = false
+  }
+
+  const show = () => {
+    setIsShow((isShow) => isShow = true)
+    store.musicStore.lyricIsShow = true
   }
 
   useImperativeHandle(ref, () => ({
     start,
-    checkLrc
+    checkLrc,
+    close,
+    show
   }))
 
   return (
@@ -70,17 +80,19 @@ function newInstance (props: ILyricProps) {
   console.log(LyricRef.current)
 
   const destroy = () => {
-    store.musicStore.musicLyric.isShow = false
+    store.musicStore.lyricIsShow = false
     ReactDOM.unmountComponentAtNode(div);
     (div.parentNode as HTMLDivElement ).removeChild(div);
   }
 
-  const { start, checkLrc } = LyricRef.current as ILyricState
+  const { start, checkLrc, close, show } = LyricRef.current as ILyricState
 
   return {
     start,
     destroy,
-    checkLrc
+    checkLrc,
+    close,
+    show
   }
 }
 

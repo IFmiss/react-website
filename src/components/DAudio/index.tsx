@@ -130,9 +130,8 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
 
   const handleProgress = throttle(() => {
     const { currentTime, duration } = (audioRef.current as any)
-
     // 歌词的操作
-    if (store.musicStore.musicLyric.isShow) {
+    if (store.musicStore.lyricIsShow) {
       store.musicStore.setMusicLyricIndex(lyricIndex(currentTime))
       Lyric.checkLrc(store.musicStore.currentLyric)
     }
