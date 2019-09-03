@@ -18,6 +18,14 @@ interface IMusicListsGroupProps {
 
 const MusicListGroup = observer((props: IMusicListsGroupProps) => {
   const [start, setStart] = useState(false)
+
+  const memoPlayActive = (id: number, index: number) => {
+    return !!(store.musicStore.currentList
+    && store.musicStore.currentList.id
+    && index === store.musicStore.musicPlayIndex
+    && id === store.musicStore.currentList.id)
+  }
+
   const classString = classNames({
     [`${PROJECT_NAME}-music-list-group`]: true
   })
@@ -52,6 +60,7 @@ const MusicListGroup = observer((props: IMusicListsGroupProps) => {
                   <MusicList list={item}
                              key={`${item.id}--${new Date().getTime()}`}
                              index={index}
+                             memoPlay={memoPlayActive(item.id, index)}
                              addMusicQueue={addMusicQueue}/>
                 </CSSTransition>
               ))
@@ -63,6 +72,7 @@ const MusicListGroup = observer((props: IMusicListsGroupProps) => {
               props.lists.map((item: MusicGroupList, index: number) => (
                 <MusicList key={item.id} list={item}
                            index={index}
+                           memoPlay={memoPlayActive(item.id, index)}
                            addMusicQueue={addMusicQueue}/>
               ))
             }

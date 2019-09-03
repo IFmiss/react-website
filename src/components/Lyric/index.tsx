@@ -26,7 +26,7 @@ export const Lyric: React.FC = (props, ref) => {
 
   const classString = classNames({
     [`${PROJECT_NAME}-lyric-comp`]: true,
-    [`show`]: isShow
+    [`show`]: isShow && store && store.musicStore && store.musicStore.musicLyric.lrcType !== MusicLyricType.LOADING 
   })
 
   const start = () => {
@@ -34,7 +34,6 @@ export const Lyric: React.FC = (props, ref) => {
   }
 
   const checkLrc = (lrc: string) => {
-    console.log('store.musicStore.musicLyric.isShow', store)
     if (!store.musicStore.lyricIsShow) return
     if (!isShow) setIsShow((isShow) => isShow = true)
     setCurrentLyric(currentLyric => currentLyric = lrc)

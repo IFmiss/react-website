@@ -14,14 +14,15 @@ interface IMusicListProps {
   list: MusicGroupList;
   index: number;
   addMusicQueue: (index: number) => void;
+  memoPlay: boolean;
 }
 
 const MusicList = (props: IMusicListProps) => {
-  const memoPlay = useMemo(() => (store.musicStore.currentList && store.musicStore.currentList.id && props.index === store.musicStore.musicPlayIndex &&
-  props.list.id === store.musicStore.currentList.id), [props.index, props.list.id])
+  const { index, list } = props
+  const id = list.id
 
   const classString = classNames({
-    [`play`]: memoPlay,
+    [`play`]: props.memoPlay,
     [`${PROJECT_NAME}-music-list`]: true,
   })
   useEffect(() => {

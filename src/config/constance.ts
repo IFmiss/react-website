@@ -6,8 +6,8 @@ import { getMusicIndexById, getPlayMuiscList, getNextMusicList} from './../utils
 export const PROJECT_NAME = 'dw-react-web'
 export const WEBSITE_TITLE = 'HELLO'
 export const TITLE = '未曾遗忘的青春，戴伟的个人博客'
-export const TITLE_ENTRY = '哈哈 你又来了'
-export const TITLE_OUT = '你走了啊啊'
+export const TITLE_ENTRY = 'ヽ(✿ﾟ▽ﾟ)ノ 欢迎回家'
+export const TITLE_OUT = 'w(ﾟДﾟ)w 你走了 呜啊啊'
 
 export const SELF_SHEET_INFO = {
   id: 2179377798,

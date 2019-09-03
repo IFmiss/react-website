@@ -2,7 +2,7 @@ import React, { useState, useMemo, useRef } from 'react'
 import fetch from './../../utils/fetch'
 import { IStore, MusicLyricType } from './../../store/types'
 import { observer, useObservable, useObserver, useLocalStore, useStaticRendering, useComputed } from "mobx-react-lite"
-import { useStore } from './../../utils/use'
+import { useStore, useUpdate } from './../../utils/use'
 import classNames from 'classnames'
 import './setting.less'
 import { PROJECT_NAME } from './../../config/constance'
@@ -22,10 +22,8 @@ const Setting = observer((props: ISettingProps) => {
   })
 
   let [isDark, setDark] = useState(useStore().colorStore.mode === 'dark')
-  const selfSettingRef = useRef<null | any>(false)
-
-  console.log('lyric isShowLyric', store.musicStore.lyricIsShow)
-  selfSettingRef.current = store.musicStore.lyricIsShow
+  const [isUpdate, setIsUpdate] = useState(false)
+  const selfSettingRef = useRef<null | any>(store.musicStore.lyricIsShow)
 
   const changePageModeFn = (isDarkMode: boolean) => {
     setDark(() => isDark = isDarkMode)
@@ -40,6 +38,7 @@ const Setting = observer((props: ISettingProps) => {
       selfSettingRef.current = true
       Lyric.show()
     }
+    setIsUpdate((isUpdate) => !isUpdate)
   }
 
   let [testProps, setTestProps] = useState(true)
@@ -47,7 +46,7 @@ const Setting = observer((props: ISettingProps) => {
     setTestProps(testProps => checked)
   }
   return (
-    <div className={classString} ref={selfSettingRef}>
+    <div className={classString}>
       <h2 className={`${PROJECT_NAME}-setting-title`}>Setting</h2>
       <h4 className={`${PROJECT_NAME}-setting-wrap-title`}>
         基本设置
@@ -55,7 +54,10 @@ const Setting = observer((props: ISettingProps) => {
       <ul className={`${PROJECT_NAME}-setting-wrap-content`}>
         <li className={`${PROJECT_NAME}-setting-wrap-content-list`}>
           <span>护眼模式</span>
-          <Switch checked={isDark} onChange={changePageModeFn}/>
+          <Switch checked={isDark}
+                  onChange={changePageModeFn}
+                  unCheckedName="关"
+                  checkedName="开"/>
         </li>
       </ul>
       <h4 className={`${PROJECT_NAME}-setting-wrap-title`}>

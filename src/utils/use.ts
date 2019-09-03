@@ -11,3 +11,11 @@ export const useStore = () => {
   const store = useContext(storeContext)
   return store;
 }
+
+export function useUpdate () {
+  const [isUpdate, setIsUpdate] = useState(false)
+  useEffect(() => {
+  }, [isUpdate])
+
+  setIsUpdate((isUpdate) => !isUpdate)
+}

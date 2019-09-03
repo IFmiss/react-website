@@ -57,7 +57,7 @@ const SheetDetail: React.FC = (props) => {
             <div className={`${classString}-lists`}>
                   <MusicListGroup lists={sheetDetailLists}
                                   transition={false}
-                                  type={MusicPlayType.RANK}/>
+                                  type={MusicPlayType.SHEET}/>
               }
             </div>
           </div>
