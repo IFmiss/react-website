@@ -1,4 +1,4 @@
-import { artists, artist, MusicGroupList } from './../../type'
+import { artists, artist, MusicGroupList } from './../type'
 import { useStore } from './../utils/use'
 import { checkMusicById, getMusicDetailById, musicLyricById } from './../pages/Music/action'
 import { IMusicInfo } from './../components/DAudio'
@@ -22,9 +22,9 @@ export const formatMusicLists = (lists: any[]) => {
   })
 }
 
-export const getMusicIndexById = (id: number): number | MusicGroupList => {
+export const getMusicIndexById = (id: number): any[] => {
   const musicQueue = store.musicStore.musicListQueue.slice()
-  if (musicQueue.length === 0) return -1
+  if (musicQueue.length === 0) return [-1, null]
   for (let i = 0; i < musicQueue.length; i++) {
     if (musicQueue[i].id === id) {
       return [i, musicQueue[i]]
