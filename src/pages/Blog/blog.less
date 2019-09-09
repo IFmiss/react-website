@@ -1,0 +1,28 @@
+.@{blog-prefix} {
+  .sider-title {
+    margin: 0;
+    padding: 10px 0;
+    font-size: 14px;
+  }
+  .sider-lists {
+    padding: 5px 0;
+    span {
+      font-size: 12px;
+      padding: 2px 10px;
+      color: var(--text-color);
+      border: 1px solid var(--text-color);
+      border-radius: 1em;
+      margin-left: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+      &:hover {
+        color: var(--text-color-active);
+        border: 1px solid var(--text-color-active);
+      }
+      &.active {
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+      }
+    }
+  }
+}

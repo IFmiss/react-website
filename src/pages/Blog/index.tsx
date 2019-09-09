@@ -3,8 +3,10 @@ import fetch from './../../utils/fetch'
 import { IStore } from './../../store/types'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import classNames from 'classnames'
+import './blog.less'
 import { PROJECT_NAME } from './../../config/constance'
 import BlogList from './../../components/BlogList'
+import SiderWarp from './../../components/SiderWarp'
 
 interface IBlogProps {}
 
@@ -44,6 +46,22 @@ const Blog: React.FC = (props: IBlogProps) => {
           ))
         }
       </TransitionGroup>
+      <SiderWarp show={false} switchTop="40px" type="auto">
+        <h4 className="sider-title">分类列表</h4>
+        <div className="sider-lists">
+          <span className="active">111</span>
+          <span>222</span>
+          <span>333</span>
+          <span>444</span>
+        </div>
+        <h4 className="sider-title">标签列表</h4>
+        <div className="sider-lists">
+          <span className="active">111</span>
+          <span>222</span>
+          <span>333</span>
+          <span>444</span>
+        </div>
+      </SiderWarp>
     </div>
   )
 }
