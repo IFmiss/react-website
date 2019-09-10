@@ -5,7 +5,7 @@ import { MUSCI_MENU } from './../../config/music'
 import * as UrlUtils from 'd-utils/lib/urlUtils'
 import { MUSIC_SHEET_TYPE } from './../../enum'
 import './menu-bar.less'
-import { controller } from './../../utils/fetch'
+
 // interface IMenuBar {
 //   lists: []
 // }
@@ -36,7 +36,6 @@ const MenuBar = (props: IMenuProps) => {
   }
 
   const checkMusicType = (t: number) => {
-    controller.abort()
     props.checkMusicType(t)
   }
 
