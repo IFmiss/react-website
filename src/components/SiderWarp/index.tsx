@@ -4,7 +4,6 @@ import { PROJECT_NAME } from './../../config/constance'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './sider-warp.less'
 import Icon from './../Icon'
-import './../../assets/svg/close.svg'
 
 interface ISiderWarpProps {
   show: boolean;
@@ -43,7 +42,7 @@ const SiderWarp: React.FC<ISiderWarpProps> = (props) => {
       <div className='mask' onClick={hideComp}></div>
       <div className='content'>
         <div className="content-switch" onClick={toggleSiderWarp} style={styleTop}>
-          <Icon svgId="bank"></Icon>
+          <Icon svgId="close" color="red" hoverColor="blue"></Icon>
         </div>
         {props.children}
       </div>

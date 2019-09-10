@@ -65,7 +65,7 @@ module.exports = {
 				],
 			},
 			{
-				test: /\.(ttf|eot|svg|woff|woff2)$/,
+				test: /\.(ttf|eot|woff|woff2)$/,
 				use: [
 					{
 						loader: 'url-loader'
@@ -74,15 +74,13 @@ module.exports = {
 			},
 			{
 				test: /\.svg$/,
-				use: [
-					{
-						loader: 'svg-sprite-loader',
-						options: {
-							symbolId: '[name]'
-						}
-					},
-				],
-				// include: path.resolve(__dirname, './src/assets/svg')
+				use: {
+					loader: 'svg-sprite-loader',
+					options: {
+						symbolId: '[name]'
+					}
+				},
+				include: path.resolve(__dirname, 'src/assets/svg')
 			},
 			{
 				test: /\.(js|jsx)$/,

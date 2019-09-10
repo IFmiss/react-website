@@ -8,6 +8,7 @@ export const WEBSITE_TITLE = 'HELLO'
 export const TITLE = '未曾遗忘的青春，戴伟的个人博客'
 export const TITLE_ENTRY = 'ヽ(✿ﾟ▽ﾟ)ノ 欢迎回家'
 export const TITLE_OUT = 'w(ﾟДﾟ)w 你走了 呜啊啊'
+export const SVG_DEFAULT_COLOR = 'green'
 
 export const SELF_SHEET_INFO = {
   id: 2179377798,

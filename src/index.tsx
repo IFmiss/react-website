@@ -4,7 +4,7 @@ import * as React from 'react'
 import './style/index.less'
 import { initPageMode, initDAudiConfig } from './utils/utils'
 import selfEvent from './utils/event'
-import './assets/svg/index'
+import './assets/svg'
 
 selfEvent.addVisiblityChange()
 initDAudiConfig()
