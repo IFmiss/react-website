@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { PROJECT_NAME } from './../../config/constance'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import { MusicSheet, MusicRank, MusicSearch, MusicSheetDetail } from './../../loadable'
-
+import useNavType from './../../use/useNavType'
 interface IMusicProps {}
 
 const Music: React.FC = (props: IMusicProps) => {
@@ -11,6 +11,8 @@ const Music: React.FC = (props: IMusicProps) => {
     [`${PROJECT_NAME}-music`]: true,
     [`dw-page-router`]: true
   })
+
+  useNavType(2)
 
   return (
     <div className={classString}>

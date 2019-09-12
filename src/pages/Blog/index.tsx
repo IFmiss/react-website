@@ -1,12 +1,9 @@
-import React, {useEffect, useState} from 'react'
-import fetch from './../../utils/fetch'
-import { IStore } from './../../store/types'
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import React, { useState, useEffect } from 'react';
 import classNames from 'classnames'
-import './blog.less'
 import { PROJECT_NAME } from './../../config/constance'
-import BlogList from './../../components/BlogList'
-import SiderWarp from './../../components/SiderWarp'
+import { Route, Switch, Redirect } from 'react-router-dom'
+import { BlogLists, BlogDetail } from './../../loadable';
+import store from './../../store'
 
 interface IBlogProps {}
 
@@ -15,53 +12,17 @@ const Blog: React.FC = (props: IBlogProps) => {
     [`${PROJECT_NAME}-blog`]: true,
     [`dw-page-router`]: true
   })
-  const [data, setData] = useState([1, 2])
-  const start = false
 
-  useEffect(() => {
-    const t = setTimeout(() => {
-      setData(
-        data.concat([1, 2, 3, 4])
-      )
-    }, 3000)
-
-    return function remove () {
-      clearTimeout(t)
-    }
-  }, [])
+  store.navStore.setNavLists(1)
 
   return (
     <div className={classString}>
-      <TransitionGroup>
-        {
-          data.map((item: any, index: number) => (
-            <CSSTransition in={start}
-                           key={index}
-                           timeout={300 + index * 100}
-                           classNames="side-left-fade"
-                           appear={true}
-                           unmountOnExit={false}>
-              <BlogList></BlogList>
-            </CSSTransition>
-          ))
-        }
-      </TransitionGroup>
-      <SiderWarp show={false} switchTop="40px" type="auto">
-        <h4 className="sider-title">分类列表</h4>
-        <div className="sider-lists">
-          <span className="active">111</span>
-          <span>222</span>
-          <span>333</span>
-          <span>444</span>
-        </div>
-        <h4 className="sider-title">标签列表</h4>
-        <div className="sider-lists">
-          <span className="active">111</span>
-          <span>222</span>
-          <span>333</span>
-          <span>444</span>
-        </div>
-      </SiderWarp>
+      {/* this is Blog  */}
+      <Switch>
+        <Route path="/blog/lists" component={BlogLists}/>
+        <Route path="/blog/detail" component={BlogDetail}/>
+        <Redirect to="/blog/lists" />
+      </Switch>
     </div>
   )
 }

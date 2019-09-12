@@ -8,6 +8,7 @@ import { musicSheetDetailById } from './../Music/action'
 import store from './../../store'
 import { MusicPlayType } from './../../store/types'
 import { formatMusicLists } from './../../utils/music'
+import useNavType from './../../use/useNavType'
 
 interface IHomeProps {}
 
@@ -25,6 +26,8 @@ const Home = (props: IHomeProps) => {
       await typeWriter(TYPE_WRITER[i] as ITypeWriterList)
     }
   }
+
+  useNavType(1)
 
   useEffect(() => {
     if (!window.__FIRST_IN_HOME__) {

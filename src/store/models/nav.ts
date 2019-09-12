@@ -7,7 +7,7 @@ export default class ColorModel {
   lists: INavLists = HomeNav
 
   @action.bound
-  setNavLists (type: number) {
+  setNavLists (type: NAV_TYPE) {
     switch (type) {
       case NAV_TYPE.MUSIC:
         this.lists = MusicNav

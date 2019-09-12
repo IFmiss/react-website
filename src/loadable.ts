@@ -6,8 +6,18 @@ export const Home = Loadable({
   loading: Loading
 })
 
+export const BlogLists = Loadable({
+  loader: () => import('./pages/Blog/Lists'),
+  loading: Loading
+})
+
 export const Blog = Loadable({
   loader: () => import('./pages/Blog'),
+  loading: Loading
+})
+
+export const BlogDetail = Loadable({
+  loader: () => import('./pages/Blog/Detail'),
   loading: Loading
 })
 

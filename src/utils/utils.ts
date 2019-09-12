@@ -58,3 +58,10 @@ export function initDAudiConfig () {
     localStorage.setItem('daudio-positon', String(DAudioPosition.BOTTOM_RIGHT))
   }
 }
+
+/**
+ * nav 设置切换类型
+ */
+export function initNavType (type: number) {
+  store.navStore.setNavLists(type)
+}

@@ -9,11 +9,9 @@ import { MUSIC_SHEET_TYPE } from './../../../enum'
 import SheetGroup from './../../../components/SheetGroup'
 import * as MusicFetch from './../action'
 import './sheet.less'
-import { controller } from './../../../utils/fetch'
 import useScroll from './../../../use/useScroll'
 import useLoadingTips from './../../../use/useLoadingTips'
 import LoadingTips from '../../../components/LoadingTips';
-import PromiseUtils from 'd-utils/lib/promiseUtils'
 
 interface MusicSheetProps {
   history: any;
@@ -63,10 +61,11 @@ const MusicSheet = (props: MusicSheetProps) => {
 
   useEffect(() => {
     getSheetLists()
-  }, [getSheetLists])
+  }, [offset])
 
   useLayoutEffect(() => {
     initDefaultConfig()
+    getSheetLists()
   }, [cat])
 
   const checkMusicType = (t: number) => {

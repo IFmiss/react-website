@@ -12,6 +12,7 @@ import { randomPrimaryColor } from './../../utils/utils'
 import LogUtils from 'd-utils/lib/logUtils';
 import store from '../../store';
 import Lyric from './../../components/Lyric'
+import useNavType from './../../use/useNavType'
 
 interface ISettingProps {}
 
@@ -29,6 +30,8 @@ const Setting = observer((props: ISettingProps) => {
     setDark(() => isDark = isDarkMode)
     changePageMode()
   }
+
+  useNavType(1)
 
   const changeMusicLyric = () => {
     if (selfSettingRef.current) {
