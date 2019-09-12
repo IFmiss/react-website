@@ -22,9 +22,9 @@ export const HomeNav: INavLists = [
     key: 'blog_index',
   }, {
     name: '音乐',
-    link: '/music/sheet',
+    link: '/music/search',
     type: NAV_TYPE.MUSIC,
-    key: 'music_sheet',
+    key: 'music_search',
   }, {
     name: '设置',
     link: '/setting',

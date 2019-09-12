@@ -22,7 +22,7 @@ const Music: React.FC = (props: IMusicProps) => {
         <Route path="/music/sheetdetail" component={MusicSheetDetail}/>
         <Route path="/music/rank" component={MusicRank}/>
         <Route path="/music/search" component={MusicSearch}/>
-        <Redirect to="/music/sheet" />
+        <Redirect to="/music/search" />
       </Switch>
     </div>
   )

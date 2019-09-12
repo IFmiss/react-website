@@ -64,8 +64,10 @@ const MusicSheet = (props: MusicSheetProps) => {
   }, [offset])
 
   useLayoutEffect(() => {
-    initDefaultConfig()
-    getSheetLists()
+    setTimeout(() => {
+      initDefaultConfig()
+      getSheetLists()
+    }, 500)
   }, [cat])
 
   const checkMusicType = (t: number) => {
