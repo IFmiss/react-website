@@ -52,7 +52,7 @@ const MusicSheet = (props: MusicSheetProps) => {
     const res: any = await MusicFetch.getSheetLists(cat, offset)
     setSheetLists((sheetLists) => sheetLists = sheetLists.concat(res.playlists))
     loadingTipsFn.hideLoading()
-  }, [cat, offset])
+  }, [offset, cat])
 
   const initDefaultConfig = (() => {
     setOffset((offset) => offset = 0)
@@ -61,13 +61,11 @@ const MusicSheet = (props: MusicSheetProps) => {
 
   useEffect(() => {
     getSheetLists()
-  }, [offset])
+  }, [offset, cat])
 
   useLayoutEffect(() => {
-    setTimeout(() => {
-      initDefaultConfig()
-      getSheetLists()
-    }, 500)
+    initDefaultConfig()
+    getSheetLists()
   }, [cat])
 
   const checkMusicType = (t: number) => {
