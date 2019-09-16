@@ -37,12 +37,14 @@ const SiderWarp: React.FC<ISiderWarpProps> = (props) => {
     setShow((show) => show = !show)
   }
 
+  const svgId = show ? 'close' : 'menu'
+
   return (
     <section className={classString}>
       <div className='mask' onClick={hideComp}></div>
       <div className='content'>
         <div className="content-switch" onClick={toggleSiderWarp} style={styleTop}>
-          <Icon svgId="close" color="red" hoverColor="blue"></Icon>
+          <Icon svgId={svgId} color="#aaa"></Icon>
         </div>
         {props.children}
       </div>

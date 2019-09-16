@@ -45,7 +45,7 @@ const Blog: React.FC = (props: IBlogProps) => {
           ))
         }
       </TransitionGroup>
-      <SiderWarp show={false} switchTop="40px" type="auto">
+      <SiderWarp show={false} switchTop="20px" type="auto">
         <h4 className="sider-title">分类列表</h4>
         <div className="sider-lists">
           <span className="active">111</span>

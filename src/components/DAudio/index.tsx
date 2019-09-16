@@ -7,6 +7,7 @@ import store from './../../store'
 import { IMusicLyric, MusicLyricType } from './../../store/types'
 import { throttle } from 'd-utils/lib/genericUtils'
 import Lyric from './../Lyric'
+import Icon from './../Icon'
 import { getMusicIndexById, getPlayMuiscList, getNextMusicList} from './../../utils/music'
 
 export interface IMusicInfo {
@@ -164,7 +165,12 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
     [`bottom-right`]: props.position === DAudioPosition.BOTTOM_RIGHT,
     [`circle`]: type === DAudioType.CIRCLE,
     [`rect`]: type === DAudioType.RECT,
+    [`active`]: isPlay && type === DAudioType.CIRCLE,
     [`show`]: store && store.musicStore && store.musicStore.musicListQueue.length
+  })
+
+  const classCricle = classNames({
+    [`d-audio-circle`]: true
   })
 
   const classPlayPause = classNames({
@@ -218,6 +224,8 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
     }
   }
 
+  const playPauseSvg = isPlay ? 'pause' : 'play'
+
   useImperativeHandle(ref, () => ({
     start,
     next,
@@ -227,19 +235,23 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
 
   return (
     <div className={classString} onClick={checkType}>
-      <div className={`${selfClass}-circle`}
+      <div className={classCricle}
            title={`${list.name} - ${list.singer}`}>
         <img className="avatar" src={list.coverUrl}/>
         <div className={`${selfClass}-range`} style={rangeStyle}></div>
       </div>
       <div className={`${selfClass}-detail`}>
         <div className={`${selfClass}-detail-config`}>
-          <div className={classPlayPause} onClick={playPause}></div>
-          <div className="d-audio-next" onClick={next}></div>
+          <div className={classPlayPause} onClick={playPause}>
+            <Icon svgId={playPauseSvg} color="#e1e1e1"></Icon>
+          </div>
+          <div className="d-audio-next" onClick={next}>
+            <Icon svgId="next" color="#e1e1e1"></Icon>
+          </div>
         </div>
         <div className={`${selfClass}-detail-info`}>
-          <h3 className="music-name">{list.name}</h3>
-          <div className="music-singer">{list.singer}</div>
+          <h3 className="music-name" title={list.name}>{list.name}</h3>
+          <div className="music-singer" title={list.singer}>{list.singer}</div>
         </div>
       </div>
       <div className={`${selfClass}-blur-bg`} style={blurStyle}></div>

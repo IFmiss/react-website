@@ -13,6 +13,7 @@
   overflow: hidden;
   opacity: 0;
   visibility: hidden;
+  user-select: none;
   &.show {
     opacity: 1;
     visibility: visible;
@@ -47,6 +48,8 @@
   &.circle {
     width: @d-audio-h;
     border-radius: 50%;
+    animation: rotateMusicLogo 8s linear infinite;
+    animation-play-state: paused;
     .d-audio-detail {
       opacity: 0;
       visibility: hidden;
@@ -58,6 +61,9 @@
       visibility: visible;
       transition: all 0.5s;
       transition-delay: 0s;
+    }
+    &.active {
+      animation-play-state: running;
     }
   }
 
@@ -103,23 +109,30 @@
     padding: 4px 6px;
     z-index: 5;
     &-config {
-      flex: 0 0 80px;
+      flex: 0 0 84px;
       height: 100%;
       overflow: hidden;
       display: flex;
       align-items: center;
       padding: 0 4px 0 4px;
       box-sizing: border-box;
+      .d-audio-play-pause, .d-audio-next {
+        cursor: pointer;
+        background-color: rgba(0,0,0, 0.18);
+        border-radius: 50%;
+        transition: background-color 0.3s;
+        &:hover {
+          background-color: rgba(0,0,0, 0.3);
+        }
+      }
       .d-audio-play-pause {
         width: 36px;
         height: 36px;
-        background: green;
       }
       .d-audio-next {
         margin-left: 10px;
         width: 28px;
         height: 28px;
-        background: blue;
       }
     }
     &-info {
@@ -138,6 +151,7 @@
       opacity: 1;
       transform: translateZ(0);
       transition: all 0.5s;
+      cursor: default;
       .music-name {
         font-size: 16px;
         padding: 1px 0;

@@ -97,5 +97,5 @@ export default class MusicModel {
   }
 
   @observable
-  lyricIsShow: boolean = true
+  lyricIsShow: boolean = false
 }
