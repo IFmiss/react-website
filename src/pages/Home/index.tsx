@@ -4,7 +4,7 @@ import './home.less'
 import typeWriter, { ITypeWriterList } from './../../utils/typewriter'
 import { PROJECT_NAME, TYPE_WRITER, SELF_SHEET_INFO} from './../../config/constance'
 import React, { useState, useEffect, useRef } from 'react'
-import { musicSheetDetailById } from './../Music/action'
+import { sheetDetailById } from './../Music/action'
 import store from './../../store'
 import { MusicPlayType } from './../../store/types'
 import { formatMusicLists } from './../../utils/music'
@@ -17,7 +17,7 @@ const Home = (props: IHomeProps) => {
 
   const initTypeWriter = async () => {
     // 加载音乐专辑列表地址
-    const res: any = await musicSheetDetailById(SELF_SHEET_INFO.id)
+    const res: any = await sheetDetailById(SELF_SHEET_INFO.id)
     store.musicStore.setMusicPlayTask(formatMusicLists(res.playlist.tracks), 0, MusicPlayType.HOME)
 
     for (let i = 0; i < TYPE_WRITER.length; i++) {

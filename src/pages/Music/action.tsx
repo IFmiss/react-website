@@ -58,14 +58,6 @@ export const checkMusicById = async (id: number) => {
   return data
 }
 
-// 根据id获取音乐歌单详情
-export const musicSheetDetailById = async (id: number) => {
-  const data = await Http.get(API.MUSIC.MUSIC_SHEET_DETAIL, {
-    id
-  })
-  return data
-}
-
 // 根据id获取音乐歌词
 export const musicLyricById = async (id: number) => {
   const data = await Http.get(API.MUSIC.LYRIC, {
@@ -74,7 +66,7 @@ export const musicLyricById = async (id: number) => {
   return data
 }
 
-// 获取歌单详情
+// 根据id获取歌单详情
 export const sheetDetailById = async (id: number) => {
   const data = await Http.get(API.MUSIC.MUSIC_SHEET_DETAIL, {
     id

@@ -2,6 +2,7 @@ import { ITypeWriterList } from './../utils/typewriter'
 import store from './../store'
 import DAudio from './../components/DAudio'
 import { getMusicIndexById, getPlayMuiscList, getNextMusicList} from './../utils/music'
+import { playDefaultSheet } from './../utils/music'
 
 export const PROJECT_NAME = 'dw-react-web'
 export const WEBSITE_TITLE = 'HELLO'
@@ -17,7 +18,7 @@ export const SELF_SHEET_INFO = {
 
 export const TYPE_WRITER: ITypeWriterList[] = [
   {
-    text: 'Hello!!!',
+    text: '嗨!',
     tagName: 'h1',
     config: {},
     domAttr: {},
@@ -53,15 +54,13 @@ export const TYPE_WRITER: ITypeWriterList[] = [
     domAttr: {
       class: 'underline',
       click: async () => {
-        const list = await getPlayMuiscList(store.musicStore.currentList)
-        DAudio.start(list)
+        await playDefaultSheet()
       }
     },
     reactAttr: {
       className: 'underline',
       onClick: async () => {
-        const list = await getPlayMuiscList(store.musicStore.currentList)
-        DAudio.start(list)
+        await playDefaultSheet()
       }
     }
   }

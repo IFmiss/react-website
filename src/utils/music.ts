@@ -1,9 +1,10 @@
 import { artists, artist, MusicGroupList } from './../type'
 import { useStore } from './../utils/use'
-import { checkMusicById, getMusicDetailById, musicLyricById } from './../pages/Music/action'
-import { IMusicInfo } from './../components/DAudio'
+import { checkMusicById, getMusicDetailById, musicLyricById, sheetDetailById } from './../pages/Music/action'
+import DAudio, { IMusicInfo } from './../components/DAudio'
 import store from '../store';
-import { IMusicLyric, MusicLyricType } from './../store/types'
+import { SELF_SHEET_INFO } from './../config/constance'
+import { IMusicLyric, MusicLyricType, MusicPlayType } from './../store/types'
 
 export const parseDuraiton = (duration: number): string => {
   const d = ~~(duration / 1000)
@@ -125,4 +126,13 @@ export const parseLrc = (lrc: any): any[] => {
   }
   console.log('lrcObj', lrcObj)
   return lrcObj
+}
+
+export const playDefaultSheet = async () => {
+  if (store.musicStore.playType !== MusicPlayType.HOME) {
+    const res: any = await sheetDetailById(SELF_SHEET_INFO.id)
+    store.musicStore.setMusicPlayTask(formatMusicLists(res.playlist.tracks), 0, MusicPlayType.HOME)
+  }
+  const list = await getPlayMuiscList(store.musicStore.currentList)
+  DAudio.start(list)
 }
