@@ -11,9 +11,11 @@ export default function useScroll (ref: any, requestCallBack: () => void, t: num
   const eventHandler = (e: any) => {
     const newRef = ref.current ? ref.current : ref
     if (newRef.clientHeight + newRef.scrollTop === newRef.scrollHeight) {
-      debounce(requestCallBack, t)()
+      callBack()
     }
   }
+
+  const callBack = debounce(requestCallBack, t)
 
   useEffect(() => {
     const newRef = ref.current ? ref.current : ref

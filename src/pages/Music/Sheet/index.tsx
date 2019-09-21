@@ -61,7 +61,7 @@ const MusicSheet = (props: MusicSheetProps) => {
 
   useEffect(() => {
     getSheetLists()
-  }, [offset, cat])
+  }, [offset])
 
   useLayoutEffect(() => {
     initDefaultConfig()
