@@ -5,8 +5,9 @@ import {
 import Http from './../../utils/fetch'
 import API from './../../api/api'
 
-export const getBlogLists = async (offset: number, limit: number = BLOG_LIST_DEFAULT_LIMIT): Promise<any> => {
+export const getBlogLists = async (offset: number, tagName: string = '全部', limit: number = BLOG_LIST_DEFAULT_LIMIT): Promise<any> => {
   return await Http.post(API.BLOG.list, {
+    tagName,
     offset,
     limit,
   })
