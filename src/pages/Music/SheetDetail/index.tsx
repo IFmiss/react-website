@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import classNames from 'classnames'
 import './sheet-detail.less'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { PROJECT_NAME, MUSIC_SEARCH_DEFAULT_LISMIT } from '../../../config/constance'
+import { PROJECT_NAME, MUSIC_SEARCH_DEFAULT_LIMIT } from '../../../config/constance'
 import LazyImg from './../../../components/LazyImg'
 import MusicListGroup from './../../../components/MusicListGroup'
 import LoadingTips from './../../../components/LoadingTips'

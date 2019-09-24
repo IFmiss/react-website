@@ -3,16 +3,24 @@
   padding: 0 15px;
   a {
     text-decoration: none;
-    padding: 25px 0;
+    padding: 15px 0;
     display: block;
     border-bottom: 1px solid var(--border-color);
     transition: border 0.3s;
   }
-  &-title, &-disc, &-date {
-    .mixinTextColor();
+  &:hover {
+    a {
+      border-bottom: 1px solid var(--mask-bg);
+      .dw-react-web-comp-blog-list-title {
+        text-decoration: underline;
+      }
+    }
+  }
+  &-disc, &-date {
+    color: #999;
   }
   &:hover {
-    &-title, &-disc, &-date {
+    &-disc, &-date {
       .mixinTextColorActive();
     }
   }
@@ -20,9 +28,39 @@
     font-weight: 400;
     color: var(--primary-color);
     margin: 0;
-    padding: 10px 0;
+    padding: 5px 0;
   }
   &-disc, &-date {
     font-size: 14px;
+    margin: 8px 0;
+  }
+
+  &-disc {
+    text-indent: 2em;
+  }
+
+  &-conf {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #999;
+  }
+  &-date {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    .c-date {
+      margin-left: 15px;
+    }
+  }
+  &-read, &-cat, &-tag {
+    margin-left: 25px;
+  }
+
+  .cat-list, .tag-list {
+    margin-right: 5px;
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }

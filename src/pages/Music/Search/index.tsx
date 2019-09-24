@@ -1,6 +1,6 @@
 import React, { useRef, useLayoutEffect, useState, useMemo, useCallback, useEffect } from 'react'
 import className from 'classnames'
-import { PROJECT_NAME, MUSIC_SEARCH_DEFAULT_LISMIT } from '../../../config/constance'
+import { PROJECT_NAME, MUSIC_SEARCH_DEFAULT_LIMIT } from '../../../config/constance'
 import './search.less'
 import MusicListGroup from './../../../components/MusicListGroup'
 import { isEmptyStr } from 'd-utils/lib/expUtils/index'
@@ -25,11 +25,11 @@ const MusicSearch = (props: MusicSearchProps) => {
 
   const [keywords, setKeywords] = useState(UrlUtils.parseUrl(decodeURIComponent(location.href)).keywords)
 
-  const LoadingTipsFn = useLoadingTips(false, '搜索中...')
+  const loadingTipsFn = useLoadingTips(false, '搜索中...')
 
   const loadMoreInfo = () => {
-    if (LoadingTipsFn.loading) return
-    setOffset((offset) => offset = offset + MUSIC_SEARCH_DEFAULT_LISMIT)
+    if (loadingTipsFn.loading) return
+    setOffset((offset) => offset = offset + MUSIC_SEARCH_DEFAULT_LIMIT)
   }
 
   useLayoutEffect(() => {
@@ -65,7 +65,7 @@ const MusicSearch = (props: MusicSearchProps) => {
 
   const reset = (words: string) => {
     setSearchList((searchLists) => searchLists = [])
-    setOffset((offset) => offset = MUSIC_SEARCH_DEFAULT_LISMIT)
+    setOffset((offset) => offset = MUSIC_SEARCH_DEFAULT_LIMIT)
     setKeywords((keywords: any) => keywords = words)
   }
 
@@ -75,7 +75,7 @@ const MusicSearch = (props: MusicSearchProps) => {
       return
     }
 
-    LoadingTipsFn.showLoading(isSearch ? '搜索中' : '加载中')
+    loadingTipsFn.showLoading(isSearch ? '搜索中' : '加载中')
 
     const res: any = await MusicFetch.getSearchLists(keywords, offset)
     const loadLists = Array.isArray(res.result.songs) ? res.result.songs : []
@@ -83,10 +83,10 @@ const MusicSearch = (props: MusicSearchProps) => {
     
     // 搜索之后为空的时候判断是否是没有数据 且是否是第一次搜索
     if (isSearch && loadLists.length === 0) {
-      LoadingTipsFn.showLoading(`未能搜索到关于 '${keywords}' 相关的各歌曲`)
+      loadingTipsFn.showLoading(`未能搜索到关于 '${keywords}' 相关的各歌曲`)
       return
     }
-    LoadingTipsFn.hideLoading()
+    loadingTipsFn.hideLoading()
   }, [offset])
 
   const classString = className({
@@ -114,7 +114,7 @@ const MusicSearch = (props: MusicSearchProps) => {
         <MusicListGroup lists={searchLists}
                         transition={false}
                         type={MusicPlayType.SEARCH}/>
-        <LoadingTips show={LoadingTipsFn.loading} text={LoadingTipsFn.text}/>
+        <LoadingTips show={loadingTipsFn.loading} text={loadingTipsFn.text}/>
       </div>
     </section>
   )

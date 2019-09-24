@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react'
 import { getRankLists } from './../action'
 import className from 'classnames'
 import { formatMusicLists } from './../../../utils/music'
-import { PROJECT_NAME, MUSIC_SEARCH_DEFAULT_LISMIT, MUSIC_RANK_TYPE } from '../../../config/constance'
+import { PROJECT_NAME, MUSIC_SEARCH_DEFAULT_LIMIT, MUSIC_RANK_TYPE } from '../../../config/constance'
 import MusicListGroup from './../../../components/MusicListGroup'
 import LoadingTips from '../../../components/LoadingTips';
 import * as UrlUtils from 'd-utils/lib/urlUtils'

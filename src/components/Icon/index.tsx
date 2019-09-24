@@ -18,6 +18,7 @@ const Icon: React.FC<IIconProps> = (props) => {
   const svgStyle: any = {
     'width': `${ props.size ? props.size : 16 }px`,
     'height': `${ props.size ? props.size : 16 }px`,
+    'marginRight': props.children ? '5px' : '0'
   }
 
   const classString = classNames({
@@ -53,6 +54,7 @@ const Icon: React.FC<IIconProps> = (props) => {
       <svg style={svgStyle} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
         <use xlinkHref={`#${props.svgId}`} fill={color}></use>
       </svg>
+      {props.children}
     </div>
   )
 }

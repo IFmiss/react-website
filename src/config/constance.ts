@@ -70,7 +70,14 @@ export const TYPE_WRITER: ITypeWriterList[] = [
 export const MUSIC_SHEET_DEFAULT_LIMIT = 30
 export const MUSIC_SHEET_TRANSITION_DURATION = MUSIC_SHEET_DEFAULT_LIMIT * 200 / 2
 
-export const MUSIC_SEARCH_DEFAULT_LISMIT = 20
+export const MUSIC_SEARCH_DEFAULT_LIMIT = 20
+
+export const BLOG_LIST_DEFAULT_LIMIT = 10
+
+export const BLOG_TAGS_ALL_INFO = {
+  id: '',
+  name: '全部'
+}
 
 // 排行榜信息
 export const MUSIC_RANK_TYPE: any = {

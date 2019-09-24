@@ -1,4 +1,4 @@
-export const selfBaseUrl = ''
+export const selfBaseUrl = 'http://www.daiwei.org/server-php'
 export const musicBaseUrl = 'http://localhost:3000'
 export default {
   MUSIC: {
@@ -28,5 +28,9 @@ export default {
 
     /** 歌词 */
     LYRIC: `${musicBaseUrl}/lyric`
+  },
+  BLOG: {
+    list: `${selfBaseUrl}/article/index.php?name=getArticleLists`,
+    tags: `${selfBaseUrl}/article/index.php`,
   }
 }
