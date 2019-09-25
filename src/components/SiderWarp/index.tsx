@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect, useImperativeHandle } from 'react'
 import classNames from 'classnames'
 import { PROJECT_NAME } from './../../config/constance'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
@@ -9,9 +9,11 @@ interface ISiderWarpProps {
   show: boolean;
   switchTop?: string;
   type?: string;
+  hideFn?: () => void;
+  showFn?: () => void;
 }
 
-const SiderWarp: React.FC<ISiderWarpProps> = (props) => {
+const SiderWarp: React.FC<ISiderWarpProps> = (props, ref) => {
   const [show, setShow] = useState<boolean>(props.show)
 
   const classString = classNames({
@@ -27,20 +29,32 @@ const SiderWarp: React.FC<ISiderWarpProps> = (props) => {
 
   const hideComp = () => {
     setShow((show) => show = false)
+    props.hideFn && props.hideFn()
   }
 
   const showComp = () => {
     setShow((show) => show = true)
+    props.showFn && props.showFn()
   }
 
   const toggleSiderWarp = () => {
+    show ? props.hideFn && props.hideFn() : props.showFn && props.showFn()
     setShow((show) => show = !show)
   }
 
   const svgId = show ? 'close' : 'menu'
 
+  const mapRef = useRef(null)
+
+  useImperativeHandle(ref, () => {
+    return {
+      showComp,
+      hideComp
+    }
+  })
+
   return (
-    <section className={classString}>
+    <section className={classString} ref={mapRef}>
       <div className='mask' onClick={hideComp}></div>
       <div className='content'>
         <div className="content-switch" onClick={toggleSiderWarp} style={styleTop}>
@@ -52,10 +66,12 @@ const SiderWarp: React.FC<ISiderWarpProps> = (props) => {
   )
 }
 
-SiderWarp.defaultProps = {
-  show: false,
-  switchTop: '50px',
-  type: 'fixed'
-}
+// SiderWarp.defaultProps = {
+//   show: false,
+//   switchTop: '50px',
+//   type: 'fixed'
+// }
 
-export default SiderWarp
+const SiderWarpComponent = React.forwardRef(SiderWarp)
+
+export default SiderWarpComponent as any

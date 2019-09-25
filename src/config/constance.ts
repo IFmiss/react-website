@@ -16,6 +16,19 @@ export const SELF_SHEET_INFO = {
   name: '程序员必备，带上耳机代码就是全世界'
 }
 
+export const DEFAULT_BLOG_DETAIL = {
+  id: '',
+  name: '',
+  readCount: '',
+  editDate: '',
+  createDate: '',
+  content: '',
+  tagLists: [{
+    id: '',
+    name: ''
+  }]
+}
+
 export const TYPE_WRITER: ITypeWriterList[] = [
   {
     text: '嗨!',

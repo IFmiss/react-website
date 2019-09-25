@@ -70,7 +70,6 @@ BlogList.defaultProps = {
     readCount: '2',
     editDate: '2013-12-18 22:99:11',
     createDate: '2013-12-18 22:99:11',
-    contentLite: '这是一个content这是一个content这是一个content这是一个content这是一个content这是一个content这是一个content这是一个content',
     categorie: [{
       id: 1,
       name: '前端'

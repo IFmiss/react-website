@@ -18,3 +18,11 @@ export const getBolgTags = async () => {
     name: 'getArticleTags'
   })
 }
+
+export const getBlogDetail = async (id: number | string): Promise<any> => {
+  return await Http.post(API.BLOG.detail, {
+    id
+  })
+}
+
+// export const pv = asyn

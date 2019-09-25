@@ -14,6 +14,7 @@ import BlogList, { IBlogListCategorieOrTag } from '../../../components/BlogList'
 import SiderWarp from '../../../components/SiderWarp'
 import useScroll from './../../../use/useScroll'
 import * as UrlUtils from 'd-utils/lib/urlUtils'
+import promiseUtils from 'd-utils/lib/promiseUtils'
 
 interface IBlogProps {
   history: any;
@@ -28,35 +29,40 @@ const Blog: React.FC<IBlogProps> = (props) => {
   const [offset, setOffset] = useState<number>(0)
   const [tagLists, setTagLists] = useState([])
   const total = useRef<number | any>(0)
+  const siderRef = useRef<any>(null)
   const start = false
 
   const { tag: tagName } = UrlUtils.parseUrl(decodeURIComponent(location.href))
-  const [tag, setTag] = useState(tagName)
+  const [tag, setTag] = useState<string>(tagName)
 
   const loadMoreInfo = () => {
     if (loadingTipsFn.loading) return
     setOffset((offset) => offset = offset + BLOG_LIST_DEFAULT_LIMIT)
   }
 
-  const filterListsByTagName = (item: IBlogListCategorieOrTag) => {
+  const filterListsByTagName = async (item: IBlogListCategorieOrTag) => {
     props.history.replace(`${props.history.location.pathname}?tag=${item.name}`)
+    
+    setData((data) => data = [])
+    siderRef.current && siderRef.current.hideComp()
+    await promiseUtils.sleep(500)
     setOffset((offset) => offset = 0)
+    setTag((tag) => tag = item.name)
   }
 
   useScroll(document.getElementById('dw-react-web-container'), loadMoreInfo)
 
   useEffect(() => {
-    alert(offset)
     const fetchData = async () => {
       if (total.current && offset > total.current) return
       loadingTipsFn.showLoading()
       const res = await getBlogLists(offset, tag)
       loadingTipsFn.hideLoading()
       total.current = +res.data.total
-      setData((data) => data = data.concat(res.data.lists))
+      setData((data) => data = offset ? data.concat(res.data.lists) : res.data.lists)
     }
     fetchData()
-  }, [offset])
+  }, [offset, tag])
 
   useLayoutEffect (() => {
     const fetchTagsList = async () => {
@@ -65,7 +71,7 @@ const Blog: React.FC<IBlogProps> = (props) => {
     }
 
     fetchTagsList()
-  }, [tag])
+  }, [])
 
   return (
     <div className={classString}>
@@ -74,17 +80,23 @@ const Blog: React.FC<IBlogProps> = (props) => {
           data.map((item: any, index: number) => (
             <CSSTransition in={start}
                            key={index}
-                           timeout={300 + (index % BLOG_LIST_DEFAULT_LIMIT)  * 200}
+                           timeout={
+                              {
+                                enter: 300 + (index % BLOG_LIST_DEFAULT_LIMIT)  * 200,
+                                exit: 0,
+                                appear: 0
+                              }
+                           }
                            classNames="side-left-fade"
                            appear={true}
-                           unmountOnExit={false}>
+                           unmountOnExit={true}>
               <BlogList list={item}></BlogList>
             </CSSTransition>
           ))
         }
         <LoadingTips show={loadingTipsFn.loading} text={loadingTipsFn.text}/>
       </TransitionGroup>
-      <SiderWarp show={false} switchTop="20px" type="auto">
+      <SiderWarp show={false} switchTop="20px" type="auto" ref={siderRef}>
         <h4 className="sider-title">分类列表</h4>
         <div className="sider-lists">
           <span key={-1} className={ (!tagName || tagName === '全部') ? 'active' : '' }

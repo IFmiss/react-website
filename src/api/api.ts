@@ -32,5 +32,6 @@ export default {
   BLOG: {
     list: `${selfBaseUrl}/article/index.php?name=getArticleLists`,
     tags: `${selfBaseUrl}/article/index.php`,
+    detail: `${selfBaseUrl}/article/index.php?name=getArticleDetail`
   }
 }
