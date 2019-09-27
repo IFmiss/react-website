@@ -44,6 +44,13 @@
   --h-color: #eee;
 }
 
+body {
+  transition: padding 0.3s;
+  &.sider-s {
+    padding-right: @side-warp-width - 16px;
+  }
+}
+
 body.light {
   --bg: #fff;
   --bg-o: rgba(255,255,255,0.77);

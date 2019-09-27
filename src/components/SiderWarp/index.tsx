@@ -4,6 +4,7 @@ import { PROJECT_NAME } from './../../config/constance'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './sider-warp.less'
 import Icon from './../Icon'
+import * as DomUtils from 'd-utils/lib/domUtils'
 
 interface ISiderWarpProps {
   show: boolean;
@@ -39,6 +40,11 @@ const SiderWarp: React.FC<ISiderWarpProps> = (props, ref) => {
 
   const toggleSiderWarp = () => {
     show ? props.hideFn && props.hideFn() : props.showFn && props.showFn()
+    if (!show) {
+      DomUtils.addClass(document.body, 'sider-s')
+    } else {
+      DomUtils.removeClass(document.body, 'sider-s')
+    }
     setShow((show) => show = !show)
   }
 
