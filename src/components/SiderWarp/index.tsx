@@ -40,11 +40,11 @@ const SiderWarp: React.FC<ISiderWarpProps> = (props, ref) => {
 
   const toggleSiderWarp = () => {
     show ? props.hideFn && props.hideFn() : props.showFn && props.showFn()
-    if (!show) {
-      DomUtils.addClass(document.body, 'sider-s')
-    } else {
-      DomUtils.removeClass(document.body, 'sider-s')
-    }
+    // if (!show) {
+    //   DomUtils.addClass(document.body, 'sider-s')
+    // } else {
+    //   DomUtils.removeClass(document.body, 'sider-s')
+    // }
     setShow((show) => show = !show)
   }
 

@@ -5,7 +5,7 @@ import { getMusicIndexById, getPlayMuiscList, getNextMusicList} from './../utils
 import { playDefaultSheet } from './../utils/music'
 
 export const PROJECT_NAME = 'dw-react-web'
-export const WEBSITE_TITLE = 'D_w'
+export const WEBSITE_TITLE = 'D.w'
 export const TITLE = '未曾遗忘的青春，戴伟的个人博客'
 export const TITLE_ENTRY = 'ヽ(✿ﾟ▽ﾟ)ノ 欢迎回家'
 export const TITLE_OUT = 'w(ﾟДﾟ)w 你走了 呜啊啊'
