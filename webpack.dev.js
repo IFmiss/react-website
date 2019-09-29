@@ -5,6 +5,7 @@ const resolve = function (dir) {
 	return path.resolve(__dirname, dir);
 }
 module.exports = merge(common, {
+	mode: 'development',
 	entry: {
     app: './src/index.tsx'
 	},

@@ -25,4 +25,9 @@ export const getBlogDetail = async (id: number | string): Promise<any> => {
   })
 }
 
-// export const pv = asyn
+export const pv = async (id: number | string): Promise<any> => {
+  return await Http.post(API.BLOG.pv, {
+    id
+  })
+}
+

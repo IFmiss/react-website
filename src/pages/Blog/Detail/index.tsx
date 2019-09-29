@@ -6,12 +6,14 @@ import classNames from 'classnames'
 import './detail.less'
 import './../../../style/high-default.less'
 import {
-  getBlogDetail
+  getBlogDetail,
+  pv
 } from './../action'
 import { IBlogListCategorieOrTag } from '../../../components/BlogList'
 import { PROJECT_NAME, DEFAULT_BLOG_DETAIL } from './../../../config/constance'
 import SiderWarp from './../../../components/SiderWarp'
 import * as UrlUtils from 'd-utils/lib/urlUtils'
+import { isProduction } from './../../../utils/utils'
 const marked = require('marked');
 
 marked.setOptions({
@@ -54,13 +56,16 @@ const BlogDetail: React.FC<IBlogDetailProps> = () => {
   useEffect(() => {
     const fetchDetail = async () => {
       const res = await getBlogDetail(id)
-      console.log(res.data)
+      if (isProduction()) await pv(id)
       setDetail((detail) => detail = res.data)
     }
     fetchDetail()
   }, [])
   return (
     <section className={classString}>
+      <div className={`${classString}-mian`}>
+        <h2>{detail.name}</h2>
+      </div>
       <div className={`${classString}-content`}
            dangerouslySetInnerHTML = {{__html: marked(detail.content)}}>
       </div>

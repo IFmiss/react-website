@@ -1,8 +1,9 @@
 const path = require('path');
+const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 // MiniCssExtractPlugin
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
+const env = process.env.NODE_ENV
 // HtmlWebpackPlugin
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -10,7 +11,9 @@ const resolve = function (dir) {
 	return path.resolve(__dirname, dir);
 }
 
+console.log(process.env)
 const devMode = process.env.NODE_ENV === "development"
+console.log(devMode)
 
 module.exports = {
 	plugins: [
@@ -25,6 +28,10 @@ module.exports = {
 		new MiniCssExtractPlugin ({
 			filename: "css/[name]-[hash].css",
   		chunkFilename: "css/[id].css"
+		}),
+
+		new webpack.DefinePlugin({
+			'process.env': env
 		})
 	],
   module: {

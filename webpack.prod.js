@@ -11,6 +11,7 @@ const resolve = function (dir) {
 	return path.resolve(__dirname, dir);
 }
 module.exports = selfmerge(selfcommon, {
+  mode: 'production',
   entry: {
     app: './src/index.tsx'
   },

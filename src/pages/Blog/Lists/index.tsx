@@ -102,7 +102,7 @@ const Blog: React.FC<IBlogProps> = (props) => {
           <span key={-1} className={ (!tagName || tagName === '全部') ? 'active' : '' }
                 onClick={ filterListsByTagName.bind(null, BLOG_TAGS_ALL_INFO) }>全部</span>
           {
-            tagLists.length && tagLists.map((item: IBlogListCategorieOrTag, index) => (
+            tagLists && tagLists.length && tagLists.map((item: IBlogListCategorieOrTag, index) => (
               <span key={index}
                     className={tagName === item.name ? 'active' : ''}
                     onClick={ filterListsByTagName.bind(null, item) }>{ item.name }</span>
