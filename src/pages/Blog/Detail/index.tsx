@@ -69,7 +69,7 @@ const BlogDetail: React.FC<IBlogDetailProps> = () => {
       <div className={`${classString}-content`}
            dangerouslySetInnerHTML = {{__html: marked(detail.content)}}>
       </div>
-      <SiderWarp show={false} switchTop="20px" type="auto">
+      {/* <SiderWarp show={false} switchTop="20px" type="auto">
         <h4 className="sider-title">目录</h4>
         <div>1111</div>
         <div>1111</div>
@@ -77,7 +77,7 @@ const BlogDetail: React.FC<IBlogDetailProps> = () => {
         <div>1111</div>
         <div>1111</div>
         <div>1111</div>
-      </SiderWarp>
+      </SiderWarp> */}
     </section>
   )
 }

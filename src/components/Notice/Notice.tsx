@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import classNames from 'classnames'
 import { PROJECT_NAME } from './../../config/constance'
-import LogUtils from 'd-utils/lib/logUtils'
 import './notice.less'
 import { observer, useObservable, useObserver, useLocalStore, useStaticRendering, useComputed } from "mobx-react-lite"
 // import { useStore } from './../../utils/use'

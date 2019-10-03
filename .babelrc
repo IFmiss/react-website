@@ -2,7 +2,8 @@
   "presets": [
     ["@babel/preset-env", {
       "modules": "commonjs",
-      "loose": false
+      "loose": false,
+      "debug": true
     }],
     ["@babel/preset-react"]
   ],

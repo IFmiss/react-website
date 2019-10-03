@@ -6,8 +6,8 @@ import { playDefaultSheet } from './../utils/music'
 
 export const PROJECT_NAME = 'dw-react-web'
 export const WEBSITE_TITLE = 'D.w'
-export const TITLE = '未曾遗忘的青春，戴伟的个人博客'
-export const TITLE_ENTRY = 'ヽ(✿ﾟ▽ﾟ)ノ 欢迎回家'
+export const TITLE = '未曾遗忘的青春 | web前端_技术分享_戴伟的个人网站'
+export const TITLE_ENTRY = 'ヽ(✿ﾟ▽ﾟ)ノ 欢迎回来'
 export const TITLE_OUT = 'w(ﾟДﾟ)w 你走了 呜啊啊'
 export const SVG_DEFAULT_COLOR = 'green'
 

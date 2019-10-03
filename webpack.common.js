@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 // MiniCssExtractPlugin
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const env = process.env.NODE_ENV
@@ -11,9 +10,7 @@ const resolve = function (dir) {
 	return path.resolve(__dirname, dir);
 }
 
-console.log(process.env)
 const devMode = process.env.NODE_ENV === "development"
-console.log(devMode)
 
 module.exports = {
 	plugins: [
@@ -90,13 +87,6 @@ module.exports = {
 				include: path.resolve(__dirname, 'src/assets/svg')
 			},
 			{
-				test: /\.(js|jsx)$/,
-				exclude: /(node_modules)/,
-				use: {
-					loader: 'babel-loader'
-				}
-			},
-			{
 				test: /\.(ts|tsx)$/,
 				use: [
 					{loader: 'babel-loader',},
@@ -134,30 +124,4 @@ module.exports = {
 		},
 		extensions: ['.ts', '.tsx', '.js']
 	},
-  optimization: {
-		splitChunks: {
-			chunks: "all",
-			minSize: 30000,
-			minChunks: 3,
-			maxAsyncRequests: 5,
-			maxInitialRequests: 3,
-			name: true,
-			cacheGroups: {
-				default: {
-					minChunks: 2,
-					priority: -20,
-					reuseExistingChunk: true,
-				},
-				vendors: {
-					test: /[\\/]node_modules[\\/]/,
-					priority: -10
-				}
-			}
-		},
-		minimizer: [
-      new UglifyJsPlugin({
-        test: /\.js(\?.*)?$/i,
-      }),
-    ]
-	}
 };

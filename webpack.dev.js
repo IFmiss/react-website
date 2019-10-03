@@ -9,6 +9,14 @@ module.exports = merge(common, {
 	entry: {
     app: './src/index.tsx'
 	},
+	module: {
+		rules: [
+			{
+				test: /\.(js|jsx)$/,
+				loader: 'babel-loader'
+			},
+		]
+	},
   output: {
     path: resolve('dist'),
     publicPath: '/',

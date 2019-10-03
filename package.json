@@ -62,7 +62,8 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
-    "d-utils": "^3.0.0",
+    "copy-webpack-plugin": "^5.0.4",
+    "d-utils": "^3.0.1",
     "highlight.js": "^9.15.10",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.14",

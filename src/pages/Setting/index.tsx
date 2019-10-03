@@ -9,7 +9,6 @@ import { PROJECT_NAME } from './../../config/constance'
 import Switch from './../../components/Switch'
 import { changePageMode } from './../../utils/utils'
 import { randomPrimaryColor } from './../../utils/utils'
-import LogUtils from 'd-utils/lib/logUtils';
 import store from '../../store';
 import Lyric from './../../components/Lyric'
 import useNavType from './../../use/useNavType'
