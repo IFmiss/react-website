@@ -59,7 +59,7 @@ interface IDAudioState {
 const defaultList = {
   id: -1,
   url: '',
-  coverUrl: 'https://desk-fd.zol-img.com.cn/t_s720x360c5/g2/M00/03/09/ChMlWV06gc-IWeCjABDEZHv0cp8AAMHrQPh5vAAEMR8961.jpg',
+  coverUrl: 'https://www.daiwei.site/static/logo/d-audio.jpg',
   name: 'd-audio player',
   singer: '未曾遗忘的青春'
 }
