@@ -236,7 +236,7 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
     <div className={classString} onClick={checkType}>
       <div className={classCricle}
            title={`${list.name} - ${list.singer}`}>
-        <img className="avatar" src={list.coverUrl}/>
+        <img className="avatar" crossOrigin = "anonymous" src={list.coverUrl}/>
         <div className={`${selfClass}-range`} style={rangeStyle}></div>
       </div>
       <div className={`${selfClass}-detail`}>

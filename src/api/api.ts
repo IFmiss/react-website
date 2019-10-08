@@ -1,5 +1,5 @@
-export const selfBaseUrl = 'https://www.daiwei.site/php/server-php'
-export const musicBaseUrl = 'https://www.daiwei.site/netease'
+export const selfBaseUrl = '//www.daiwei.site/php/server-php'
+export const musicBaseUrl = '//www.daiwei.site/netease'
 export default {
   MUSIC: {
     /** 歌单列表 */
