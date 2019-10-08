@@ -30,7 +30,7 @@ export const Lyric: React.FC = (props, ref) => {
   })
 
   const start = () => {
-    console.log('this is lyric start')
+    // console.log('this is lyric start')
   }
 
   const checkLrc = (lrc: string) => {
@@ -75,8 +75,6 @@ function newInstance (props: ILyricProps) {
   const div = document.createElement('div')
   document.body.appendChild(div)
   ReactDOM.render(<LyricComponent {...props} ref={LyricRef}/>, div)
-
-  console.log(LyricRef.current)
 
   const destroy = () => {
     store.musicStore.lyricIsShow = false

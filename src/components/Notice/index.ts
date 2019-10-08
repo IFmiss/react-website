@@ -1,8 +1,6 @@
 import Message from './Message'
 import { NoticeType } from './Notice'
 
-console.log(Message)
-
 const notice = (type: NoticeType,
                 text: string | number,
                 duration: number = 3000,
@@ -36,7 +34,5 @@ const fn = {
     return notice(NoticeType.DEFAULT, text, duration, onClose)
   }
 }
-
-console.log(fn)
 
 export default fn

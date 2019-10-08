@@ -1,6 +1,7 @@
 const selfmerge = require('webpack-merge');
 const path = require('path');
 const webpack = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin');
 const selfcommon = require('./webpack.common.js');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -17,7 +18,7 @@ const resolve = function (dir) {
 module.exports = selfmerge(selfcommon, {
   mode: 'production',
   entry: {
-    app: './src/index.tsx'
+    app: './src/index.tsx',
   },
   output: {
     path: path.resolve(__dirname, 'dist/web_v3'),
@@ -44,25 +45,20 @@ module.exports = selfmerge(selfcommon, {
     }),
     
     // css 压缩
-    new OptimizeCssAssetsPlugin({
-      assetNameRegExp: /\.optimize\.css$/g,
-      cssProcessor: require('cssnano'),
-      cssProcessorPluginOptions: {
-        preset: ['default', { discardComments: { removeAll: true } }],
-      },
-      canPrint: true
-    }),
-
-    // 
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, 'dist/web_v3/index.html'),
-        to: path.resolve(__dirname, 'dist'),
-        ignore: ['.*']
-      }
-    ])
+    new OptimizeCssAssetsPlugin({}),
   ],
   optimization: {
+    namedModules: true,
+    minimizer: [
+      new TerserPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true, // Must be set to true if using source-maps in production
+        terserOptions: {
+          // https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
+        }
+      }),
+    ],
 		splitChunks: {
 			chunks: "all",
 			minSize: 30000,
@@ -77,14 +73,21 @@ module.exports = selfmerge(selfcommon, {
 					reuseExistingChunk: true,
 				},
 				vendors: {
-					test: /node_modules/,
+					test: /[\\/]node_modules[\\/]/,
           chunks: "initial",
           name: "vendor",
           priority: 10,
           enforce: true
+        },
+        commons: {
+					chunks: "initial",
+					minChunks: 2,
+					maxInitialRequests: 5, // The default limit is too small to showcase the effect
+					minSize: 0 // This is example is too small to create commons chunks
 				}
 			}
-		},
+    },
+    runtimeChunk: "single",
 		minimizer: [
       new UglifyJsPlugin({
 				test: /\.js(\?.*)?$/i,

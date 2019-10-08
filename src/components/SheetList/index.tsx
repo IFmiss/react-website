@@ -11,7 +11,6 @@ interface ISheetListProps {
 
 const SheetList = (props: ISheetListProps) => {
   const toDetail = () => {
-    console.log(props)
     props.history.push(`/music/sheetDetail?sheetId=${props.list.id}`)
   }
 

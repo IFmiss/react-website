@@ -35,7 +35,6 @@ export const getMusicIndexById = (id: number): any[] => {
 }
 
 export const formatMusicArtists = (artists: artists) => {
-  console.log('artists', artists)
   return artists.map((artist: artist) => artist.name).join(', ')
 }
 
@@ -51,7 +50,6 @@ export const getPlayMuiscList = async (list: MusicGroupList): Promise<IMusicInfo
   await checkMusicById(list.id)
   const { songs : musicDetail } = await getMusicDetailById(list.id) as any
   const formatDetail = formatMusicLists(musicDetail)
-  console.log('list', list)
   // 获取歌词
   const res: IMusicLyric = await musicLyricById(list.id) as any
   // 歌词类型判断
@@ -64,8 +62,6 @@ export const getPlayMuiscList = async (list: MusicGroupList): Promise<IMusicInfo
   } else {
     res.lrcType = MusicLyricType.NOT_FOUND
   }
-
-  console.log('res', res)
   // 提交歌词数据
   store.musicStore.setMusicLyric(res)
 
@@ -82,7 +78,6 @@ export const getNextMusicList = (id: number) => {
   let [index, queue] = getMusicIndexById(id)
   const length = store.musicStore.musicListQueue.slice().length
 
-  console.log(index, length)
   // 数据存在
   if (index >= 0 && length > 0) {
     // 最后一个会自己跳转到第一个

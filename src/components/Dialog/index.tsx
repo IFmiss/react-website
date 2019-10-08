@@ -18,11 +18,11 @@ export default function alert (
   onClose = () => {},
   onBtnClick = () => {}
 ) {
-  console.log(title)
-  console.log(desc)
-  console.log(btnText)
-  console.log(onClose)
-  console.log(onBtnClick)
+  // console.log(title)
+  // console.log(desc)
+  // console.log(btnText)
+  // console.log(onClose)
+  // console.log(onBtnClick)
   const div: any = document.createElement('div');
   document.body.appendChild(div);
 

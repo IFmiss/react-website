@@ -50,7 +50,6 @@ export function initPageMode (): string {
  * 初始化音频配置
  */
 export function initDAudiConfig () {
-  console.log(DAudioPosition)
   const position = localStorage.getItem('daudio-positon')
   if (Number(position) === DAudioPosition.BOTTOM_LEFT) {
     localStorage.setItem('daudio-positon', String(DAudioPosition.BOTTOM_LEFT))
@@ -71,4 +70,12 @@ export function initNavType (type: number) {
  */
 export function isProduction (): boolean {
   return process.env.NODE_ENV === 'production'
+}
+
+export function isTitle (tagName: string): number {
+  const titleArr = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6']
+  if (titleArr.includes(tagName)) {
+    return +tagName.slice(1)
+  }
+  return 0
 }

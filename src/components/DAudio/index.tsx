@@ -185,7 +185,6 @@ const DAudio: React.FC<IDAudioProps> = function (props, ref) {
   })
 
   const start = (musicList: IMusicInfo) => {
-    console.log('musicList', musicList)
     setList((list) => musicList)
     play()
     Lyric.checkLrc(store.musicStore.currentLyric)
@@ -270,13 +269,11 @@ function newInstance(props: IDAudioProps) {
   const div = document.createElement('div')
   document.body.appendChild(div)
   ReactDOM.render(<DuadioComponent {...props} ref={DAudioRef}/>, div)
-  console.log(DAudioRef.current)
   const destroy = () => {
     ReactDOM.unmountComponentAtNode(div);
     (div.parentNode as HTMLDivElement ).removeChild(div);
   }
 
-  console.log(DAudioRef.current)
   const { list, loop, type, ended, next, start, play, pause, playPause  } = DAudioRef.current as IDAudioState;
 
   return {

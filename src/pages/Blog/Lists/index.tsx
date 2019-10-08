@@ -14,7 +14,7 @@ import BlogList, { IBlogListCategorieOrTag } from '../../../components/BlogList'
 import SiderWarp from '../../../components/SiderWarp'
 import useScroll from './../../../use/useScroll'
 import * as UrlUtils from 'd-utils/lib/urlUtils'
-import * as promiseUtils from 'd-utils/lib/promiseUtils'
+import promiseUtils from 'd-utils/lib/promiseUtils'
 
 interface IBlogProps {
   history: any;

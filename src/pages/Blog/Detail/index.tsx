@@ -1,17 +1,15 @@
-import React, {useEffect, useState} from 'react'
-import fetch from './../../../utils/fetch'
-import { IStore } from './../../../store/types'
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import React, {useEffect, useState, useRef, useMemo, useLayoutEffect} from 'react'
 import classNames from 'classnames'
 import './detail.less'
 import './../../../style/high-default.less'
+import './../../../style/high-custom.less'
 import {
   getBlogDetail,
   pv
 } from './../action'
+import LoadingTips from './../../../components/LoadingTips'
 import { IBlogListCategorieOrTag } from '../../../components/BlogList'
 import { PROJECT_NAME, DEFAULT_BLOG_DETAIL } from './../../../config/constance'
-import SiderWarp from './../../../components/SiderWarp'
 import * as UrlUtils from 'd-utils/lib/urlUtils'
 import { isProduction } from './../../../utils/utils'
 const marked = require('marked');
@@ -46,7 +44,7 @@ interface IBlogDetail {
 
 const BlogDetail: React.FC<IBlogDetailProps> = () => {
   const [detail, setDetail] = useState<IBlogDetail>(DEFAULT_BLOG_DETAIL)
-
+  const contentRef = useRef(null);
   const classString = classNames({
     [`${PROJECT_NAME}-blog-detail`]: true
   })
@@ -61,23 +59,32 @@ const BlogDetail: React.FC<IBlogDetailProps> = () => {
     }
     fetchDetail()
   }, [])
+
   return (
     <section className={classString}>
-      <div className={`${classString}-mian`}>
-        <h2>{detail.name}</h2>
-      </div>
-      <div className={`${classString}-content`}
-           dangerouslySetInnerHTML = {{__html: marked(detail.content)}}>
-      </div>
-      {/* <SiderWarp show={false} switchTop="20px" type="auto">
-        <h4 className="sider-title">目录</h4>
-        <div>1111</div>
-        <div>1111</div>
-        <div>1111</div>
-        <div>1111</div>
-        <div>1111</div>
-        <div>1111</div>
-      </SiderWarp> */}
+      {
+        detail.id ? (
+          <div>
+            <div className={`${classString}-mian`}>
+              <h2>{detail.name}</h2>
+            </div>
+            <div className={`${classString}-content`}
+                 ref={contentRef}
+                dangerouslySetInnerHTML = {{__html: marked(detail.content)}}>
+            </div>
+            {
+              detail.editDate ? (
+                <div>
+                  <p>---------------</p>
+                  最后编辑时间: {detail.editDate}
+                </div>
+              ) : null
+            }
+          </div>
+        ) : (
+          <LoadingTips show={!detail.id} text="加载中..."/>
+        )
+      }
     </section>
   )
 }

@@ -41,9 +41,7 @@ const MusicRank = () => {
   
   const handlePlay = () => {
     DAudio.list
-    console.log(DAudio.list)
   }
-  console.log('rank - store.musicStore.lyricIsShow', store.musicStore.lyricIsShow)
 
   const showTypeList = () => {
     setType((showType) => showType = true)

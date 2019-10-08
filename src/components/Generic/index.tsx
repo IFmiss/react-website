@@ -18,10 +18,6 @@ export default class GenericComponent<P, S> extends React.Component<P, S> {
   // props: P & GenericProps;
   // state: S & GenericState;
 
-  componentDidMount () {
-    console.log('this.props', this.props)
-  }
-
   static defaultProps = {
     prefixClass: PROJECT_NAME,
     className: `generic-component ${PROJECT_NAME}`

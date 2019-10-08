@@ -15,7 +15,6 @@ interface INavProps {
 const Nav = observer((props: INavProps) => {
   const nav = useStore().navStore
   const lists = nav.lists
-  console.log('nav', props)
 
   const classString = classNames({
     [`${PROJECT_NAME}-nav`]: true

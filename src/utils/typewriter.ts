@@ -34,7 +34,6 @@ export function getAttrEntries (propName: string, obj: any): any[] {
 }
 
 export default function typeWriter (typeWriterList: ITypeWriterList): Promise<void> {
-  console.log(typeWriterList)
   const {text, tagName, container, config, domAttr } = typeWriterList
   const el = document.createElement(tagName)
 

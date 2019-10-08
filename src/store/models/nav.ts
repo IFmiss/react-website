@@ -1,7 +1,6 @@
 import { get, set, observable, values, computed, action } from 'mobx'
 import { INavLists, HomeNav, MusicNav } from './../../config/nav'
 import { NAV_TYPE } from './../../enum'
-import LogUtils from 'd-utils/lib/logUtils'
 export default class ColorModel {
   @observable
   lists: INavLists = HomeNav
@@ -15,6 +14,5 @@ export default class ColorModel {
       default:
         this.lists = HomeNav
     }
-    LogUtils.logInfo(this.lists)
   }
 }

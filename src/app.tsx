@@ -6,7 +6,6 @@ import { storeContext } from './utils/use'
 import Main from './Main'
 
 const App = () => {
-  console.log('this.propsthis.propsthis.propsthis.props', store)
   return (
     <storeContext.Provider value={store}>
       <BrowserRouter>
