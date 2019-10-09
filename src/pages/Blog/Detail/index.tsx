@@ -12,13 +12,12 @@ import { IBlogListCategorieOrTag } from '../../../components/BlogList'
 import { PROJECT_NAME, DEFAULT_BLOG_DETAIL } from './../../../config/constance'
 import * as UrlUtils from 'd-utils/lib/urlUtils'
 import { isProduction } from './../../../utils/utils'
-import * as HightLight from 'highlight.js'
 import marked from "marked";
 
 marked.setOptions({
   renderer: new marked.Renderer(),
   highlight: function(code: any) {
-    return HightLight.highlightAuto(code).value;
+    return require('highlight.js').highlightAuto(code).value;
   },
   pedantic: false,
   gfm: true,

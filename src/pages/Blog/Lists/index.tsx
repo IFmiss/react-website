@@ -14,7 +14,7 @@ import BlogList, { IBlogListCategorieOrTag } from '../../../components/BlogList'
 import SiderWarp from '../../../components/SiderWarp'
 import useScroll from './../../../use/useScroll'
 import * as UrlUtils from 'd-utils/lib/urlUtils'
-import * promiseUtils from 'd-utils/lib/promiseUtils'
+import * as promiseUtils from 'd-utils/lib/promiseUtils'
 
 interface IBlogProps {
   history: any;
@@ -108,7 +108,6 @@ const Blog: React.FC<IBlogProps> = (props) => {
                     onClick={ filterListsByTagName.bind(null, item) }>{ item.name }</span>
             ))
           }
-          {/* <span className="active">111</span> */}
         </div>
       </SiderWarp>
     </div>

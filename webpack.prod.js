@@ -24,7 +24,7 @@ module.exports = selfmerge(selfcommon, {
   externals: {
     react: 'React',
     'react-dom': 'ReactDOM',
-    'highlight.js': 'highlight.js',
+    'highlight.js': 'hljs',
     'mobx': 'mobx'
   },
   output: {
