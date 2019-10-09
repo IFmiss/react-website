@@ -4,9 +4,10 @@
   "description": "react-website",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --progress --config ./webpack.prod.js",
-    "dev": "webpack-dev-server --config ./webpack.dev.js --progress",
-    "watch": "webpack --colors --watch"
+    "build": "webpack --progress --mode production --config ./webpack.prod.js",
+    "dev": "webpack-dev-server --mode development --config ./webpack.dev.js --progress",
+    "watch": "webpack --colors --watch",
+    "analyz": "NODE_ENV=production npm_config_report=true npm run build"
   },
   "keywords": [],
   "author": "daiwei",
@@ -23,7 +24,7 @@
     "@types/classnames": "^2.2.8",
     "@types/node": "^11.13.2",
     "@types/qs": "^6.5.3",
-    "@types/react": "16.8.22",
+    "@types/react": "^16.9.5",
     "@types/react-dom": "16.8.4",
     "@types/react-loadable": "^5.5.1",
     "@types/react-router-dom": "^4.3.4",
@@ -37,7 +38,6 @@
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "mini-css-extract-plugin": "^0.5.0",
-    "mobx": "^5.9.4",
     "mobx-react": "^5.4.4",
     "mobx-react-lite": "^1.4.1",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
@@ -68,8 +68,10 @@
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.14",
     "marked": "^0.7.0",
+    "mobx": "5.13.0",
     "node-vibrant": "^3.1.3",
     "terser-webpack-plugin": "^2.1.2",
+    "webpack-bundle-analyzer": "^3.5.2",
     "whatwg-fetch": "^3.0.0"
   }
 }

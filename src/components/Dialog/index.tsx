@@ -1,6 +1,6 @@
 
-import * as ReactDOM from 'react-dom';
 import React from 'react'
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { PROJECT_NAME } from './../../config/constance'
 export interface IAlertOption {

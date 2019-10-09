@@ -5,6 +5,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const selfcommon = require('./webpack.common.js');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // css压缩打包相关
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -20,10 +21,17 @@ module.exports = selfmerge(selfcommon, {
   entry: {
     app: './src/index.tsx',
   },
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM',
+    'highlight.js': 'highlight.js',
+    'mobx': 'mobx'
+  },
   output: {
     path: path.resolve(__dirname, 'dist/web_v3'),
     publicPath: '/web_v3',
-    filename: 'js/[name]-[hash].js'
+    filename: 'js/[name]-[hash].js',
+    libraryTarget: 'umd'
   },
   module: {
     rules: [
@@ -46,6 +54,8 @@ module.exports = selfmerge(selfcommon, {
     
     // css 压缩
     new OptimizeCssAssetsPlugin({}),
+
+    new BundleAnalyzerPlugin()
   ],
   optimization: {
     namedModules: true,
@@ -71,16 +81,22 @@ module.exports = selfmerge(selfcommon, {
 					minChunks: 2,
 					priority: -20,
 					reuseExistingChunk: true,
-				},
+        },
+        // slefreact:{ // 键值可以自定义
+        //   chunks:'initial', // 
+        //   name:'react', // 入口的entry的key
+        //   enforce:true   // 强制 
+        // },
 				vendors: {
 					test: /[\\/]node_modules[\\/]/,
           chunks: "initial",
           name: "vendor",
           priority: 10,
-          enforce: true
+          enforce: true,
         },
         commons: {
-					chunks: "initial",
+          name: 'vendors',
+          chunks: 'all',
 					minChunks: 2,
 					maxInitialRequests: 5, // The default limit is too small to showcase the effect
 					minSize: 0 // This is example is too small to create commons chunks

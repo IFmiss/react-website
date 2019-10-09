@@ -19,7 +19,10 @@ module.exports = {
       template: 'index.html',
 			inject: true,
 			title: "未曾遗忘的青春，戴伟的个人博客",
-			favicon: 'src/assets/favicon/favicon.ico'
+			favicon: 'src/assets/favicon/favicon.ico',
+			minify: {
+				removeComments: true
+			}
 		}),
 
 		new MiniCssExtractPlugin ({

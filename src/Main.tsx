@@ -2,7 +2,7 @@ import React from 'react'
 // import { Route, Switch, Redirect } from 'react-router'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { Home, Blog, Music, Setting } from './loadable'
-import Nav from './components/Nav'
+import Nav from './components/Nav/index'
 
 interface IMainProps {
   prefixClass?: string;
