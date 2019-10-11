@@ -7,6 +7,7 @@ import { PROJECT_NAME, WEBSITE_TITLE } from './../../config/constance'
 import React, { useState, useEffect } from 'react'
 import { observer, useObservable, useObserver, useLocalStore, useStaticRendering, useComputed } from "mobx-react-lite"
 import { useStore } from './../../utils/use'
+import Icon from './../Icon'
 
 interface INavProps {
   location?: any
@@ -24,7 +25,6 @@ const Nav = observer((props: INavProps) => {
     <nav className={ classString }>
       <div className="nav-content">
         <div className="nav-logo">
-          {/* <img className="nav-img" src="http://www.daiwei.org/index/images/logo/favicon.ico" alt=""/> */}
           <h2 className="nav-title">{WEBSITE_TITLE}</h2>
         </div>
         <div className="nav-lists">

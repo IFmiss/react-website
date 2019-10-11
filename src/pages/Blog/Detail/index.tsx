@@ -29,8 +29,7 @@ marked.setOptions({
   xhtml: false
 });
 
-interface IBlogDetailProps {
-}
+interface IBlogDetailProps {}
 
 interface IBlogDetail {
   id: string;
