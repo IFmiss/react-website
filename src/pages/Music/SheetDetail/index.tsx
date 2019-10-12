@@ -9,9 +9,10 @@ import { MusicPlayType } from './../../../store/types'
 import { sheetDetailById } from './../action'
 import { parseUrl } from 'd-utils/lib/urlUtils'
 import { formatMusicLists } from './../../../utils/music'
-// import {}
+import Icon from './../../../components/Icon'
+import { RouteChildrenProps } from 'react-router';
 
-const SheetDetail: React.FC = (props) => {
+const SheetDetail: React.FC<RouteChildrenProps> = (props) => {
   const classString = classNames({
     [`${PROJECT_NAME}-music-sheet-detail`]: true
   })
@@ -35,6 +36,10 @@ const SheetDetail: React.FC = (props) => {
     getSheetLists()
   }, [])
 
+  const closeDetial = () => {
+    props.history.goBack()
+  }
+
   return (
     <section className={classString}>
       {
@@ -51,6 +56,9 @@ const SheetDetail: React.FC = (props) => {
                   <span>共 { detialInfo.trackCount } 首音乐</span>
                   <span>{ detialInfo.playCount } 人听过</span>
                 </div>
+              </div>
+              <div className="close-area" onClick={closeDetial}>
+                <Icon svgId="close" color="#aaaaaa"></Icon>
               </div>
             </div>
             <div className={`${classString}-lists`}>
