@@ -2,18 +2,16 @@ import React, { useEffect, useState, useCallback } from 'react'
 import { getRankLists } from './../action'
 import className from 'classnames'
 import { formatMusicLists } from './../../../utils/music'
-import { PROJECT_NAME, MUSIC_SEARCH_DEFAULT_LIMIT, MUSIC_RANK_TYPE } from '../../../config/constance'
+import { PROJECT_NAME, MUSIC_RANK_TYPE } from '../../../config/constance'
 import MusicListGroup from './../../../components/MusicListGroup'
 import LoadingTips from '../../../components/LoadingTips';
-import * as UrlUtils from 'd-utils/lib/urlUtils'
+import { parseUrl } from 'd-utils/lib/urlUtils'
 import DAudio from './../../../components/DAudio';
 import './rank.less'
-import Notice from '../../../components/Notice'
 import { MusicPlayType } from './../../../store/types'
-import store from '../../../store';
 
 const MusicRank = () => {
-  const urlKeywords = UrlUtils.parseUrl(decodeURIComponent(location.href)).keywords
+  const urlKeywords = parseUrl(decodeURIComponent(location.href)).keywords
   const [showType, setType] = useState(false)
   const [rankLists, setRankLists] = useState<any[]>([])
   const [rankType, setRankType] = useState<string>(Object.values(MUSIC_RANK_TYPE).includes(urlKeywords) ? urlKeywords : '1')

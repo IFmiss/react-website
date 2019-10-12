@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, useLayoutEffect, useCallback } fro
 import MenuBar from './../../../components/MenuBar'
 import classNames from 'classnames'
 import { PROJECT_NAME, MUSIC_SHEET_DEFAULT_LIMIT } from '../../../config/constance'
-import * as UrlUtils from 'd-utils/lib/urlUtils'
+import { parseUrl } from 'd-utils/lib/urlUtils'
 import { MUSCI_MENU } from './../../../config/music'
 import { IMenuSub } from './../../../components/MenuBar'
 import { MUSIC_SHEET_TYPE } from './../../../enum'
@@ -22,7 +22,7 @@ const MusicSheet = (props: MusicSheetProps) => {
     [`${PROJECT_NAME}-music-sheet`]: true
   })
 
-  const { cat } = UrlUtils.parseUrl(decodeURIComponent(location.href))
+  const { cat } = parseUrl(decodeURIComponent(location.href))
 
   const getType = () => {
     if (cat) {

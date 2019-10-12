@@ -4,11 +4,10 @@ import Vibrant from 'node-vibrant'
 import ReactDOM from 'react-dom';
 import './d-audio.less'
 import store from './../../store'
-import { IMusicLyric, MusicLyricType } from './../../store/types'
 import { throttle } from 'd-utils/lib/genericUtils'
 import Lyric from './../Lyric'
 import Icon from './../Icon'
-import { getMusicIndexById, getPlayMuiscList, getNextMusicList} from './../../utils/music'
+import { getPlayMuiscList, getNextMusicList} from './../../utils/music'
 
 export interface IMusicInfo {
   id: number;

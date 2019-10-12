@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import classNames from 'classnames'
 import { PROJECT_NAME } from './../../config/constance'
 import { MUSCI_MENU } from './../../config/music'
-import * as UrlUtils from 'd-utils/lib/urlUtils'
 import { MUSIC_SHEET_TYPE } from './../../enum'
 import './menu-bar.less'
 

@@ -29,7 +29,7 @@ module.exports = selfmerge(selfcommon, {
   },
   output: {
     path: path.resolve(__dirname, 'dist/web_v3'),
-    publicPath: '/web_v3',
+    publicPath: '/web_v3/',
     filename: 'js/[name]-[hash].js',
     libraryTarget: 'umd'
   },
@@ -82,11 +82,6 @@ module.exports = selfmerge(selfcommon, {
 					priority: -20,
 					reuseExistingChunk: true,
         },
-        // slefreact:{ // 键值可以自定义
-        //   chunks:'initial', // 
-        //   name:'react', // 入口的entry的key
-        //   enforce:true   // 强制 
-        // },
 				vendors: {
 					test: /[\\/]node_modules[\\/]/,
           chunks: "initial",

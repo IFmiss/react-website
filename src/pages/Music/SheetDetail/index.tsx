@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import classNames from 'classnames'
 import './sheet-detail.less'
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { PROJECT_NAME, MUSIC_SEARCH_DEFAULT_LIMIT } from '../../../config/constance'
+import { PROJECT_NAME } from '../../../config/constance'
 import LazyImg from './../../../components/LazyImg'
 import MusicListGroup from './../../../components/MusicListGroup'
 import LoadingTips from './../../../components/LoadingTips'
 import { MusicPlayType } from './../../../store/types'
 import { sheetDetailById } from './../action'
-import * as UrlUtils from 'd-utils/lib/urlUtils'
+import { parseUrl } from 'd-utils/lib/urlUtils'
 import { formatMusicLists } from './../../../utils/music'
 // import {}
 
@@ -18,7 +17,7 @@ const SheetDetail: React.FC = (props) => {
   })
   const [sheetDetailLists, setSheetDetailLists] = useState<any>([])
   const [detialInfo, setDetailInfo] = useState<any>({})
-  const sheetId = UrlUtils.parseUrl(decodeURIComponent(location.href)).sheetId
+  const sheetId = parseUrl(decodeURIComponent(location.href)).sheetId
 
   useEffect(() => {
     const getSheetLists = async () => {

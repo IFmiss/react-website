@@ -1,6 +1,4 @@
 import React, {useEffect, useState, useRef, useLayoutEffect} from 'react'
-import fetch from '../../../utils/fetch'
-import { IStore } from '../../../store/types'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import classNames from 'classnames'
 import './lists.less'
@@ -13,8 +11,8 @@ import { PROJECT_NAME,
 import BlogList, { IBlogListCategorieOrTag } from '../../../components/BlogList'
 import SiderWarp from '../../../components/SiderWarp'
 import useScroll from './../../../use/useScroll'
-import * as UrlUtils from 'd-utils/lib/urlUtils'
-import * as promiseUtils from 'd-utils/lib/promiseUtils'
+import { parseUrl } from 'd-utils/lib/urlUtils'
+import { sleep } from 'd-utils/lib/promiseUtils'
 
 interface IBlogProps {
   history: any;
@@ -32,7 +30,7 @@ const Blog: React.FC<IBlogProps> = (props) => {
   const siderRef = useRef<any>(null)
   const start = false
 
-  const { tag: tagName } = UrlUtils.parseUrl(decodeURIComponent(location.href))
+  const { tag: tagName } = parseUrl(decodeURIComponent(location.href))
   const [tag, setTag] = useState<string>(tagName)
 
   const loadMoreInfo = () => {
@@ -45,7 +43,7 @@ const Blog: React.FC<IBlogProps> = (props) => {
     
     setData((data) => data = [])
     siderRef.current && siderRef.current.hideComp()
-    await promiseUtils.sleep(500)
+    await sleep(500)
     setOffset((offset) => offset = 0)
     setTag((tag) => tag = item.name)
   }

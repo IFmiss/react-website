@@ -6,7 +6,7 @@ import MusicListGroup from './../../../components/MusicListGroup'
 import { isEmptyStr } from 'd-utils/lib/expUtils/index'
 import LoadingTips from '../../../components/LoadingTips';
 import * as MusicFetch from './../action'
-import * as UrlUtils from 'd-utils/lib/urlUtils'
+import { parseUrl } from 'd-utils/lib/urlUtils'
 import { MusicPlayType } from './../../../store/types'
 
 import useScroll from './../../../use/useScroll'
@@ -23,7 +23,7 @@ const MusicSearch = (props: MusicSearchProps) => {
   const [offset, setOffset] = useState(0)
   const [searchLists, setSearchList] = useState([])
 
-  const [keywords, setKeywords] = useState(UrlUtils.parseUrl(decodeURIComponent(location.href)).keywords)
+  const [keywords, setKeywords] = useState(parseUrl(decodeURIComponent(location.href)).keywords)
 
   const loadingTipsFn = useLoadingTips(false, '搜索中...')
 

@@ -1,10 +1,8 @@
 import React, { useRef, useState, useEffect, useImperativeHandle } from 'react'
 import classNames from 'classnames'
 import { PROJECT_NAME } from './../../config/constance'
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './sider-warp.less'
 import Icon from './../Icon'
-import * as DomUtils from 'd-utils/lib/domUtils'
 
 interface ISiderWarpProps {
   show: boolean;

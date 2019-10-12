@@ -10,7 +10,7 @@ import {
 import LoadingTips from './../../../components/LoadingTips'
 import { IBlogListCategorieOrTag } from '../../../components/BlogList'
 import { PROJECT_NAME, DEFAULT_BLOG_DETAIL } from './../../../config/constance'
-import * as UrlUtils from 'd-utils/lib/urlUtils'
+import { parseUrl } from 'd-utils/lib/urlUtils'
 import { isProduction } from './../../../utils/utils'
 import marked from "marked";
 
@@ -49,7 +49,7 @@ const BlogDetail: React.FC<IBlogDetailProps> = () => {
     [`${PROJECT_NAME}-blog-detail`]: true
   })
 
-  const { id } = UrlUtils.parseUrl(decodeURIComponent(location.href))
+  const { id } = parseUrl(decodeURIComponent(location.href))
 
   useEffect(() => {
     const fetchDetail = async () => {

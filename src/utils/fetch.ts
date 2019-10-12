@@ -1,5 +1,5 @@
 import 'whatwg-fetch';
-import * as UrlUtils from 'd-utils/lib/urlUtils'
+import { stringifyUrl } from 'd-utils/lib/urlUtils'
 import LogUtils from 'd-utils/lib/logUtils'
 import * as qs from 'qs'
 import Notice from './../components/Notice'
@@ -12,7 +12,7 @@ export default {
    * @param {*} showMessage 是否显示成功的提示
    */
   get: function (url: string, data: any = {}, showMessage: boolean = false) {
-    const newUrl = `${url}?${UrlUtils.stringifyUrl(data)}`
+    const newUrl = `${url}?${stringifyUrl(data)}`
     const signal = controller.signal;
     return new Promise((resolve, reject) => {
       fetch(newUrl, {
