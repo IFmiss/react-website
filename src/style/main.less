@@ -47,7 +47,7 @@
 }
 
 body {
-  transition: padding 0.3s;
+  transition: padding 0.3s, background-color 0.3s;
   &.sider-s {
     padding-right: @side-warp-width - 16px;
   }
@@ -83,7 +83,8 @@ body.dark {
 }
 
 #dw-react-web-container {
-  .mixinBg();
+  // .mixinBg();
+  background: transparent;
   margin-top: @nav-height;
   height: calc(100vh - @nav-height);
   overflow: auto;
