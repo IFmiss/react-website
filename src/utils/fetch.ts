@@ -3,6 +3,7 @@ import { stringifyUrl } from 'd-utils/lib/urlUtils'
 import LogUtils from 'd-utils/lib/logUtils'
 import * as qs from 'qs'
 import Notice from './../components/Notice'
+import { isProduction } from './utils'
 
 export const controller = new AbortController();
 export default {
@@ -24,7 +25,7 @@ export default {
       })
       .then(res => res.json())
       .then((data) => {
-        LogUtils.logInfo(data, `http-request: url: ${url} => `)
+        !isProduction() && LogUtils.logInfo(data, `http-request: url: ${url} => `)
         if (parseInt(data.code, 10) === 200 ||
             data.success) {
           resolve(data)
@@ -32,7 +33,7 @@ export default {
         }
 
         const msg = data.message ? data.message : data.msg
-        LogUtils.logError(msg)
+        !isProduction() && LogUtils.logError(msg)
         Notice.error(msg)
         reject(msg)
       })
@@ -41,7 +42,7 @@ export default {
           reject(`request was aborted${err}`)
           return
         }
-        LogUtils.logError(err)
+        !isProduction() && LogUtils.logError(err)
         reject(`请求未知错误${err}`)
       })
     }) 
@@ -72,7 +73,7 @@ export default {
           return
         }
         const msg = response.message ? response.message : response.msg
-        LogUtils.logError(msg)
+        !isProduction() && LogUtils.logError(msg)
         Notice.error(msg)
         reject(msg)
       })
@@ -81,7 +82,7 @@ export default {
           reject(`request was aborted${err}`)
           return
         }
-        LogUtils.logError(err)
+        !isProduction() && LogUtils.logError(err)
         reject(`请求未知错误${err}`)
       })
     })

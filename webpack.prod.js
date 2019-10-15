@@ -101,7 +101,7 @@ module.exports = selfmerge(selfcommon, {
     runtimeChunk: "single",
 		minimizer: [
       new UglifyJsPlugin({
-				test: /\.js(\?.*)?$/i,
+        test: /\.js(\?.*)?$/i
       }),
     ]
 	}

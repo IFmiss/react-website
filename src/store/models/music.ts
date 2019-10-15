@@ -2,7 +2,6 @@ import { observable, computed, action, isComputedProp } from 'mobx'
 import { DAudioPosition } from './../../components/DAudio'
 import { MusicGroupList, MusicGroupLists } from './../../type'
 import { MusicPlayType, MusicLyricType, IMusicLyric } from './../types'
-import LogUtils from 'd-utils/lib/logUtils'
 export default class MusicModel {
   @observable
   playPosition: DAudioPosition = DAudioPosition.BOTTOM_LEFT
@@ -37,7 +36,6 @@ export default class MusicModel {
     this.setMusicPlayIndex(index)
     this.setPlayType(type)
     this.setMusicListQueue(lists)
-    LogUtils.logInfo('播放队列完成')
   }
 
   /** 当前播放的音乐信息 */
