@@ -11,6 +11,7 @@ export const TITLE_ENTRY = 'ヽ(✿ﾟ▽ﾟ)ノ 欢迎回来'
 export const TITLE_OUT = 'w(ﾟДﾟ)w 你走了 呜啊啊'
 export const SVG_DEFAULT_COLOR = 'green'
 export const CONSOLE_TEXT = '    R E A C T - W E B S I T E    '
+export const CONSOLE_BGS = ['#a18cd1', '#fbc2eb']
 
 export const SELF_SHEET_INFO = {
   id: 2179377798,
@@ -86,7 +87,7 @@ export const MUSIC_SHEET_TRANSITION_DURATION = MUSIC_SHEET_DEFAULT_LIMIT * 200 /
 
 export const MUSIC_SEARCH_DEFAULT_LIMIT = 20
 
-export const BLOG_LIST_DEFAULT_LIMIT = 10
+export const BLOG_LIST_DEFAULT_LIMIT = 12
 
 export const BLOG_TAGS_ALL_INFO = {
   id: '',
