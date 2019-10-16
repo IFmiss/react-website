@@ -10,6 +10,7 @@ export const TITLE = '未曾遗忘的青春 | web前端_技术分享_戴伟的�
 export const TITLE_ENTRY = 'ヽ(✿ﾟ▽ﾟ)ノ 欢迎回来'
 export const TITLE_OUT = 'w(ﾟДﾟ)w 你走了 呜啊啊'
 export const SVG_DEFAULT_COLOR = 'green'
+export const CONSOLE_TEXT = '    R E A C T - W E B S I T E    '
 
 export const SELF_SHEET_INFO = {
   id: 2179377798,
