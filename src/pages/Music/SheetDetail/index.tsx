@@ -62,10 +62,9 @@ const SheetDetail: React.FC<RouteChildrenProps> = (props) => {
               </div>
             </div>
             <div className={`${classString}-lists`}>
-                  <MusicListGroup lists={sheetDetailLists}
-                                  transition={false}
-                                  type={MusicPlayType.SHEET}/>
-              }
+                <MusicListGroup lists={sheetDetailLists}
+                                transition={false}
+                                type={MusicPlayType.SHEET}/>
             </div>
           </div>
           ) : (
