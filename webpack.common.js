@@ -27,7 +27,7 @@ module.exports = {
 
 		new MiniCssExtractPlugin ({
 			filename: "css/[name]-[hash].css",
-  		chunkFilename: "css/[id].css"
+  		chunkFilename: "css/[name]-[hash].css"
 		}),
 
 		new webpack.DefinePlugin({
