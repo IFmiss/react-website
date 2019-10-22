@@ -19,16 +19,26 @@ export const SELF_SHEET_INFO = {
 }
 
 export const DEFAULT_BLOG_DETAIL = {
-  id: '',
-  name: '',
-  readCount: '',
-  editDate: '',
-  createDate: '',
-  content: '',
-  tagLists: [{
+  detail: {
     id: '',
-    name: ''
-  }]
+    name: '',
+    readCount: '',
+    editDate: '',
+    createDate: '',
+    content: '',
+    tagLists: [{
+      id: '',
+      name: ''
+    }]
+  },
+  next: {
+    id: null,
+    name: null
+  },
+  prev: {
+    id: null,
+    name: null
+  }
 }
 
 export const TYPE_WRITER: ITypeWriterList[] = [

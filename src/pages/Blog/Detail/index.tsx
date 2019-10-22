@@ -29,7 +29,9 @@ marked.setOptions({
   xhtml: false
 });
 
-interface IBlogDetailProps {}
+interface IBlogDetailProps {
+  history: any;
+}
 
 interface IBlogDetail {
   id: string;
@@ -41,8 +43,19 @@ interface IBlogDetail {
   content: string;
 }
 
-const BlogDetail: React.FC<IBlogDetailProps> = () => {
-  const [detail, setDetail] = useState<IBlogDetail>(DEFAULT_BLOG_DETAIL)
+interface IBlogPrevNext {
+  id: string | null;
+  name: string | null;
+}
+
+interface IBlogDetailInfo {
+  next: IBlogPrevNext;
+  prev: IBlogPrevNext;
+  detail: IBlogDetail;
+}
+
+const BlogDetail: React.FC<IBlogDetailProps> = (props) => {
+  const [blog, setBlog] = useState<IBlogDetailInfo>(DEFAULT_BLOG_DETAIL)
   const contentRef = useRef(null);
   const classString = classNames({
     [`${PROJECT_NAME}-blog-detail`]: true
@@ -50,38 +63,58 @@ const BlogDetail: React.FC<IBlogDetailProps> = () => {
 
   const { id } = parseUrl(decodeURIComponent(location.href))
 
+  const handleGo = (info: IBlogPrevNext) => {
+    if (info.id) {
+      props.history.push(`/blog/detail?id=${info.id}`)
+    }
+  }
+
   useEffect(() => {
+    setBlog((blog) => blog = DEFAULT_BLOG_DETAIL)
     const fetchDetail = async () => {
       const res = await getBlogDetail(id)
       if (isProduction()) await pv(id)
-      setDetail((detail) => detail = res.data)
+      setBlog((blog) => blog = res.data)
     }
     fetchDetail()
-  }, [])
+  }, [id])
 
   return (
     <section className={classString}>
       {
-        detail.id ? (
+        blog.detail.id ? (
           <div>
             <div className={`${classString}-mian`}>
-              <h2>{detail.name}</h2>
+              <h2>{blog.detail.name}</h2>
             </div>
             <div className={`${classString}-content`}
                  ref={contentRef}
-                dangerouslySetInnerHTML = {{__html: marked(detail.content)}}>
+                dangerouslySetInnerHTML = {{__html: marked(blog.detail.content)}}>
             </div>
             {
-              detail.editDate ? (
+              blog.detail.editDate ? (
                 <div>
                   <p>---------------</p>
-                  最后编辑时间: {detail.editDate}
+                  最后编辑时间: {blog.detail.editDate}
                 </div>
               ) : null
             }
+            <div className={`${classString}-entry`}>
+              <a className={`${classString}-entry-prev`}
+                 onClick={handleGo.bind(null, blog.prev)}
+                 title={blog.prev.name || ''}>
+                { blog.prev.name ? `上一篇 : ${blog.prev.name}` : '' }
+              </a>
+
+              <a className={`${classString}-entry-next`}
+                 onClick={handleGo.bind(null, blog.next)}
+                 title={blog.next.name || ''}>
+                { blog.next.name ? `下一篇 : ${blog.next.name}` : '' }
+              </a>
+            </div>
           </div>
         ) : (
-          <LoadingTips show={!detail.id} text="加载中..."/>
+          <LoadingTips show={!blog.detail.id} text="加载中..."/>
         )
       }
     </section>
