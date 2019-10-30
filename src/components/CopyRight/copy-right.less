@@ -1,0 +1,25 @@
+.@{project-prefix}-comp-copy-right {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  display: inline-block;
+  font-size: 14px;
+  padding: 6px 10px;
+  font-weight: 200;
+  cursor: default;
+  .list {
+    opacity: 0.3;
+    margin: 0 5px;
+  }
+  &-info {
+    .mixinTextColor();
+  }
+  a {
+    &:hover {
+      opacity: 0.6;
+      color: var(--primary-color);
+      text-decoration: underline;
+    }
+  }
+}

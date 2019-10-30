@@ -55,3 +55,8 @@ export const MusicSheetDetail = Loadable({
   loader: () => import('./pages/Music/SheetDetail'),
   loading: Loading
 })
+
+export const InterLink = Loadable({
+  loader: () => import('./pages/InterLink'),
+  loading: Loading
+})
