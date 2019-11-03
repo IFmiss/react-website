@@ -25,7 +25,7 @@ const Main = (props: IMainProps) => {
           <Route path="/blog" component={Blog}/>
           <Route path="/setting" component={Setting}/>
           <Route path="/interlink" component={InterLink}/>
-          <Redirect to="/home" strict exact/>
+          <Redirect from="/*" to="/home" strict exact/>
         </Switch>
         <CopyRight></CopyRight>
       </BrowserRouter>

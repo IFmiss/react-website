@@ -34,5 +34,8 @@ export default {
     tags: `${selfBaseUrl}/article/index.php`,
     detail: `${selfBaseUrl}/article/index.php?name=getArticleDetail`,
     pv: `${selfBaseUrl}/article/index.php?name=changePv`,
+  },
+  OTHER: {
+    links: `${selfBaseUrl}/other/index.php`
   }
 }
