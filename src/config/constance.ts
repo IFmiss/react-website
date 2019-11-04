@@ -99,6 +99,8 @@ export const MUSIC_SEARCH_DEFAULT_LIMIT = 20
 
 export const BLOG_LIST_DEFAULT_LIMIT = 12
 
+export const INTER_LINK_DEFAULT_LIMIT = 12
+
 export const BLOG_TAGS_ALL_INFO = {
   id: '',
   name: '全部'

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { PROJECT_NAME } from "./../../config/constance";
+import { PROJECT_NAME, INTER_LINK_DEFAULT_LIMIT } from "./../../config/constance";
 import classNames from 'classnames'
 import { getLinkLists } from './action'
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 interface ILinkProps {
   id: string;
@@ -29,11 +30,25 @@ const InterLink: React.FC = () => {
 
   return (
     <div className={classString}>
-      {
-        lists.map((item: ILinkProps) => (
-          <a className="list" key={item.id} href={item.url} target="_black">{item.name}</a>
-        ))
-      }
+      <TransitionGroup transitionleave="false">
+        {
+          lists.map((item: ILinkProps, index: number) => (
+            <CSSTransition  in={false}
+                            key={item.id}
+                            timeout={
+                              {
+                                enter: 300 + (index % INTER_LINK_DEFAULT_LIMIT) * 200,
+                                exit: 0
+                              }
+                            }
+                            classNames="side-up-fade"
+                            appear={false}
+                            unmountOnExit={false}>
+              <a className="list" key={item.id} href={item.url} target="_black">{item.name}</a>
+            </CSSTransition>
+          ))
+        }
+      </TransitionGroup>
     </div>
   )
 }
