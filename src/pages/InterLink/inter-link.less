@@ -1,7 +1,24 @@
 .@{project-prefix}-interlink {
-  display: flex;
-  align-items: flex-start;
-  a {
-    flex: 1 1 auto;
+  position: relative;
+  & > div {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  .list {
+    width: auto;
+    padding: 30px 40px;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    &-href {
+      &:hover {
+        opacity: 0.6;
+        color: var(--primary-color);
+        text-decoration: underline;
+      }
+    }
   }
 }

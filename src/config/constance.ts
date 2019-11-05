@@ -122,3 +122,14 @@ export const MUSIC_RANK_TYPE: any = {
   '17': '华语金曲榜',
   '22': '云音乐ACG音乐榜'
 }
+
+// copyright 配置
+export const COPY_RIGHT_CONFIG = [
+  {
+    name: 'd-utils',
+    to: 'https://d-utils.daiwei.site'
+  }, {
+    name: '友情链接',
+    to: '/interlink'
+  }
+]

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { PROJECT_NAME, INTER_LINK_DEFAULT_LIMIT } from "./../../config/constance";
 import classNames from 'classnames'
+import './inter-link.less'
 import { getLinkLists } from './action'
+import Notice from './../../components/Notice'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 interface ILinkProps {
@@ -26,6 +28,7 @@ const InterLink: React.FC = () => {
       setLists(lists => lists = res.data)
     }
     fn()
+    Notice.default('欢迎互换友链！！！')
   }, []);
 
   return (
@@ -42,9 +45,11 @@ const InterLink: React.FC = () => {
                               }
                             }
                             classNames="side-up-fade"
-                            appear={false}
+                            appear={true}
                             unmountOnExit={false}>
-              <a className="list" key={item.id} href={item.url} target="_black">{item.name}</a>
+              <div className="list" key={item.id}>
+                <a className="list-href" title={`${item.name}#${item.disc}`} href={item.url} target="_black">{item.name}</a>
+              </div>
             </CSSTransition>
           ))
         }
